@@ -5,8 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +23,7 @@ public final class AuthentificationMenuBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final EditText emailField;
+  public final EditText emailOrUsernameField;
 
   @NonNull
   public final TextView forgotPassword;
@@ -41,24 +41,24 @@ public final class AuthentificationMenuBinding implements ViewBinding {
   public final EditText passwordField;
 
   @NonNull
-  public final TextView signup;
+  public final CheckBox rememberMe;
 
   @NonNull
-  public final Switch switch1;
+  public final TextView signup;
 
   private AuthentificationMenuBinding(@NonNull ConstraintLayout rootView,
-      @NonNull EditText emailField, @NonNull TextView forgotPassword, @NonNull Button loginButton,
-      @NonNull TextView loginText, @NonNull ConstraintLayout main, @NonNull EditText passwordField,
-      @NonNull TextView signup, @NonNull Switch switch1) {
+      @NonNull EditText emailOrUsernameField, @NonNull TextView forgotPassword,
+      @NonNull Button loginButton, @NonNull TextView loginText, @NonNull ConstraintLayout main,
+      @NonNull EditText passwordField, @NonNull CheckBox rememberMe, @NonNull TextView signup) {
     this.rootView = rootView;
-    this.emailField = emailField;
+    this.emailOrUsernameField = emailOrUsernameField;
     this.forgotPassword = forgotPassword;
     this.loginButton = loginButton;
     this.loginText = loginText;
     this.main = main;
     this.passwordField = passwordField;
+    this.rememberMe = rememberMe;
     this.signup = signup;
-    this.switch1 = switch1;
   }
 
   @Override
@@ -88,9 +88,9 @@ public final class AuthentificationMenuBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.emailField;
-      EditText emailField = ViewBindings.findChildViewById(rootView, id);
-      if (emailField == null) {
+      id = R.id.emailOrUsernameField;
+      EditText emailOrUsernameField = ViewBindings.findChildViewById(rootView, id);
+      if (emailOrUsernameField == null) {
         break missingId;
       }
 
@@ -120,20 +120,20 @@ public final class AuthentificationMenuBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.rememberMe;
+      CheckBox rememberMe = ViewBindings.findChildViewById(rootView, id);
+      if (rememberMe == null) {
+        break missingId;
+      }
+
       id = R.id.signup;
       TextView signup = ViewBindings.findChildViewById(rootView, id);
       if (signup == null) {
         break missingId;
       }
 
-      id = R.id.switch1;
-      Switch switch1 = ViewBindings.findChildViewById(rootView, id);
-      if (switch1 == null) {
-        break missingId;
-      }
-
-      return new AuthentificationMenuBinding((ConstraintLayout) rootView, emailField,
-          forgotPassword, loginButton, loginText, main, passwordField, signup, switch1);
+      return new AuthentificationMenuBinding((ConstraintLayout) rootView, emailOrUsernameField,
+          forgotPassword, loginButton, loginText, main, passwordField, rememberMe, signup);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -9,7 +9,7 @@
     tools:context=".MapActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/profilePhotoImageView"
         android:layout_width="185dp"
         android:layout_height="150dp"
         android:src="@drawable/account"
@@ -17,7 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.027" />
+        app:layout_constraintVertical_bias="0.027"
+        />
 
     <TextView
         android:id="@+id/accountInfoTextView"
@@ -181,5 +182,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.77" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

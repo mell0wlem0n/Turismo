@@ -1,64 +1,182 @@
 package com.example.turismo;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AccountFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.fragment.app.Fragment;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class AccountFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public AccountFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AccountFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AccountFragment newInstance(String param1, String param2) {
-        AccountFragment fragment = new AccountFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private EditText usernameEditText, emailEditText, passwordEditText, confirmPassword;
+    private Button saveChangesButton, disconnectButton, deleteAccountButton;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firestore;
+    private FirebaseUser currentUser;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_account, container, false);
+
+        // Initialize Firebase
+        firebaseAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference dbref = db.getReference();
+        DatabaseReference imgref = dbref.child("image");
+
+
+        // Find views by ID
+        usernameEditText = view.findViewById(R.id.nameField);
+        emailEditText = view.findViewById(R.id.emailField);
+        passwordEditText = view.findViewById(R.id.passwordField);
+        saveChangesButton = view.findViewById(R.id.saveButton);
+        disconnectButton = view.findViewById(R.id.disconnectButton);
+        deleteAccountButton = view.findViewById(R.id.deleteButton);
+        confirmPassword = view.findViewById(R.id.confirmPasswordField);
+        /*
+            TO DO profile picture thing
+
+        ImageView profilepic = view.findViewById(R.id.profilePhotoImageView);
+        imgref.addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(
+                            @NonNull DataSnapshot dataSnapshot) {
+                        // getting a DataSnapshot for the
+                        // location at the specified relative
+                        // path and getting in the link variable
+                        String link = dataSnapshot.getValue(
+                                String.class);
+
+                        // loading that data into rImage
+                        // variable which is ImageView
+                        Glide.with(AccountFragment.this).load(link).into(profilepic);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+
+                    // this will called when any problem
+                    // occurs in getting data
+
+                });
+ Fetch and populate user data in EditText fields
+*/
+        if (currentUser != null) {
+            firestore.collection("users").document(currentUser.getUid())
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String username = documentSnapshot.getString("username");
+                            String email = documentSnapshot.getString("email");
+
+                            usernameEditText.setText(username);
+                            emailEditText.setText(email);
+
+                        }
+                    });
         }
+
+        // Set click listeners for buttons
+        saveChangesButton.setOnClickListener(v -> saveChanges());
+        disconnectButton.setOnClickListener(v -> disconnect());
+        deleteAccountButton.setOnClickListener(v -> deleteAccount());
+
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false);
+    private void saveChanges() {
+        String newUsername = usernameEditText.getText().toString().trim();
+        String newEmail = emailEditText.getText().toString().trim();
+        String newPassword = passwordEditText.getText().toString().trim();
+        firestore.collection("users").document(currentUser.getUid()).get().addOnSuccessListener(documentSnapshot -> {
+            String username = documentSnapshot.getString("username");
+            String email = documentSnapshot.getString("email");
+            if (!newPassword.isEmpty() && newPassword.equals(confirmPassword.getText().toString())) {
+                currentUser.updatePassword(newPassword)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                passwordEditText.setText("");
+                                confirmPassword.setText("");
+                                Toast.makeText(getContext(), "Passwords changed succesfully: ", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(getContext(), "Password change failed.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }else if(!newPassword.isEmpty()){
+                Toast.makeText(getContext(), "Passwords don't match", Toast.LENGTH_SHORT).show();
+            }
+            if (!username.equals(newUsername))
+                firestore.collection("users").document(currentUser.getUid())
+                        .update("username", newUsername)
+                        .addOnSuccessListener(aVoid -> {
+                            Toast.makeText(getContext(), "Username changed succesfully", Toast.LENGTH_SHORT).show();
+
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(getContext(), "Error changing username: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+            if (!email.equals(newEmail)) {
+                if (Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
+                    firestore.collection("users").document(currentUser.getUid())
+                            .update("email", newEmail)
+                            .addOnSuccessListener(aVoid -> {
+                                Toast.makeText(getContext(), "Email changed succesfully", Toast.LENGTH_SHORT).show();
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(getContext(), "Error changing email: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
+                }
+            }
+        });
+
+
+
+    }
+
+
+    private void disconnect() {
+
+        firebaseAuth.signOut();
+
+        Intent intent = new Intent(getContext(), AuthentificationMenuActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+
+    private void deleteAccount() {
+        if (currentUser != null) {
+            firestore.collection("users").document(currentUser.getUid()).delete();
+            currentUser.delete()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            // Account deleted successfully
+                            // Redirect to login screen
+                            Intent intent = new Intent(getContext(), AuthentificationMenuActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            Toast.makeText(getContext(), "Account deleted successfully", Toast.LENGTH_SHORT).show();
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getContext(), "Error deleting account: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
 }

@@ -1,150 +1,154 @@
 [
     {
-        "merged": "com.example.turismo.app-debug-36:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.turismo.app-main-38:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "com.example.turismo.app-debug-39:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.turismo.app-main-41:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/layout_fragment_map.xml.flat",
-        "source": "com.example.turismo.app-main-38:/layout/fragment_map.xml"
+        "merged": "com.example.turismo.app-debug-39:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.turismo.app-main-41:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/drawable_people.xml.flat",
-        "source": "com.example.turismo.app-main-38:/drawable/people.xml"
+        "merged": "com.example.turismo.app-debug-39:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.turismo.app-main-41:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/layout_activity_map.xml.flat",
-        "source": "com.example.turismo.app-main-38:/layout/activity_map.xml"
+        "merged": "com.example.turismo.app-debug-39:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.turismo.app-main-41:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/menu_main_navbar.xml.flat",
-        "source": "com.example.turismo.app-main-38:/menu/main_navbar.xml"
+        "merged": "com.example.turismo.app-debug-39:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.turismo.app-main-41:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.turismo.app-main-38:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "com.example.turismo.app-debug-39:/layout_activity_forgot_password.xml.flat",
+        "source": "com.example.turismo.app-main-41:/layout/activity_forgot_password.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/layout_fragment_calendar.xml.flat",
-        "source": "com.example.turismo.app-main-38:/layout/fragment_calendar.xml"
+        "merged": "com.example.turismo.app-debug-39:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.turismo.app-main-41:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/drawable_bg_search_view.xml.flat",
-        "source": "com.example.turismo.app-main-38:/drawable/bg_search_view.xml"
+        "merged": "com.example.turismo.app-debug-39:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.turismo.app-main-41:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/drawable_email.xml.flat",
-        "source": "com.example.turismo.app-main-38:/drawable/email.xml"
+        "merged": "com.example.turismo.app-debug-39:/drawable_search.png.flat",
+        "source": "com.example.turismo.app-main-41:/drawable/search.png"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/layout_fragment_account.xml.flat",
-        "source": "com.example.turismo.app-main-38:/layout/fragment_account.xml"
+        "merged": "com.example.turismo.app-debug-39:/layout_activity_login.xml.flat",
+        "source": "com.example.turismo.app-main-41:/layout/activity_login.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.turismo.app-main-38:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "com.example.turismo.app-debug-39:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.turismo.app-main-41:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.turismo.app-main-38:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.example.turismo.app-debug-39:/layout_fragment_autocomplete.xml.flat",
+        "source": "com.example.turismo.app-main-41:/layout/fragment_autocomplete.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.turismo.app-main-38:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "com.example.turismo.app-debug-39:/drawable_account.xml.flat",
+        "source": "com.example.turismo.app-main-41:/drawable/account.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/layout_activity_login.xml.flat",
-        "source": "com.example.turismo.app-main-38:/layout/activity_login.xml"
+        "merged": "com.example.turismo.app-debug-39:/menu_main_navbar.xml.flat",
+        "source": "com.example.turismo.app-main-41:/menu/main_navbar.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/drawable_globe.gif.flat",
-        "source": "com.example.turismo.app-main-38:/drawable/globe.gif"
+        "merged": "com.example.turismo.app-debug-39:/drawable_img.png.flat",
+        "source": "com.example.turismo.app-main-41:/drawable/img.png"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/drawable_add.xml.flat",
-        "source": "com.example.turismo.app-main-38:/drawable/add.xml"
+        "merged": "com.example.turismo.app-debug-39:/layout_fragment_calendar.xml.flat",
+        "source": "com.example.turismo.app-main-41:/layout/fragment_calendar.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/drawable_account.xml.flat",
-        "source": "com.example.turismo.app-main-38:/drawable/account.xml"
+        "merged": "com.example.turismo.app-debug-39:/drawable_calendar.xml.flat",
+        "source": "com.example.turismo.app-main-41:/drawable/calendar.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/drawable_map.xml.flat",
-        "source": "com.example.turismo.app-main-38:/drawable/map.xml"
+        "merged": "com.example.turismo.app-debug-39:/layout_authentification_menu.xml.flat",
+        "source": "com.example.turismo.app-main-41:/layout/authentification_menu.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/drawable_search.png.flat",
-        "source": "com.example.turismo.app-main-38:/drawable/search.png"
+        "merged": "com.example.turismo.app-debug-39:/xml_backup_rules.xml.flat",
+        "source": "com.example.turismo.app-main-41:/xml/backup_rules.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.turismo.app-main-38:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "com.example.turismo.app-debug-39:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.turismo.app-main-41:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/layout_activity_register.xml.flat",
-        "source": "com.example.turismo.app-main-38:/layout/activity_register.xml"
+        "merged": "com.example.turismo.app-debug-39:/layout_activity_register.xml.flat",
+        "source": "com.example.turismo.app-main-41:/layout/activity_register.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/layout_fragment_autocomplete.xml.flat",
-        "source": "com.example.turismo.app-main-38:/layout/fragment_autocomplete.xml"
+        "merged": "com.example.turismo.app-debug-39:/layout_fragment_group.xml.flat",
+        "source": "com.example.turismo.app-main-41:/layout/fragment_group.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/xml_backup_rules.xml.flat",
-        "source": "com.example.turismo.app-main-38:/xml/backup_rules.xml"
+        "merged": "com.example.turismo.app-debug-39:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.turismo.app-main-41:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.turismo.app-main-38:/drawable/ic_launcher_background.xml"
+        "merged": "com.example.turismo.app-debug-39:/drawable_email.xml.flat",
+        "source": "com.example.turismo.app-main-41:/drawable/email.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/layout_activity_forgot_password.xml.flat",
-        "source": "com.example.turismo.app-main-38:/layout/activity_forgot_password.xml"
+        "merged": "com.example.turismo.app-debug-39:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.turismo.app-main-41:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/layout_activity_loading_screen.xml.flat",
-        "source": "com.example.turismo.app-main-38:/layout/activity_loading_screen.xml"
+        "merged": "com.example.turismo.app-debug-39:/drawable_globe.gif.flat",
+        "source": "com.example.turismo.app-main-41:/drawable/globe.gif"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.turismo.app-main-38:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.example.turismo.app-debug-39:/layout_fragment_account.xml.flat",
+        "source": "com.example.turismo.app-main-41:/layout/fragment_account.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/layout_fragment_group.xml.flat",
-        "source": "com.example.turismo.app-main-38:/layout/fragment_group.xml"
+        "merged": "com.example.turismo.app-debug-39:/drawable_bg_search_view.xml.flat",
+        "source": "com.example.turismo.app-main-41:/drawable/bg_search_view.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.turismo.app-main-38:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "com.example.turismo.app-debug-39:/drawable_add.xml.flat",
+        "source": "com.example.turismo.app-main-41:/drawable/add.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.turismo.app-main-38:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "com.example.turismo.app-debug-39:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.turismo.app-main-41:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.turismo.app-main-38:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.example.turismo.app-debug-39:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.turismo.app-main-41:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.turismo.app-main-38:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.turismo.app-debug-39:/layout_fragment_map.xml.flat",
+        "source": "com.example.turismo.app-main-41:/layout/fragment_map.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.turismo.app-main-38:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.turismo.app-debug-39:/layout_activity_map.xml.flat",
+        "source": "com.example.turismo.app-main-41:/layout/activity_map.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.turismo.app-main-38:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.example.turismo.app-debug-39:/drawable_map.xml.flat",
+        "source": "com.example.turismo.app-main-41:/drawable/map.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.turismo.app-main-38:/xml/data_extraction_rules.xml"
+        "merged": "com.example.turismo.app-debug-39:/drawable_people.xml.flat",
+        "source": "com.example.turismo.app-main-41:/drawable/people.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/drawable_calendar.xml.flat",
-        "source": "com.example.turismo.app-main-38:/drawable/calendar.xml"
+        "merged": "com.example.turismo.app-debug-39:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.turismo.app-main-41:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.turismo.app-debug-36:/layout_authentification_menu.xml.flat",
-        "source": "com.example.turismo.app-main-38:/layout/authentification_menu.xml"
+        "merged": "com.example.turismo.app-debug-39:/layout_activity_loading_screen.xml.flat",
+        "source": "com.example.turismo.app-main-41:/layout/activity_loading_screen.xml"
+    },
+    {
+        "merged": "com.example.turismo.app-debug-39:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.turismo.app-main-41:/mipmap-xxxhdpi/ic_launcher_round.webp"
     }
 ]
