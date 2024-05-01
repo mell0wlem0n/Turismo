@@ -1,6 +1,9 @@
 R_DEF: Internal format may change without notice
 local
 color black
+color custom_blue
+color custom_orange
+color custom_white
 color red
 color white
 drawable account
@@ -12,7 +15,6 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable map
 drawable people
-drawable planet
 id Logo
 id accountInfoTextView
 id accountItem

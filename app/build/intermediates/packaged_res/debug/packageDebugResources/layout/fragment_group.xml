@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#211A22"
     tools:context=".MapActivity">
 
 
@@ -13,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:backgroundTint="@color/custom_orange"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,6 +28,7 @@
         android:layout_width="208dp"
         android:layout_height="172dp"
         android:text="You are not member of any group"
+        android:textColor="@color/custom_white"
         android:textAlignment="center"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"

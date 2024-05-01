@@ -1366,6 +1366,9 @@ int color cardview_dark_background 0x7f05002a
 int color cardview_light_background 0x7f05002b
 int color cardview_shadow_end_color 0x7f05002c
 int color cardview_shadow_start_color 0x7f05002d
+int color custom_blue 0x7f050303
+int color custom_orange 0x7f050304
+int color custom_white 0x7f050305
 int color design_bottom_navigation_shadow_color 0x7f05002e
 int color design_box_stroke_color 0x7f05002f
 int color design_dark_default_color_background 0x7f050030
@@ -3073,7 +3076,6 @@ int drawable notification_template_icon_low_bg 0x7f0700df
 int drawable notification_tile_bg 0x7f0700e0
 int drawable notify_panel_notification_icon_bg 0x7f0700e1
 int drawable people 0x7f0700e2
-int drawable planet 0x7f0700e6
 int drawable test_level_drawable 0x7f0700e3
 int drawable tooltip_frame_dark 0x7f0700e4
 int drawable tooltip_frame_light 0x7f0700e5

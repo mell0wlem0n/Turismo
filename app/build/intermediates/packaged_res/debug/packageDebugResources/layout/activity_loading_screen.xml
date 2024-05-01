@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#523F9B"
+    android:background="#211A22"
     tools:context=".LoadingScreenActivity">
 
     <TextView
@@ -26,7 +26,7 @@
         android:id="@+id/spinning_globe"
         android:layout_width="201dp"
         android:layout_height="334dp"
-        android:src="@drawable/planet"
+        android:src="@drawable/globe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
