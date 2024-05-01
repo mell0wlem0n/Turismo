@@ -13,6 +13,7 @@
         android:layout_width="143dp"
         android:layout_height="47dp"
         android:backgroundTint="@color/custom_orange"
+        android:textColor="@color/white"
         android:text="Logare"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
