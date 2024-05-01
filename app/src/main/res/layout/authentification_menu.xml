@@ -5,12 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#211A22"
     tools:context=".AuthentificationMenuActivity">
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="143dp"
         android:layout_height="47dp"
+        android:backgroundTint="@color/custom_orange"
         android:text="Logare"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,11 +22,12 @@
 
     <EditText
         android:id="@+id/emailField"
-        android:hint="Email"
-        android:layout_width="321dp"
-        android:layout_height="45dp"
+        android:layout_width="305dp"
+        android:layout_height="55dp"
         android:ems="10"
+        android:hint="Email"
         android:inputType="textEmailAddress"
+        android:textColorHint="@color/custom_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
@@ -34,23 +37,26 @@
 
     <EditText
         android:id="@+id/passwordField"
-        android:layout_width="313dp"
-        android:layout_height="46dp"
+        android:layout_width="307dp"
+        android:layout_height="50dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColorHint="@color/custom_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.344" />
+        app:layout_constraintVertical_bias="0.348" />
 
     <TextView
         android:id="@+id/loginText"
         android:layout_width="369dp"
         android:layout_height="63dp"
+        android:drawableTint="#D35536"
         android:text="Welcome back!"
+        android:textColor="@color/white"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Remember Me"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.187"
@@ -73,12 +80,13 @@
 
     <TextView
         android:id="@+id/signup"
-        android:textSize="20dp"
-
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
-        android:text="Sign Up"
         android:onClick="onClick"
+        android:text="Sign Up"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.179"
@@ -90,9 +98,10 @@
         android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forgot Password"
         android:clickable="true"
         android:onClick="onClick"
+        android:text="Forgot Password"
+        android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
