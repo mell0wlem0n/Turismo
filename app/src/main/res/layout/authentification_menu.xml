@@ -19,8 +19,8 @@
         app:layout_constraintVertical_bias="0.577" />
 
     <EditText
-        android:id="@+id/emailField"
-        android:hint="Email"
+        android:id="@+id/emailOrUsernameField"
+        android:hint="Email or Username"
         android:layout_width="321dp"
         android:layout_height="45dp"
         android:ems="10"
@@ -59,8 +59,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.076" />
 
-    <Switch
-        android:id="@+id/switch1"
+    <CheckBox
+        android:id="@+id/rememberMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Remember Me"
