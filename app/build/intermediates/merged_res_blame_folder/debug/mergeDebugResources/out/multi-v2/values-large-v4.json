@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.turismo.app-mergeDebugResources-34:/values-large-v4/values-large-v4.xml",
+            "outputFile": "com.example.turismo.app-mergeDebugResources-37:/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-3\\e5030e2e003a111e1f880abda71f6063\\transformed\\appcompat-1.6.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-4\\8b51e3689184a6e38432ab38bfb208d6\\transformed\\appcompat-1.6.1\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-3\\ca3a41d2b20d70293f5c26bb623176eb\\transformed\\material-1.11.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-4\\24e1a717b9aaf0990d891ddb2f82ab90\\transformed\\material-1.11.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

@@ -21,21 +21,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.577" />
 
+
     <EditText
-<<<<<<< HEAD
-        android:id="@+id/emailField"
-        android:layout_width="305dp"
-        android:layout_height="55dp"
-=======
         android:id="@+id/emailOrUsernameField"
         android:hint="Email or Username"
         android:layout_width="321dp"
         android:layout_height="45dp"
->>>>>>> 205875a271837c0af0f1634db5b4c11e3ad7429d
         android:ems="10"
-        android:hint="Email"
         android:inputType="textEmailAddress"
-        android:textColorHint="@color/custom_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"

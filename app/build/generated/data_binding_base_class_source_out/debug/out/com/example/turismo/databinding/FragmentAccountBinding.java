@@ -44,9 +44,6 @@ public final class FragmentAccountBinding implements ViewBinding {
   public final TextView emailText;
 
   @NonNull
-  public final ImageView imageView;
-
-  @NonNull
   public final ConstraintLayout main;
 
   @NonNull
@@ -54,6 +51,9 @@ public final class FragmentAccountBinding implements ViewBinding {
 
   @NonNull
   public final EditText passwordField;
+
+  @NonNull
+  public final ImageView profilePhotoImageView;
 
   @NonNull
   public final Button saveButton;
@@ -68,9 +68,9 @@ public final class FragmentAccountBinding implements ViewBinding {
       @NonNull TextView accountInfoTextView, @NonNull EditText confirmPasswordField,
       @NonNull TextView confrmPasswordText, @NonNull Button deleteButton,
       @NonNull Button disconnectButton, @NonNull EditText emailField, @NonNull TextView emailText,
-      @NonNull ImageView imageView, @NonNull ConstraintLayout main, @NonNull EditText nameField,
-      @NonNull EditText passwordField, @NonNull Button saveButton, @NonNull TextView textView3,
-      @NonNull TextView textView4) {
+      @NonNull ConstraintLayout main, @NonNull EditText nameField, @NonNull EditText passwordField,
+      @NonNull ImageView profilePhotoImageView, @NonNull Button saveButton,
+      @NonNull TextView textView3, @NonNull TextView textView4) {
     this.rootView = rootView;
     this.accountInfoTextView = accountInfoTextView;
     this.confirmPasswordField = confirmPasswordField;
@@ -79,10 +79,10 @@ public final class FragmentAccountBinding implements ViewBinding {
     this.disconnectButton = disconnectButton;
     this.emailField = emailField;
     this.emailText = emailText;
-    this.imageView = imageView;
     this.main = main;
     this.nameField = nameField;
     this.passwordField = passwordField;
+    this.profilePhotoImageView = profilePhotoImageView;
     this.saveButton = saveButton;
     this.textView3 = textView3;
     this.textView4 = textView4;
@@ -157,12 +157,6 @@ public final class FragmentAccountBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.imageView;
-      ImageView imageView = ViewBindings.findChildViewById(rootView, id);
-      if (imageView == null) {
-        break missingId;
-      }
-
       ConstraintLayout main = (ConstraintLayout) rootView;
 
       id = R.id.nameField;
@@ -174,6 +168,12 @@ public final class FragmentAccountBinding implements ViewBinding {
       id = R.id.passwordField;
       EditText passwordField = ViewBindings.findChildViewById(rootView, id);
       if (passwordField == null) {
+        break missingId;
+      }
+
+      id = R.id.profilePhotoImageView;
+      ImageView profilePhotoImageView = ViewBindings.findChildViewById(rootView, id);
+      if (profilePhotoImageView == null) {
         break missingId;
       }
 
@@ -197,7 +197,8 @@ public final class FragmentAccountBinding implements ViewBinding {
 
       return new FragmentAccountBinding((ConstraintLayout) rootView, accountInfoTextView,
           confirmPasswordField, confrmPasswordText, deleteButton, disconnectButton, emailField,
-          emailText, imageView, main, nameField, passwordField, saveButton, textView3, textView4);
+          emailText, main, nameField, passwordField, profilePhotoImageView, saveButton, textView3,
+          textView4);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
