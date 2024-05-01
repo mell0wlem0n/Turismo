@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.androidApplication)
+<<<<<<< HEAD
     alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin)
+=======
+    alias(libs.plugins.googleGmsGoogleServices)
+>>>>>>> 205875a271837c0af0f1634db5b4c11e3ad7429d
 }
 
 android {
@@ -44,8 +48,19 @@ dependencies {
     implementation("com.google.android.libraries.places:places:3.3.0")
 
     implementation(libs.constraintlayout)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+<<<<<<< HEAD
     implementation (libs.glide)
 }
+=======
+    implementation("io.coil-kt:coil:2.3.0")
+    implementation("com.github.bumptech.glide:glide:4.11.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
+}
+>>>>>>> 205875a271837c0af0f1634db5b4c11e3ad7429d
