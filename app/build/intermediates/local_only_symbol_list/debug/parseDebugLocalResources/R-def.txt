@@ -1,10 +1,14 @@
 R_DEF: Internal format may change without notice
 local
 color black
+color custom_blue
+color custom_orange
+color custom_white
 color red
 color white
 drawable account
 drawable add
+drawable bg_search_view
 drawable calendar
 drawable email
 drawable globe
@@ -12,10 +16,11 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable map
 drawable people
-drawable planet
+drawable search
 id Logo
 id accountInfoTextView
 id accountItem
+id autocomplete_fragment
 id bottomNavigationView
 id button
 id calendarItem
@@ -37,9 +42,11 @@ id loginButton
 id loginText
 id main
 id main_frame
+id map
 id mapItem
 id nameField
 id passwordField
+id places_autocomplete_fragment
 id registerButton
 id registerConfirmPasswordField
 id registerConfirmPasswordText
@@ -50,6 +57,7 @@ id registerNameText
 id registerPasswordField
 id registerPasswordText
 id saveButton
+id searchIcon
 id signup
 id spinning_globe
 id switch1
@@ -63,6 +71,7 @@ layout activity_map
 layout activity_register
 layout authentification_menu
 layout fragment_account
+layout fragment_autocomplete
 layout fragment_calendar
 layout fragment_group
 layout fragment_map
@@ -71,6 +80,7 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
 string hello_blank_fragment
+string maps_api_key
 style Base.Theme.Turismo
 style Theme.Turismo
 xml backup_rules

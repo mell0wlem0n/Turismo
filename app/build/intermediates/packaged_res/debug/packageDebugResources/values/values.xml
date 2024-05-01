@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="custom_blue">#7BD8FF</color>
+    <color name="custom_orange">#D2563B</color>
+    <color name="custom_white">#c0bfbc</color>
     <color name="red">#FF0000</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">Turismo</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="maps_api_key"> AIzaSyCHQwQftJgDAhMehcWLAiXSXc3b_Jb0AXE </string>
     <style name="Base.Theme.Turismo" parent="Theme.Material3.DayNight.NoActionBar">
         
         

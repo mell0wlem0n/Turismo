@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.turismo.app-mergeDebugResources-30:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.example.turismo.app-mergeDebugResources-34:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "/home/stancuvlad-andrei/.gradle/caches/transforms-3/dbd0d37c2dd7b660827b309f63e6939c/transformed/material-1.11.0/res/values-ldrtl-v17/values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-3\\ca3a41d2b20d70293f5c26bb623176eb\\transformed\\material-1.11.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

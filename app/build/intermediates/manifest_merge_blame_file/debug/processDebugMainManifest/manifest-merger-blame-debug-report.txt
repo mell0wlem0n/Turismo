@@ -8,147 +8,263 @@
 8        android:minSdkVersion="24"
 9        android:targetSdkVersion="34" />
 10
-11    <permission
-11-->[androidx.core:core:1.9.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/00e54a58cb1a23c06fbc13752cc1e40c/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
-12        android:name="com.example.turismo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-12-->[androidx.core:core:1.9.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/00e54a58cb1a23c06fbc13752cc1e40c/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
-13        android:protectionLevel="signature" />
-13-->[androidx.core:core:1.9.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/00e54a58cb1a23c06fbc13752cc1e40c/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
-14
-15    <uses-permission android:name="com.example.turismo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-15-->[androidx.core:core:1.9.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/00e54a58cb1a23c06fbc13752cc1e40c/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
-15-->[androidx.core:core:1.9.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/00e54a58cb1a23c06fbc13752cc1e40c/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:5:5-66
+11-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+12-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:6:5-80
+12-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:6:22-78
+13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+13-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:7:5-78
+13-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:7:22-76
+14    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Include required permissions for Google Maps API to run. -->
+14-->[com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-3\09510d4463af70415456b53029d441a0\transformed\places-3.3.0\AndroidManifest.xml:11:5-76
+14-->[com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-3\09510d4463af70415456b53029d441a0\transformed\places-3.3.0\AndroidManifest.xml:11:22-73
+15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+15-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\rduto\.gradle\caches\transforms-3\9f8a62539010e34b1e623493a6d64ace\transformed\play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
+15-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\rduto\.gradle\caches\transforms-3\9f8a62539010e34b1e623493a6d64ace\transformed\play-services-maps-18.2.0\AndroidManifest.xml:23:22-76
 16
-17    <application
-17-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:5:5-36:19
-18        android:allowBackup="true"
-18-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:6:9-35
-19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.9.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/00e54a58cb1a23c06fbc13752cc1e40c/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
-20        android:dataExtractionRules="@xml/data_extraction_rules"
-20-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:7:9-65
-21        android:debuggable="true"
-22        android:extractNativeLibs="false"
-23        android:fullBackupContent="@xml/backup_rules"
-23-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:8:9-54
-24        android:icon="@mipmap/ic_launcher"
-24-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:9:9-43
-25        android:label="@string/app_name"
-25-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:10:9-41
-26        android:roundIcon="@mipmap/ic_launcher_round"
-26-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:11:9-54
-27        android:supportsRtl="true"
-27-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:12:9-35
-28        android:testOnly="true"
-29        android:theme="@style/Theme.Turismo" >
-29-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:13:9-45
-30        <activity
-30-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:15:9-17:40
-31            android:name="com.example.turismo.ForgotPasswordActivity"
-31-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:16:13-51
-32            android:exported="false" />
-32-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:17:13-37
-33        <activity
-33-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:18:9-20:40
-34            android:name="com.example.turismo.MapActivity"
-34-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:19:13-40
-35            android:exported="false" />
-35-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:20:13-37
-36        <activity
-36-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:21:9-23:40
-37            android:name="com.example.turismo.RegisterActivity"
-37-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:22:13-45
-38            android:exported="false" />
-38-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:23:13-37
-39        <activity
-39-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:24:9-26:40
-40            android:name="com.example.turismo.AuthentificationMenuActivity"
-40-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:25:13-57
-41            android:exported="false" />
-41-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:26:13-37
-42        <activity
-42-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:27:9-35:20
-43            android:name="com.example.turismo.LoadingScreenActivity"
-43-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:28:13-50
-44            android:exported="true" >
-44-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:29:13-36
-45            <intent-filter>
-45-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:30:13-34:29
-46                <action android:name="android.intent.action.MAIN" />
-46-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:31:17-69
-46-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:31:25-66
-47
-48                <category android:name="android.intent.category.LAUNCHER" />
-48-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:33:17-77
-48-->/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/src/main/AndroidManifest.xml:33:27-74
-49            </intent-filter>
-50        </activity>
+17    <uses-feature
+17-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\rduto\.gradle\caches\transforms-3\9f8a62539010e34b1e623493a6d64ace\transformed\play-services-maps-18.2.0\AndroidManifest.xml:26:5-28:35
+18        android:glEsVersion="0x00020000"
+18-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\rduto\.gradle\caches\transforms-3\9f8a62539010e34b1e623493a6d64ace\transformed\play-services-maps-18.2.0\AndroidManifest.xml:27:9-41
+19        android:required="true" />
+19-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\rduto\.gradle\caches\transforms-3\9f8a62539010e34b1e623493a6d64ace\transformed\play-services-maps-18.2.0\AndroidManifest.xml:28:9-32
+20
+21    <queries>
+21-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\rduto\.gradle\caches\transforms-3\9f8a62539010e34b1e623493a6d64ace\transformed\play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
+22
+23        <!-- Needs to be explicitly declared on Android R+ -->
+24        <package android:name="com.google.android.apps.maps" />
+24-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\rduto\.gradle\caches\transforms-3\9f8a62539010e34b1e623493a6d64ace\transformed\play-services-maps-18.2.0\AndroidManifest.xml:33:9-64
+24-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\rduto\.gradle\caches\transforms-3\9f8a62539010e34b1e623493a6d64ace\transformed\play-services-maps-18.2.0\AndroidManifest.xml:33:18-61
+25    </queries>
+26
+27    <permission
+27-->[androidx.core:core:1.9.0] C:\Users\rduto\.gradle\caches\transforms-3\91f85f246fc10476109121531d56d3ae\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+28        android:name="com.example.turismo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+28-->[androidx.core:core:1.9.0] C:\Users\rduto\.gradle\caches\transforms-3\91f85f246fc10476109121531d56d3ae\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+29        android:protectionLevel="signature" />
+29-->[androidx.core:core:1.9.0] C:\Users\rduto\.gradle\caches\transforms-3\91f85f246fc10476109121531d56d3ae\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+30
+31    <uses-permission android:name="com.example.turismo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+31-->[androidx.core:core:1.9.0] C:\Users\rduto\.gradle\caches\transforms-3\91f85f246fc10476109121531d56d3ae\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+31-->[androidx.core:core:1.9.0] C:\Users\rduto\.gradle\caches\transforms-3\91f85f246fc10476109121531d56d3ae\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+32
+33    <application
+33-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:8:5-55:19
+34        android:allowBackup="true"
+34-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:9:9-35
+35        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+35-->[androidx.core:core:1.9.0] C:\Users\rduto\.gradle\caches\transforms-3\91f85f246fc10476109121531d56d3ae\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+36        android:dataExtractionRules="@xml/data_extraction_rules"
+36-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:10:9-65
+37        android:debuggable="true"
+38        android:extractNativeLibs="false"
+39        android:fullBackupContent="@xml/backup_rules"
+39-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:11:9-54
+40        android:icon="@mipmap/ic_launcher"
+40-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:12:9-43
+41        android:label="@string/app_name"
+41-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:13:9-41
+42        android:roundIcon="@mipmap/ic_launcher_round"
+42-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:14:9-54
+43        android:supportsRtl="true"
+43-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:15:9-35
+44        android:testOnly="true"
+45        android:theme="@style/Theme.Turismo" >
+45-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:16:9-45
+46
+47        <!--
+48             TODO: Before you run your application, you need a Google Maps API key.
+49
+50             To get one, follow the directions here:
 51
-52        <provider
-52-->[androidx.emoji2:emoji2:1.2.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/37e4ebbf338f98953cbf4d1b60e2859f/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
-53            android:name="androidx.startup.InitializationProvider"
-53-->[androidx.emoji2:emoji2:1.2.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/37e4ebbf338f98953cbf4d1b60e2859f/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
-54            android:authorities="com.example.turismo.androidx-startup"
-54-->[androidx.emoji2:emoji2:1.2.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/37e4ebbf338f98953cbf4d1b60e2859f/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
-55            android:exported="false" >
-55-->[androidx.emoji2:emoji2:1.2.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/37e4ebbf338f98953cbf4d1b60e2859f/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
-56            <meta-data
-56-->[androidx.emoji2:emoji2:1.2.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/37e4ebbf338f98953cbf4d1b60e2859f/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
-57                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-57-->[androidx.emoji2:emoji2:1.2.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/37e4ebbf338f98953cbf4d1b60e2859f/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
-58                android:value="androidx.startup" />
-58-->[androidx.emoji2:emoji2:1.2.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/37e4ebbf338f98953cbf4d1b60e2859f/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
-59            <meta-data
-59-->[androidx.lifecycle:lifecycle-process:2.6.1] /home/stancuvlad-andrei/.gradle/caches/transforms-3/d2a14b2dc65e38159154d3abe4da7554/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
-60                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-60-->[androidx.lifecycle:lifecycle-process:2.6.1] /home/stancuvlad-andrei/.gradle/caches/transforms-3/d2a14b2dc65e38159154d3abe4da7554/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
-61                android:value="androidx.startup" />
-61-->[androidx.lifecycle:lifecycle-process:2.6.1] /home/stancuvlad-andrei/.gradle/caches/transforms-3/d2a14b2dc65e38159154d3abe4da7554/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
-62            <meta-data
-62-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
-63                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-63-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
-64                android:value="androidx.startup" />
-64-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
-65        </provider>
-66
-67        <receiver
-67-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
-68            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-68-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
-69            android:directBootAware="false"
-69-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
-70            android:enabled="true"
-70-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
-71            android:exported="true"
-71-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
-72            android:permission="android.permission.DUMP" >
-72-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
-73            <intent-filter>
-73-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
-74                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-74-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
-74-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
-75            </intent-filter>
-76            <intent-filter>
-76-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
-77                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-77-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
-77-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
-78            </intent-filter>
-79            <intent-filter>
-79-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
-80                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-80-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
-80-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+52                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+53
+54             Once you have your API key (it starts with "AIza"), define a new property in your
+55             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+56             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+57        -->
+58        <meta-data
+58-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:30:9-32:52
+59            android:name="com.google.android.geo.API_KEY"
+59-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:31:13-58
+60            android:value="@string/maps_api_key" />
+60-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:32:13-49
+61
+62        <activity
+62-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:34:9-36:40
+63            android:name="com.example.turismo.ForgotPasswordActivity"
+63-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:35:13-51
+64            android:exported="false" />
+64-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:36:13-37
+65        <activity
+65-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:37:9-39:40
+66            android:name="com.example.turismo.MapActivity"
+66-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:38:13-40
+67            android:exported="false" />
+67-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:39:13-37
+68        <activity
+68-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:40:9-42:40
+69            android:name="com.example.turismo.RegisterActivity"
+69-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:41:13-45
+70            android:exported="false" />
+70-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:42:13-37
+71        <activity
+71-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:43:9-45:40
+72            android:name="com.example.turismo.AuthentificationMenuActivity"
+72-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:44:13-57
+73            android:exported="false" />
+73-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:45:13-37
+74        <activity
+74-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:46:9-54:20
+75            android:name="com.example.turismo.LoadingScreenActivity"
+75-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:47:13-50
+76            android:exported="true" >
+76-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:48:13-36
+77            <intent-filter>
+77-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:49:13-53:29
+78                <action android:name="android.intent.action.MAIN" />
+78-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:50:17-69
+78-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:50:25-66
+79
+80                <category android:name="android.intent.category.LAUNCHER" />
+80-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:52:17-77
+80-->C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:52:27-74
 81            </intent-filter>
-82            <intent-filter>
-82-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
-83                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-83-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
-83-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/stancuvlad-andrei/.gradle/caches/transforms-3/fb7b6c6f5255324d6b33673a028b05c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
-84            </intent-filter>
-85        </receiver>
-86    </application>
-87
-88</manifest>
+82        </activity>
+83        <activity
+83-->[com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-3\09510d4463af70415456b53029d441a0\transformed\places-3.3.0\AndroidManifest.xml:15:9-21:20
+84            android:name="com.google.android.libraries.places.widget.AutocompleteActivity"
+84-->[com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-3\09510d4463af70415456b53029d441a0\transformed\places-3.3.0\AndroidManifest.xml:16:13-91
+85            android:exported="false"
+85-->[com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-3\09510d4463af70415456b53029d441a0\transformed\places-3.3.0\AndroidManifest.xml:17:13-37
+86            android:label="@string/places_autocomplete_label"
+86-->[com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-3\09510d4463af70415456b53029d441a0\transformed\places-3.3.0\AndroidManifest.xml:18:13-62
+87            android:theme="@style/PlacesAutocompleteOverlay"
+87-->[com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-3\09510d4463af70415456b53029d441a0\transformed\places-3.3.0\AndroidManifest.xml:19:13-61
+88            android:windowSoftInputMode="adjustResize" >
+88-->[com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-3\09510d4463af70415456b53029d441a0\transformed\places-3.3.0\AndroidManifest.xml:20:13-55
+89        </activity> <!-- Needs to be explicitly declared on P+ -->
+90        <uses-library
+90-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\rduto\.gradle\caches\transforms-3\9f8a62539010e34b1e623493a6d64ace\transformed\play-services-maps-18.2.0\AndroidManifest.xml:39:9-41:40
+91            android:name="org.apache.http.legacy"
+91-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\rduto\.gradle\caches\transforms-3\9f8a62539010e34b1e623493a6d64ace\transformed\play-services-maps-18.2.0\AndroidManifest.xml:40:13-50
+92            android:required="false" />
+92-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\rduto\.gradle\caches\transforms-3\9f8a62539010e34b1e623493a6d64ace\transformed\play-services-maps-18.2.0\AndroidManifest.xml:41:13-37
+93
+94        <activity
+94-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\rduto\.gradle\caches\transforms-3\ec3ab23ac10e9b86562361ce07cfb09c\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+95            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+95-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\rduto\.gradle\caches\transforms-3\ec3ab23ac10e9b86562361ce07cfb09c\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+96            android:exported="false"
+96-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\rduto\.gradle\caches\transforms-3\ec3ab23ac10e9b86562361ce07cfb09c\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+97            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+97-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\rduto\.gradle\caches\transforms-3\ec3ab23ac10e9b86562361ce07cfb09c\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+98
+99        <meta-data
+99-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\rduto\.gradle\caches\transforms-3\1eda8f17ccbe755be5285036b5e28061\transformed\play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+100            android:name="com.google.android.gms.version"
+100-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\rduto\.gradle\caches\transforms-3\1eda8f17ccbe755be5285036b5e28061\transformed\play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+101            android:value="@integer/google_play_services_version" />
+101-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\rduto\.gradle\caches\transforms-3\1eda8f17ccbe755be5285036b5e28061\transformed\play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+102
+103        <provider
+103-->[androidx.emoji2:emoji2:1.2.0] C:\Users\rduto\.gradle\caches\transforms-3\a41e838b0871535e91646ef0e6787631\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+104            android:name="androidx.startup.InitializationProvider"
+104-->[androidx.emoji2:emoji2:1.2.0] C:\Users\rduto\.gradle\caches\transforms-3\a41e838b0871535e91646ef0e6787631\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+105            android:authorities="com.example.turismo.androidx-startup"
+105-->[androidx.emoji2:emoji2:1.2.0] C:\Users\rduto\.gradle\caches\transforms-3\a41e838b0871535e91646ef0e6787631\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+106            android:exported="false" >
+106-->[androidx.emoji2:emoji2:1.2.0] C:\Users\rduto\.gradle\caches\transforms-3\a41e838b0871535e91646ef0e6787631\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+107            <meta-data
+107-->[androidx.emoji2:emoji2:1.2.0] C:\Users\rduto\.gradle\caches\transforms-3\a41e838b0871535e91646ef0e6787631\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+108                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+108-->[androidx.emoji2:emoji2:1.2.0] C:\Users\rduto\.gradle\caches\transforms-3\a41e838b0871535e91646ef0e6787631\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+109                android:value="androidx.startup" />
+109-->[androidx.emoji2:emoji2:1.2.0] C:\Users\rduto\.gradle\caches\transforms-3\a41e838b0871535e91646ef0e6787631\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+110            <meta-data
+110-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\rduto\.gradle\caches\transforms-3\43cd521975b95611e5be4de47bf74363\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+111                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+111-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\rduto\.gradle\caches\transforms-3\43cd521975b95611e5be4de47bf74363\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+112                android:value="androidx.startup" />
+112-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\rduto\.gradle\caches\transforms-3\43cd521975b95611e5be4de47bf74363\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+113            <meta-data
+113-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+114                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+114-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+115                android:value="androidx.startup" />
+115-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+116        </provider>
+117
+118        <receiver
+118-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+119            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+119-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+120            android:directBootAware="false"
+120-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+121            android:enabled="true"
+121-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+122            android:exported="true"
+122-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+123            android:permission="android.permission.DUMP" >
+123-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+124            <intent-filter>
+124-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+125                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+125-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+125-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+126            </intent-filter>
+127            <intent-filter>
+127-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+128                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+128-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+128-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+129            </intent-filter>
+130            <intent-filter>
+130-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+131                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+131-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+131-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+132            </intent-filter>
+133            <intent-filter>
+133-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+134                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+134-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+134-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-3\5456201acc154ac2683685f739792907\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+135            </intent-filter>
+136        </receiver>
+137
+138        <service
+138-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\rduto\.gradle\caches\transforms-3\9e587cdcd48e89e829b56eb778cd039d\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:29:9-35:19
+139            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+139-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\rduto\.gradle\caches\transforms-3\9e587cdcd48e89e829b56eb778cd039d\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:30:13-103
+140            android:exported="false" >
+140-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\rduto\.gradle\caches\transforms-3\9e587cdcd48e89e829b56eb778cd039d\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:31:13-37
+141            <meta-data
+141-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\rduto\.gradle\caches\transforms-3\9e587cdcd48e89e829b56eb778cd039d\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:32:13-34:39
+142                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+142-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\rduto\.gradle\caches\transforms-3\9e587cdcd48e89e829b56eb778cd039d\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:33:17-94
+143                android:value="cct" />
+143-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\rduto\.gradle\caches\transforms-3\9e587cdcd48e89e829b56eb778cd039d\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:34:17-36
+144        </service>
+145        <service
+145-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\rduto\.gradle\caches\transforms-3\1f48140804792a76f75f39adeaf7b998\transformed\transport-runtime-2.2.3\AndroidManifest.xml:26:9-30:19
+146            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+146-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\rduto\.gradle\caches\transforms-3\1f48140804792a76f75f39adeaf7b998\transformed\transport-runtime-2.2.3\AndroidManifest.xml:27:13-117
+147            android:exported="false"
+147-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\rduto\.gradle\caches\transforms-3\1f48140804792a76f75f39adeaf7b998\transformed\transport-runtime-2.2.3\AndroidManifest.xml:28:13-37
+148            android:permission="android.permission.BIND_JOB_SERVICE" >
+148-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\rduto\.gradle\caches\transforms-3\1f48140804792a76f75f39adeaf7b998\transformed\transport-runtime-2.2.3\AndroidManifest.xml:29:13-69
+149        </service>
+150
+151        <receiver
+151-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\rduto\.gradle\caches\transforms-3\1f48140804792a76f75f39adeaf7b998\transformed\transport-runtime-2.2.3\AndroidManifest.xml:32:9-34:40
+152            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+152-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\rduto\.gradle\caches\transforms-3\1f48140804792a76f75f39adeaf7b998\transformed\transport-runtime-2.2.3\AndroidManifest.xml:33:13-132
+153            android:exported="false" />
+153-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\rduto\.gradle\caches\transforms-3\1f48140804792a76f75f39adeaf7b998\transformed\transport-runtime-2.2.3\AndroidManifest.xml:34:13-37
+154    </application>
+155
+156</manifest>

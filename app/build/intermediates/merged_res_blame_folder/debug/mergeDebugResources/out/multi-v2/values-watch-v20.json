@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.turismo.app-mergeDebugResources-30:/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "com.example.turismo.app-mergeDebugResources-34:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "/home/stancuvlad-andrei/.gradle/caches/transforms-3/8342f5fa526c6e76aa540db2b404ea60/transformed/appcompat-1.6.1/res/values-watch-v20/values-watch-v20.xml",
+                    "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-3\\e5030e2e003a111e1f880abda71f6063\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",

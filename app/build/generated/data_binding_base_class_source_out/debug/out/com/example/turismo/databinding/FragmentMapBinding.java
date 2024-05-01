@@ -4,9 +4,9 @@ package com.example.turismo.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import com.example.turismo.R;
 import java.lang.NullPointerException;
@@ -14,19 +14,15 @@ import java.lang.Override;
 
 public final class FragmentMapBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final RelativeLayout rootView;
 
-  @NonNull
-  public final ConstraintLayout main;
-
-  private FragmentMapBinding(@NonNull ConstraintLayout rootView, @NonNull ConstraintLayout main) {
+  private FragmentMapBinding(@NonNull RelativeLayout rootView) {
     this.rootView = rootView;
-    this.main = main;
   }
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public RelativeLayout getRoot() {
     return rootView;
   }
 
@@ -51,8 +47,6 @@ public final class FragmentMapBinding implements ViewBinding {
       throw new NullPointerException("rootView");
     }
 
-    ConstraintLayout main = (ConstraintLayout) rootView;
-
-    return new FragmentMapBinding((ConstraintLayout) rootView, main);
+    return new FragmentMapBinding((RelativeLayout) rootView);
   }
 }
