@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mapItem"
+        android:icon="@drawable/map"
+        android:title="Map"
+        app:showAsAction="always"/>
+    <item android:title="Account"
+        android:icon="@drawable/account"
+        android:id="@+id/accountItem"
+        app:showAsAction="always"/>
+    <item android:title="Social"
+        android:icon="@drawable/people"
+        android:id="@+id/groupItem"
+        app:showAsAction="always"/>
+    <item android:title="Calendar"
+    android:icon="@drawable/calendar"
+    android:id="@+id/calendarItem"
+        app:showAsAction="always"/>
+
+</menu>
