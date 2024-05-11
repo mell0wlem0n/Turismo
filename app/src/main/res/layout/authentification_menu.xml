@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#211A22"
+    android:background="#211821"
     tools:context=".AuthentificationMenuActivity">
 
     <Button
@@ -13,8 +13,8 @@
         android:layout_width="143dp"
         android:layout_height="47dp"
         android:backgroundTint="@color/custom_orange"
-        android:textColor="@color/white"
         android:text="Logare"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,10 +24,11 @@
 
     <EditText
         android:id="@+id/emailOrUsernameField"
-        android:hint="Email or Username"
         android:layout_width="321dp"
         android:layout_height="45dp"
         android:ems="10"
+        android:hint="Email or Username"
+        android:textColorHint="@color/custom_white"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

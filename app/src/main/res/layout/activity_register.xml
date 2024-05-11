@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#211A22"
+    android:background="#211821"
     tools:context=".RegisterActivity">
 
     <ImageView
@@ -24,8 +24,9 @@
         android:id="@+id/registerButton"
         android:layout_width="132dp"
         android:layout_height="56dp"
-        android:text="Register"
         android:backgroundTint="@color/custom_orange"
+        android:textColor="@color/white"
+        android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -81,8 +82,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:textColorHint="@color/custom_white"
         android:inputType="textEmailAddress"
+        android:textColorHint="@color/custom_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.845"

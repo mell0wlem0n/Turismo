@@ -4,7 +4,17 @@
             "outputFile": "com.example.turismo.app-mergeDebugResources-37:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-4\\8b51e3689184a6e38432ab38bfb208d6\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "source": "/home/stancuvlad-andrei/.gradle/caches/transforms-4/6b7e64ca661a5243603e05eaeb7b8b4e/transformed/core-1.9.0/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "/home/stancuvlad-andrei/.gradle/caches/transforms-4/2f898c73c0cac945d93fc662d82253b7/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -20,16 +30,6 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-4\\aaf86b85778804a6b801d0338a9a5e81\\transformed\\core-1.9.0\\res\\values-v16\\values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
                     }
                 }
             ]
