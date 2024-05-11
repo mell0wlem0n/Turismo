@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.turismo.app-mergeDebugResources-37:/values-ne/values-ne.xml",
+            "outputFile": "com.example.turismo.app-mergeDebugResources-38:/values-ne/values-ne.xml",
             "map": [
                 {
                     "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-4\\7360a9f51c1892b798d84bef68e9fc0c\\transformed\\play-services-base-18.1.0\\res\\values-ne\\values.xml",

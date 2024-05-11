@@ -8,16 +8,33 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
 import com.example.turismo.R;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import java.lang.NullPointerException;
 import java.lang.Override;
+import java.lang.String;
 
 public final class FragmentMapBinding implements ViewBinding {
   @NonNull
   private final RelativeLayout rootView;
 
-  private FragmentMapBinding(@NonNull RelativeLayout rootView) {
+  @NonNull
+  public final FloatingActionButton fabAtm;
+
+  @NonNull
+  public final FloatingActionMenu fabMenu;
+
+  @NonNull
+  public final FloatingActionButton fabRestaurant;
+
+  private FragmentMapBinding(@NonNull RelativeLayout rootView, @NonNull FloatingActionButton fabAtm,
+      @NonNull FloatingActionMenu fabMenu, @NonNull FloatingActionButton fabRestaurant) {
     this.rootView = rootView;
+    this.fabAtm = fabAtm;
+    this.fabMenu = fabMenu;
+    this.fabRestaurant = fabRestaurant;
   }
 
   @Override
@@ -43,10 +60,31 @@ public final class FragmentMapBinding implements ViewBinding {
 
   @NonNull
   public static FragmentMapBinding bind(@NonNull View rootView) {
-    if (rootView == null) {
-      throw new NullPointerException("rootView");
-    }
+    // The body of this method is generated in a way you would not otherwise write.
+    // This is done to optimize the compiled bytecode for size and performance.
+    int id;
+    missingId: {
+      id = R.id.fab_atm;
+      FloatingActionButton fabAtm = ViewBindings.findChildViewById(rootView, id);
+      if (fabAtm == null) {
+        break missingId;
+      }
 
-    return new FragmentMapBinding((RelativeLayout) rootView);
+      id = R.id.fab_menu;
+      FloatingActionMenu fabMenu = ViewBindings.findChildViewById(rootView, id);
+      if (fabMenu == null) {
+        break missingId;
+      }
+
+      id = R.id.fab_restaurant;
+      FloatingActionButton fabRestaurant = ViewBindings.findChildViewById(rootView, id);
+      if (fabRestaurant == null) {
+        break missingId;
+      }
+
+      return new FragmentMapBinding((RelativeLayout) rootView, fabAtm, fabMenu, fabRestaurant);
+    }
+    String missingId = rootView.getResources().getResourceName(id);
+    throw new NullPointerException("Missing required view with ID: ".concat(missingId));
   }
 }

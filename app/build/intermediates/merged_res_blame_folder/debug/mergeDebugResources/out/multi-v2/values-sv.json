@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.turismo.app-mergeDebugResources-37:/values-sv/values-sv.xml",
+            "outputFile": "com.example.turismo.app-mergeDebugResources-38:/values-sv/values-sv.xml",
             "map": [
                 {
                     "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-4\\aaf86b85778804a6b801d0338a9a5e81\\transformed\\core-1.9.0\\res\\values-sv\\values-sv.xml",

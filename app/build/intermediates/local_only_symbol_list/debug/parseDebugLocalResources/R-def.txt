@@ -1,5 +1,6 @@
 R_DEF: Internal format may change without notice
 local
+anim slide_up
 color black
 color custom_blue
 color custom_orange
@@ -10,6 +11,7 @@ drawable account
 drawable add
 drawable bg_search_view
 drawable calendar
+drawable discover
 drawable email
 drawable globe
 drawable ic_launcher_background
@@ -21,6 +23,7 @@ drawable search
 id Logo
 id accountInfoTextView
 id accountItem
+id addressText
 id autocomplete_fragment
 id bottomNavigationView
 id button
@@ -35,19 +38,31 @@ id emailField
 id emailOrUsernameField
 id emailText
 id emptyGroupText
+id fab_atm
+id fab_menu
+id fab_restaurant
 id floatingActionButton
 id forgotPassword
 id groupItem
+id image
+id imageSlider
+id imageView
 id imageView2
 id imageView4
+id latitudeText
+id location_view
 id loginButton
 id loginText
+id longitudeText
 id main
 id main_frame
 id map
 id mapItem
 id nameField
+id nameText
+id openingHoursText
 id passwordField
+id phoneText
 id places_autocomplete_fragment
 id profilePhotoImageView
 id registerButton
@@ -67,6 +82,7 @@ id spinning_globe
 id textView3
 id textView4
 id verifText
+id websiteText
 layout activity_forgot_password
 layout activity_loading_screen
 layout activity_login
@@ -75,9 +91,13 @@ layout activity_register
 layout authentification_menu
 layout fragment_account
 layout fragment_autocomplete
+layout fragment_bottom_sheet_dialog
 layout fragment_calendar
 layout fragment_group
+layout fragment_image
 layout fragment_map
+layout image_item
+layout location_view
 menu main_navbar
 mipmap ic_launcher
 mipmap ic_launcher_round
