@@ -1,5 +1,6 @@
 [
     {
+<<<<<<< HEAD
         "merged": "com.example.turismo.app-mergeDebugResources-39:/layout/activity_login.xml",
         "source": "com.example.turismo.app-main-42:/layout/activity_login.xml"
     },
@@ -14,12 +15,21 @@
     {
         "merged": "com.example.turismo.app-mergeDebugResources-39:/layout/fragment_group.xml",
         "source": "com.example.turismo.app-main-42:/layout/fragment_group.xml"
+=======
+        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-mergeDebugResources-38:/layout/fragment_calendar.xml",
+        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/fragment_calendar.xml"
+    },
+    {
+        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-mergeDebugResources-38:/layout/activity_map.xml",
+        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/activity_map.xml"
+>>>>>>> 76ff2a0f61e23ea1af0348c1ee240ee15b774b2e
     },
     {
         "merged": "com.example.turismo.app-mergeDebugResources-39:/layout/fragment_calendar.xml",
         "source": "com.example.turismo.app-main-42:/layout/fragment_calendar.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "com.example.turismo.app-mergeDebugResources-39:/layout/activity_forgot_password.xml",
         "source": "com.example.turismo.app-main-42:/layout/activity_forgot_password.xml"
     },
@@ -54,5 +64,41 @@
     {
         "merged": "com.example.turismo.app-mergeDebugResources-39:/layout/fragment_map.xml",
         "source": "com.example.turismo.app-main-42:/layout/fragment_map.xml"
+=======
+        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-mergeDebugResources-38:/layout/fragment_map.xml",
+        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/fragment_map.xml"
+    },
+    {
+        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-mergeDebugResources-38:/layout/activity_loading_screen.xml",
+        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/activity_loading_screen.xml"
+    },
+    {
+        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-mergeDebugResources-38:/layout/fragment_group.xml",
+        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/fragment_group.xml"
+    },
+    {
+        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-mergeDebugResources-38:/layout/activity_login.xml",
+        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/activity_login.xml"
+    },
+    {
+        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-mergeDebugResources-38:/layout/activity_register.xml",
+        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/activity_register.xml"
+    },
+    {
+        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-mergeDebugResources-38:/layout/fragment_autocomplete.xml",
+        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/fragment_autocomplete.xml"
+    },
+    {
+        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-mergeDebugResources-38:/layout/activity_forgot_password.xml",
+        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/activity_forgot_password.xml"
+    },
+    {
+        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-mergeDebugResources-38:/layout/authentification_menu.xml",
+        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/authentification_menu.xml"
+    },
+    {
+        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-mergeDebugResources-38:/layout/fragment_account.xml",
+        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/fragment_account.xml"
+>>>>>>> 76ff2a0f61e23ea1af0348c1ee240ee15b774b2e
     }
 ]
