@@ -1,18 +1,10 @@
-<<<<<<< HEAD
-#Sat May 11 13:53:11 EEST 2024
+#Sat May 11 14:18:50 EEST 2024
 base.0=C\:\\Users\\rduto\\Desktop\\proiect_colectiv\\Turismo\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\rduto\\Desktop\\proiect_colectiv\\Turismo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\rduto\\Desktop\\proiect_colectiv\\Turismo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
 base.3=C\:\\Users\\rduto\\Desktop\\proiect_colectiv\\Turismo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
 base.4=C\:\\Users\\rduto\\Desktop\\proiect_colectiv\\Turismo\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 base.5=C\:\\Users\\rduto\\Desktop\\proiect_colectiv\\Turismo\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
-=======
-#Wed May 01 14:43:38 EEST 2024
-base.0=/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-base.1=/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.2=/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/build/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
-base.3=/home/stancuvlad-andrei/AndroidStudioProjects/Turismo/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex
->>>>>>> f59c99fe40efaf7e39112ca7faa215d9dca9b7fd
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=14/classes.dex

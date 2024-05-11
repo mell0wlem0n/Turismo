@@ -13,10 +13,7 @@
         android:layout_width="143dp"
         android:layout_height="47dp"
         android:backgroundTint="@color/custom_orange"
-<<<<<<< HEAD
         android:textColor="@color/white"
-=======
->>>>>>> f59c99fe40efaf7e39112ca7faa215d9dca9b7fd
         android:text="Logare"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,10 +29,6 @@
         android:layout_height="45dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-<<<<<<< HEAD
-=======
-        android:textColorHint="@color/custom_white"
->>>>>>> f59c99fe40efaf7e39112ca7faa215d9dca9b7fd
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
