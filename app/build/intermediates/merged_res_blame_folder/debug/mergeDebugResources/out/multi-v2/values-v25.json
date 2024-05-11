@@ -4,7 +4,7 @@
             "outputFile": "com.example.turismo.app-mergeDebugResources-38:/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "/home/stancuvlad-andrei/.gradle/caches/transforms-4/2f898c73c0cac945d93fc662d82253b7/transformed/appcompat-1.6.1/res/values-v25/values-v25.xml",
+                    "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-4\\2f898c73c0cac945d93fc662d82253b7\\transformed\\appcompat-1.6.1\\res\\values-v25\\values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",

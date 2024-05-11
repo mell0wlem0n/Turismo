@@ -1,6 +1,5 @@
 [
     {
-<<<<<<< HEAD
         "merged": "com.example.turismo.app-debug-40:/mipmap-xxhdpi_ic_launcher.webp.flat",
         "source": "com.example.turismo.app-main-42:/mipmap-xxhdpi/ic_launcher.webp"
     },
@@ -79,85 +78,12 @@
     {
         "merged": "com.example.turismo.app-debug-40:/mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "com.example.turismo.app-main-42:/mipmap-hdpi/ic_launcher_round.webp"
-=======
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/layout_fragment_autocomplete.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/fragment_autocomplete.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_account.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/account.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/mipmap-xhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/layout_authentification_menu.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/authentification_menu.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_search.png.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/search.png"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_img.png.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/img.png"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/mipmap-xxhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_bg_search_view.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/bg_search_view.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/layout_fragment_account.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/fragment_account.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/xml_data_extraction_rules.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/xml/data_extraction_rules.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/layout_activity_register.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/activity_register.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_edit_text_background.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/edit_text_background.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/layout_activity_forgot_password.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/activity_forgot_password.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/layout_fragment_calendar.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/fragment_calendar.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/layout_fragment_group.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/fragment_group.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/mipmap-mdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/layout_activity_map.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/activity_map.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/layout_fragment_map.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/fragment_map.xml"
->>>>>>> 76ff2a0f61e23ea1af0348c1ee240ee15b774b2e
     },
     {
         "merged": "com.example.turismo.app-debug-40:/layout_fragment_autocomplete.xml.flat",
         "source": "com.example.turismo.app-main-42:/layout/fragment_autocomplete.xml"
     },
     {
-<<<<<<< HEAD
         "merged": "com.example.turismo.app-debug-40:/layout_fragment_account.xml.flat",
         "source": "com.example.turismo.app-main-42:/layout/fragment_account.xml"
     },
@@ -244,89 +170,5 @@
     {
         "merged": "com.example.turismo.app-debug-40:/layout_fragment_map.xml.flat",
         "source": "com.example.turismo.app-main-42:/layout/fragment_map.xml"
-=======
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_globe.gif.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/globe.gif"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_calendar.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/calendar.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/xml_backup_rules.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/xml/backup_rules.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/mipmap-anydpi-v26/ic_launcher_round.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/layout_activity_loading_screen.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/activity_loading_screen.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/mipmap-anydpi-v26/ic_launcher.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/mipmap-xxxhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/mipmap-xxxhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/mipmap-xxhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/mipmap-hdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/layout_activity_login.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/layout/activity_login.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_email.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/email.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/mipmap-mdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_map.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/map.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_people.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/people.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/mipmap-hdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_ic_launcher_background.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/ic_launcher_background.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/mipmap-xhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/ic_launcher_foreground.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/drawable_add.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/drawable/add.xml"
-    },
-    {
-        "merged": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-debug-39:/menu_main_navbar.xml.flat",
-        "source": "/home/stancuvlad-andrei/.gradle/daemon/8.6/com.example.turismo.app-main-41:/menu/main_navbar.xml"
->>>>>>> 76ff2a0f61e23ea1af0348c1ee240ee15b774b2e
     }
 ]

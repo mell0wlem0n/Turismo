@@ -4,7 +4,7 @@
             "outputFile": "com.example.turismo.app-mergeDebugResources-38:/values-w400dp-port-v13/values-w400dp-port-v13.xml",
             "map": [
                 {
-                    "source": "/home/stancuvlad-andrei/.gradle/caches/transforms-4/c3643ae780ac70b4c01f279b7885de34/transformed/material-1.11.0/res/values-w400dp-port-v13/values-w400dp-port-v13.xml",
+                    "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-4\\c3643ae780ac70b4c01f279b7885de34\\transformed\\material-1.11.0\\res\\values-w400dp-port-v13\\values-w400dp-port-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

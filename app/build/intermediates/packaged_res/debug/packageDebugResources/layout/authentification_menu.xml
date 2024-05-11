@@ -28,6 +28,7 @@
         android:layout_height="45dp"
         android:ems="10"
         android:hint="Email or Username"
+        android:textColorHint="@color/custom_white"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
