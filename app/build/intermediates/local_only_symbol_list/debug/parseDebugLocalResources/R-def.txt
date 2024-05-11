@@ -19,7 +19,10 @@ drawable ic_launcher_foreground
 drawable img
 drawable map
 drawable people
+<<<<<<< HEAD
 drawable search
+=======
+>>>>>>> f59c99fe40efaf7e39112ca7faa215d9dca9b7fd
 id Logo
 id accountInfoTextView
 id accountItem

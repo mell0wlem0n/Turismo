@@ -1468,6 +1468,7 @@ color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
+<<<<<<< HEAD
 color common_google_signin_btn_text_dark
 color common_google_signin_btn_text_dark_default
 color common_google_signin_btn_text_dark_disabled
@@ -1479,6 +1480,8 @@ color common_google_signin_btn_text_light_disabled
 color common_google_signin_btn_text_light_focused
 color common_google_signin_btn_text_light_pressed
 color common_google_signin_btn_tint
+=======
+>>>>>>> f59c99fe40efaf7e39112ca7faa215d9dca9b7fd
 color custom_blue
 color custom_orange
 color custom_white
@@ -3593,6 +3596,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable people
+<<<<<<< HEAD
 drawable places_autocomplete_toolbar_shadow
 drawable places_powered_by_google_dark
 drawable places_powered_by_google_light
@@ -3601,6 +3605,8 @@ drawable quantum_ic_clear_grey600_24
 drawable quantum_ic_cloud_off_vd_theme_24
 drawable quantum_ic_search_grey600_24
 drawable search
+=======
+>>>>>>> f59c99fe40efaf7e39112ca7faa215d9dca9b7fd
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
