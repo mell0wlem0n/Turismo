@@ -4085,6 +4085,8 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
+id setLocationButton
+id shareLocationButton
 id sharedValueSet
 id sharedValueUnset
 id shortcut
@@ -4350,6 +4352,7 @@ layout fragment_account
 layout fragment_autocomplete
 layout fragment_bottom_sheet_dialog
 layout fragment_calendar
+layout fragment_coordonates_bottom_sheet
 layout fragment_group
 layout fragment_image
 layout fragment_map

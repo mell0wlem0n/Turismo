@@ -189,7 +189,7 @@ public class MapFragment extends Fragment {
 
             myMap.setOnMapClickListener(latLng -> {
                 PlaceResult placeResult = new PlaceResult(latLng);
-                LocationBottomSheetFragment bottomSheet = LocationBottomSheetFragment.newInstance(placeResult.location.latitude, placeResult.location.longitude, placeResult, placesClient);
+                CoordonatesBottomSheetFragment bottomSheet = CoordonatesBottomSheetFragment.newInstance(placeResult.location.latitude, placeResult.location.longitude, placeResult, placesClient);
                 bottomSheet.show(getChildFragmentManager(), bottomSheet.getTag());
             });
         } else {

@@ -79,6 +79,8 @@ id registerPasswordText
 id rememberMe
 id saveButton
 id searchIcon
+id setLocationButton
+id shareLocationButton
 id signup
 id spinning_globe
 id submitEmailButton
@@ -97,6 +99,7 @@ layout fragment_account
 layout fragment_autocomplete
 layout fragment_bottom_sheet_dialog
 layout fragment_calendar
+layout fragment_coordonates_bottom_sheet
 layout fragment_group
 layout fragment_image
 layout fragment_map
