@@ -41,7 +41,7 @@
             android:id="@+id/fab_restaurant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/add"
+            android:src="@drawable/restaurant"
             fab:fab_label="Restaurants"
             android:scrollbars = "none"
 
@@ -51,7 +51,7 @@
             android:id="@+id/fab_atm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/add"
+            android:src="@drawable/atm"
             fab:fab_label="ATMs"
             android:scrollbars = "none"
 

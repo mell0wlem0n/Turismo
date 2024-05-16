@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -50,6 +51,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
@@ -71,6 +74,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -79,13 +83,14 @@ import java.util.function.Consumer;
 public class MapFragment extends Fragment {
 
     private final int FINE_PERMISSION_CODE = 1;
-    private static final int REQUEST_LOCATION_PERMISSION = 1;
     private GoogleMap myMap;
-    private SearchView mapSearchView;
     private Location currentLocation;
     private PlacesClient placesClient;
-
     private FusedLocationProviderClient fusedLocationProviderClient;
+    private Polyline currentPolyline;
+    private Marker currentMarker;
+    private List<Marker> currentMarkers = new ArrayList<>();
+    private String currentCategory = null;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -98,7 +103,6 @@ public class MapFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -109,7 +113,7 @@ public class MapFragment extends Fragment {
                 public void onMapReady(GoogleMap googleMap) {
                     myMap = googleMap;
                     setupMap();
-                    setupSearchView(view); // Add this line to set up the search view
+                    setupSearchView(view);
                 }
             });
         }
@@ -119,12 +123,12 @@ public class MapFragment extends Fragment {
         FloatingActionButton fabATM = view.findViewById(R.id.fab_atm);
 
         fabRestaurant.setOnClickListener(v -> {
-            fetchNearbyPlaces( myMap, "restaurant");
+            fetchNearbyPlaces(myMap, "restaurant");
             fabMenu.close(true);
         });
 
         fabATM.setOnClickListener(v -> {
-            fetchNearbyPlaces( myMap, "atm");
+            fetchNearbyPlaces(myMap, "atm");
             fabMenu.close(true);
         });
 
@@ -134,51 +138,64 @@ public class MapFragment extends Fragment {
         });
     }
 
-    private void showPlaceDetailsDialog(Place place) {
-        Toast.makeText(requireContext(), "Place: " + place.getName() + "\nAddress: " + place.getAddress() + " " + place.getRating() + " " + place.getPhoneNumber(), Toast.LENGTH_LONG).show();
-
-    }
-
-
-    // Utility method to convert a View to Bitmap
-    private Bitmap getBitmapFromView(View view) {
-        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-        view.draw(canvas);
-        return bitmap;
-    }
-
     private void setupMap() {
         if (myMap != null) {
             pinpointCurrentLocation();
 
-            myMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                @Override
-                public boolean onMarkerClick(Marker marker) {
-                    PlaceResult placeResult = (PlaceResult) marker.getTag();
-                    if (placeResult != null) {
-                        LocationBottomSheetFragment bottomSheet = LocationBottomSheetFragment.newInstance(placeResult.location.latitude, placeResult.location.longitude, placeResult, placesClient);
-                        bottomSheet.show(getChildFragmentManager(), bottomSheet.getTag());
-                    }
-                    return true; // Return true to indicate that we have consumed the event and no further processing is necessary
-                }
-            });
-            myMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-
-                @Override
-                public void onMapClick(LatLng latLng) {
-                    PlaceResult placeResult = new PlaceResult(latLng);
+            // Set up click listener to show BottomSheet
+            myMap.setOnMarkerClickListener(marker -> {
+                PlaceResult placeResult = (PlaceResult) marker.getTag();
+                if (placeResult != null) {
                     LocationBottomSheetFragment bottomSheet = LocationBottomSheetFragment.newInstance(placeResult.location.latitude, placeResult.location.longitude, placeResult, placesClient);
                     bottomSheet.show(getChildFragmentManager(), bottomSheet.getTag());
                 }
+                return true; // Return true to indicate that we have consumed the event and no further processing is necessary
+            });
+
+            // Set up long press detection for markers
+            myMap.setOnMapLongClickListener(latLng -> {
+                // Find the closest marker to the long press
+                Marker closestMarker = null;
+                float[] distance = new float[1];
+                for (Marker marker : currentMarkers) {
+                    Location.distanceBetween(latLng.latitude, latLng.longitude, marker.getPosition().latitude, marker.getPosition().longitude, distance);
+                    if (distance[0] < 100) { // 100 meters threshold for long press detection
+                        closestMarker = marker;
+                        break;
+                    }
+                }
+                if (closestMarker != null) {
+                    PlaceResult placeResult = (PlaceResult) closestMarker.getTag();
+                    if (placeResult != null) {
+                        LatLng destination = new LatLng(placeResult.location.latitude, placeResult.location.longitude);
+                        if (currentMarker != null && currentMarker.equals(closestMarker)) {
+                            if (currentPolyline != null) {
+                                currentPolyline.remove();
+                                currentPolyline = null;
+                            }
+                            currentMarker = null;
+                        } else {
+                            if (currentLocation != null) {
+                                LatLng origin = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                                requestDirections(origin, destination);
+                                currentMarker = closestMarker;
+                            } else {
+                                Toast.makeText(requireContext(), "Current location not available", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+            });
+
+            myMap.setOnMapClickListener(latLng -> {
+                PlaceResult placeResult = new PlaceResult(latLng);
+                LocationBottomSheetFragment bottomSheet = LocationBottomSheetFragment.newInstance(placeResult.location.latitude, placeResult.location.longitude, placeResult, placesClient);
+                bottomSheet.show(getChildFragmentManager(), bottomSheet.getTag());
             });
         } else {
             Log.e("SetupMap", "Google Map is not initialized");
         }
     }
-
 
     private void pinpointCurrentLocation() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity());
@@ -192,13 +209,10 @@ public class MapFragment extends Fragment {
             return;
         }
         Task<Location> task = fusedLocationProviderClient.getLastLocation();
-        task.addOnSuccessListener(requireActivity(), new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
-                    currentLocation = location;
-                    addMarkerToCurrentLocation();
-                }
+        task.addOnSuccessListener(requireActivity(), location -> {
+            if (location != null) {
+                currentLocation = location;
+                addMarkerToCurrentLocation();
             }
         });
     }
@@ -213,56 +227,25 @@ public class MapFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == FINE_PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getLastLocation();
-            } else {
-                Toast.makeText(requireContext(), "Please allow permission for location", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-
     private void setupSearchView(View view) {
-        // Initialize Places SDK
-        /*if (!Places.isInitialized()) {
-            Places.initialize(requireContext(), getString(R.string.maps_api_key));
-        }*/
-
-        // Get the user's current location
         LocationManager locationManager = (LocationManager) requireContext().getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
 
-        // Set up a PlaceSelectionListener to handle the selected place
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
         if (autocompleteFragment != null && location != null) {
             autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG));
-
-            // Bias the autocomplete results towards the user's current location
             autocompleteFragment.setLocationBias(RectangularBounds.newInstance(
-                    new LatLng(location.getLatitude() - 0.1, location.getLongitude() - 0.1), // Southwest corner
-                    new LatLng(location.getLatitude() + 0.1, location.getLongitude() + 0.1)  // Northeast corner
+                    new LatLng(location.getLatitude() - 0.1, location.getLongitude() - 0.1),
+                    new LatLng(location.getLatitude() + 0.1, location.getLongitude() + 0.1)
             ));
-
             autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
                 @Override
                 public void onPlaceSelected(@NonNull Place place) {
-                    // Get detailed information about the selected place
                     String placeId = place.getId();
                     List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
                     FetchPlaceRequest request = FetchPlaceRequest.newInstance(placeId, placeFields);
@@ -272,18 +255,13 @@ public class MapFragment extends Fragment {
                         if (latLng != null) {
                             Marker marker = myMap.addMarker(new MarkerOptions().position(latLng).title(selectedPlace.getName()));
                             getPlaceDetails(placeId, placeResult -> {
-                                // Create a marker for each place and set a tag with the placeResult
                                 Marker mrk = myMap.addMarker(new MarkerOptions()
                                         .position(new LatLng(placeResult.location.latitude, placeResult.location.longitude))
                                         .title(placeResult.name)
                                         .snippet(placeResult.address));
                                 marker.setTag(placeResult);
-
-                                // Here you can add additional marker customization
                             });
                             myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14.0f));
-                            Log.d("BBBB", "BBBB");
-                            // Display information about the selected place
                             Toast.makeText(requireContext(), "Place: " + selectedPlace.getName() + "\nAddress: " + selectedPlace.getAddress(), Toast.LENGTH_LONG).show();
                         }
                     }).addOnFailureListener((exception) -> {
@@ -293,15 +271,94 @@ public class MapFragment extends Fragment {
 
                 @Override
                 public void onError(@NonNull Status status) {
-                    // Handle errors
                     Log.e("Places", "An error occurred: " + status);
                 }
             });
         }
     }
 
+    private void requestDirections(LatLng origin, LatLng destination) {
+        String apiKey = getString(R.string.maps_api_key);
+        String url = "https://maps.googleapis.com/maps/api/directions/json?" +
+                "origin=" + origin.latitude + "," + origin.longitude +
+                "&destination=" + destination.latitude + "," + destination.longitude +
+                "&key=" + apiKey;
+
+        RequestQueue queue = Volley.newRequestQueue(requireContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                response -> {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        JSONArray routes = jsonObject.getJSONArray("routes");
+                        if (routes.length() > 0) {
+                            JSONObject route = routes.getJSONObject(0);
+                            JSONObject overviewPolyline = route.getJSONObject("overview_polyline");
+                            String points = overviewPolyline.getString("points");
+                            drawRoute(points);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> Log.e("DirectionsAPI", "Error fetching directions: " + error.getMessage())
+        );
+        queue.add(stringRequest);
+    }
+
+    private void drawRoute(String encodedPolyline) {
+        if (currentPolyline != null) {
+            currentPolyline.remove();
+        }
+        List<LatLng> points = decodePoly(encodedPolyline);
+        PolylineOptions polylineOptions = new PolylineOptions().addAll(points).color(Color.BLUE).width(10);
+        currentPolyline = myMap.addPolyline(polylineOptions);
+    }
+
+    private List<LatLng> decodePoly(String encoded) {
+        List<LatLng> poly = new ArrayList<>();
+        int index = 0, len = encoded.length();
+        int lat = 0, lng = 0;
+
+        while (index < len) {
+            int b, shift = 0, result = 0;
+            do {
+                b = encoded.charAt(index++) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lat += dlat;
+
+            shift = 0;
+            result = 0;
+            do {
+                b = encoded.charAt(index++) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lng += dlng;
+
+            LatLng p = new LatLng((((double) lat / 1E5)), (((double) lng / 1E5)));
+            poly.add(p);
+        }
+
+        return poly;
+    }
 
     public void fetchNearbyPlaces(final GoogleMap googleMap, String placeType) {
+        // Check if the selected category is the same as the current category
+        if (placeType.equals(currentCategory)) {
+            // Clear current markers and reset the current category
+            clearCurrentMarkers();
+            currentCategory = null;
+            return;
+        }
+
+        // Clear current markers before fetching new places
+        clearCurrentMarkers();
+        currentCategory = placeType;
+
         RequestQueue queue = Volley.newRequestQueue(requireContext());
         String apiKey = getString(R.string.maps_api_key);
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
@@ -317,16 +374,20 @@ public class MapFragment extends Fragment {
                         JSONArray results = jsonObject.getJSONArray("results");
                         for (int i = 0; i < results.length(); i++) {
                             JSONObject result = results.getJSONObject(i);
-                            String placeId = result.getString("place_id"); // Retrieve place ID
+                            String placeId = result.getString("place_id");
                             getPlaceDetails(placeId, placeResult -> {
-                                // Create a marker for each place and set a tag with the placeResult
                                 Marker marker = googleMap.addMarker(new MarkerOptions()
                                         .position(new LatLng(placeResult.location.latitude, placeResult.location.longitude))
                                         .title(placeResult.name)
                                         .snippet(placeResult.address));
                                 marker.setTag(placeResult);
+                                if (placeType.equals("restaurant"))
+                                    marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.restaurant));
+                                else if (placeType.equals("atm"))
+                                    marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.atm));
 
-                                // Here you can add additional marker customization
+                                // Add marker to the current markers list
+                                currentMarkers.add(marker);
                             });
                         }
                     } catch (JSONException e) {
@@ -335,12 +396,14 @@ public class MapFragment extends Fragment {
                 }, error -> Toast.makeText(requireContext(), "Error fetching places: " + error.getMessage(), Toast.LENGTH_LONG).show());
 
         queue.add(stringRequest);
-
-        // Set a marker click listener on the map
-
     }
 
-
+    private void clearCurrentMarkers() {
+        for (Marker marker : currentMarkers) {
+            marker.remove();
+        }
+        currentMarkers.clear();
+    }
 
     public void getPlaceDetails(String placeId, Consumer<PlaceResult> callback) {
         List<Place.Field> fields = Arrays.asList(
@@ -369,7 +432,4 @@ public class MapFragment extends Fragment {
             Log.e("Places", "Failed to fetch place details: " + e.getMessage());
         });
     }
-
-
 }
-

@@ -3463,6 +3463,9 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable account
 drawable add
+drawable amu_bubble_mask
+drawable amu_bubble_shadow
+drawable atm
 drawable avd_hide_password
 drawable avd_show_password
 drawable bg_search_view
@@ -3600,6 +3603,7 @@ drawable quantum_ic_arrow_back_grey600_24
 drawable quantum_ic_clear_grey600_24
 drawable quantum_ic_cloud_off_vd_theme_24
 drawable quantum_ic_search_grey600_24
+drawable restaurant
 drawable search
 drawable test_level_drawable
 drawable tooltip_frame_dark
@@ -3686,6 +3690,7 @@ id aligned
 id all
 id allStates
 id always
+id amu_text
 id animateToEnd
 id animateToStart
 id antiClockwise
@@ -3698,6 +3703,7 @@ id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
 id autocomplete_fragment
+id backToLogin
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -3715,7 +3721,6 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
-id button
 id buttonPanel
 id cache_measures
 id calendarItem
@@ -3801,6 +3806,7 @@ id edge
 id edit_query
 id elastic
 id emailField
+id emailFieldForPassword
 id emailOrUsernameField
 id emailText
 id embed
@@ -4117,6 +4123,7 @@ id staticPostLayout
 id stop
 id stretch
 id submenuarrow
+id submitEmailButton
 id submit_area
 id supportScrollUp
 id tabMode
@@ -4184,8 +4191,10 @@ id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
 id websiteText
+id webview
 id west
 id wide
+id window
 id withText
 id with_icon
 id withinBounds
@@ -4314,6 +4323,10 @@ layout activity_loading_screen
 layout activity_login
 layout activity_map
 layout activity_register
+layout activity_send_email_forgot_password
+layout amu_info_window
+layout amu_text_bubble
+layout amu_webview
 layout authentification_menu
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
@@ -5737,6 +5750,9 @@ style Widget_MaterialComponents_Toolbar_PrimarySurface
 style Widget_MaterialComponents_Toolbar_Surface
 style Widget_MaterialComponents_Tooltip
 style Widget_Support_CoordinatorLayout
+style amu_Bubble_TextAppearance_Dark
+style amu_Bubble_TextAppearance_Light
+style amu_ClusterIcon_TextAppearance
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth

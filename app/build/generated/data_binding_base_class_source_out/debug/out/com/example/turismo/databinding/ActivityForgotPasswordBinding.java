@@ -23,7 +23,7 @@ public final class ActivityForgotPasswordBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final Button button;
+  public final TextView backToLogin;
 
   @NonNull
   public final EditText codeField;
@@ -35,16 +35,21 @@ public final class ActivityForgotPasswordBinding implements ViewBinding {
   public final ConstraintLayout main;
 
   @NonNull
+  public final Button submitEmailButton;
+
+  @NonNull
   public final TextView verifText;
 
-  private ActivityForgotPasswordBinding(@NonNull ConstraintLayout rootView, @NonNull Button button,
-      @NonNull EditText codeField, @NonNull ImageView imageView4, @NonNull ConstraintLayout main,
+  private ActivityForgotPasswordBinding(@NonNull ConstraintLayout rootView,
+      @NonNull TextView backToLogin, @NonNull EditText codeField, @NonNull ImageView imageView4,
+      @NonNull ConstraintLayout main, @NonNull Button submitEmailButton,
       @NonNull TextView verifText) {
     this.rootView = rootView;
-    this.button = button;
+    this.backToLogin = backToLogin;
     this.codeField = codeField;
     this.imageView4 = imageView4;
     this.main = main;
+    this.submitEmailButton = submitEmailButton;
     this.verifText = verifText;
   }
 
@@ -75,9 +80,9 @@ public final class ActivityForgotPasswordBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.button;
-      Button button = ViewBindings.findChildViewById(rootView, id);
-      if (button == null) {
+      id = R.id.backToLogin;
+      TextView backToLogin = ViewBindings.findChildViewById(rootView, id);
+      if (backToLogin == null) {
         break missingId;
       }
 
@@ -95,14 +100,20 @@ public final class ActivityForgotPasswordBinding implements ViewBinding {
 
       ConstraintLayout main = (ConstraintLayout) rootView;
 
+      id = R.id.submitEmailButton;
+      Button submitEmailButton = ViewBindings.findChildViewById(rootView, id);
+      if (submitEmailButton == null) {
+        break missingId;
+      }
+
       id = R.id.verifText;
       TextView verifText = ViewBindings.findChildViewById(rootView, id);
       if (verifText == null) {
         break missingId;
       }
 
-      return new ActivityForgotPasswordBinding((ConstraintLayout) rootView, button, codeField,
-          imageView4, main, verifText);
+      return new ActivityForgotPasswordBinding((ConstraintLayout) rootView, backToLogin, codeField,
+          imageView4, main, submitEmailButton, verifText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

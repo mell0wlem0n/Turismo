@@ -78,7 +78,7 @@ public class AuthentificationMenuActivity extends AppCompatActivity {
         // Set click listener for the login button
         loginButton.setOnClickListener(v -> loginUser(emailOrUsernameField.getText().toString().trim(), passwordField.getText().toString().trim()));
 
-        forgotPassword.setOnClickListener(v -> startActivity(new Intent(AuthentificationMenuActivity.this, ForgotPasswordActivity.class)));
+        forgotPassword.setOnClickListener(v -> startActivity(new Intent(AuthentificationMenuActivity.this, SendEmailForgotPassword.class)));
 
         register.setOnClickListener(v -> startActivity(new Intent(AuthentificationMenuActivity.this, RegisterActivity.class)));
     }

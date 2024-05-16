@@ -49,7 +49,9 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.Turismo" >
-
+        <activity
+            android:name="com.example.turismo.SendEmailForgotPassword"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

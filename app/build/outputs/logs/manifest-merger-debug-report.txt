@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:2:1-61:12
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:2:1-64:12
+INJECTED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:2:1-64:12
+INJECTED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:2:1-64:12
+INJECTED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:2:1-64:12
 MERGED from [androidx.databinding:viewbinding:8.3.1] C:\Users\rduto\.gradle\caches\transforms-4\7e55eb345beea1b7c8ae96bdcebcd12e\transformed\viewbinding-8.3.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\rduto\.gradle\caches\transforms-4\c3643ae780ac70b4c01f279b7885de34\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-4\815bb380020547e318a55d8c3f840606\transformed\places-3.3.0\AndroidManifest.xml:2:1-24:12
@@ -56,6 +56,7 @@ MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\rdut
 MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\rduto\.gradle\caches\transforms-4\36e6d228d66f4861b89c5bb10a0c02b8\transformed\fragment-1.3.6\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity:1.8.0] C:\Users\rduto\.gradle\caches\transforms-4\0fdc6c3a343341511ba7dd9fc14d4a05\transformed\activity-1.8.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.github.clans:fab:1.6.4] C:\Users\rduto\.gradle\caches\transforms-4\d219e6979982d389b4482809582d08eb\transformed\fab-1.6.4\AndroidManifest.xml:2:1-14:12
+MERGED from [com.google.maps.android:android-maps-utils:2.3.0] C:\Users\rduto\.gradle\caches\transforms-4\872f1e9681010315e0b454ba273df87c\transformed\android-maps-utils-2.3.0\AndroidManifest.xml:2:1-15:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\rduto\.gradle\caches\transforms-4\303d8121ec140c7127625d344a76b182\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\rduto\.gradle\caches\transforms-4\e5b2cad850175a5913f940a10c907761\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-4\5ede4164a83d937d58a5b15471b9f8a6\transformed\profileinstaller-1.3.0\AndroidManifest.xml:17:1-55:12
@@ -89,19 +90,19 @@ MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\rdu
 	xmlns:android
 		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:4:5-80
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:5:5-80
 	android:name
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:4:22-77
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:5:22-77
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:5:5-81
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:6:5-81
 	android:name
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:5:22-78
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:6:22-78
 uses-permission#android.permission.ACCESS_MEDIA_LOCATION
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:6:5-79
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:7:5-80
 	android:name
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:6:22-77
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:7:22-77
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:7:5-67
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:8:5-67
 MERGED from [com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-4\815bb380020547e318a55d8c3f840606\transformed\places-3.3.0\AndroidManifest.xml:12:5-67
 MERGED from [com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-4\815bb380020547e318a55d8c3f840606\transformed\places-3.3.0\AndroidManifest.xml:12:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\rduto\.gradle\caches\transforms-4\f46a94b8380b10534475f4d08fcdf9b1\transformed\play-services-maps-18.2.0\AndroidManifest.xml:24:5-67
@@ -119,22 +120,22 @@ MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\rduto\.grad
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\rduto\.gradle\caches\transforms-4\22566740c46feb98187ad30d8d30ed49\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:26:5-67
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\rduto\.gradle\caches\transforms-4\22566740c46feb98187ad30d8d30ed49\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:26:5-67
 	android:name
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:7:22-64
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:8:22-64
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:10:5-80
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:10:5-81
 MERGED from [com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-4\815bb380020547e318a55d8c3f840606\transformed\places-3.3.0\AndroidManifest.xml:9:5-81
 MERGED from [com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-4\815bb380020547e318a55d8c3f840606\transformed\places-3.3.0\AndroidManifest.xml:9:5-81
 	android:name
 		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:10:22-78
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:11:5-78
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:11:5-79
 MERGED from [com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-4\815bb380020547e318a55d8c3f840606\transformed\places-3.3.0\AndroidManifest.xml:10:5-79
 MERGED from [com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-4\815bb380020547e318a55d8c3f840606\transformed\places-3.3.0\AndroidManifest.xml:10:5-79
 	android:name
 		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:11:22-76
 application
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:12:5-59:19
-INJECTED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:12:5-59:19
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:13:5-62:19
+INJECTED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:13:5-62:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\rduto\.gradle\caches\transforms-4\c3643ae780ac70b4c01f279b7885de34\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\rduto\.gradle\caches\transforms-4\c3643ae780ac70b4c01f279b7885de34\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.libraries.places:places:3.3.0] C:\Users\rduto\.gradle\caches\transforms-4\815bb380020547e318a55d8c3f840606\transformed\places-3.3.0\AndroidManifest.xml:14:5-22:19
@@ -181,6 +182,8 @@ MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\rdut
 MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\rduto\.gradle\caches\transforms-4\d1706eaf0d7089b086532f780ce53307\transformed\play-services-basement-18.3.0\AndroidManifest.xml:20:5-24:19
 MERGED from [com.github.clans:fab:1.6.4] C:\Users\rduto\.gradle\caches\transforms-4\d219e6979982d389b4482809582d08eb\transformed\fab-1.6.4\AndroidManifest.xml:12:5-20
 MERGED from [com.github.clans:fab:1.6.4] C:\Users\rduto\.gradle\caches\transforms-4\d219e6979982d389b4482809582d08eb\transformed\fab-1.6.4\AndroidManifest.xml:12:5-20
+MERGED from [com.google.maps.android:android-maps-utils:2.3.0] C:\Users\rduto\.gradle\caches\transforms-4\872f1e9681010315e0b454ba273df87c\transformed\android-maps-utils-2.3.0\AndroidManifest.xml:9:5-13:19
+MERGED from [com.google.maps.android:android-maps-utils:2.3.0] C:\Users\rduto\.gradle\caches\transforms-4\872f1e9681010315e0b454ba273df87c\transformed\android-maps-utils-2.3.0\AndroidManifest.xml:9:5-13:19
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-4\5ede4164a83d937d58a5b15471b9f8a6\transformed\profileinstaller-1.3.0\AndroidManifest.xml:23:5-53:19
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\rduto\.gradle\caches\transforms-4\5ede4164a83d937d58a5b15471b9f8a6\transformed\profileinstaller-1.3.0\AndroidManifest.xml:23:5-53:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\rduto\.gradle\caches\transforms-4\4b62700ab15978adb1e7327cfe1b5481\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
@@ -198,69 +201,75 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\rd
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] C:\Users\rduto\.gradle\caches\transforms-4\6b7e64ca661a5243603e05eaeb7b8b4e\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:19:9-35
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:20:9-35
 	android:label
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:17:9-41
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:18:9-41
 	android:fullBackupContent
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:15:9-54
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:16:9-54
 	android:roundIcon
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:18:9-54
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:19:9-54
 	tools:targetApi
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:21:9-29
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:22:9-29
 	android:icon
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:16:9-43
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:17:9-43
 	android:allowBackup
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:13:9-35
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:14:9-35
 	android:theme
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:20:9-45
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:21:9-45
 	android:dataExtractionRules
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:14:9-65
-meta-data#com.google.android.geo.API_KEY
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:34:9-36:52
-	android:value
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:36:13-49
-	android:name
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:35:13-58
-activity#com.example.turismo.ForgotPasswordActivity
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:38:9-40:40
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:15:9-65
+activity#com.example.turismo.SendEmailForgotPassword
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:23:9-25:40
 	android:exported
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:40:13-37
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:25:13-37
 	android:name
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:39:13-51
-activity#com.example.turismo.MapActivity
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:24:13-52
+meta-data#com.google.android.geo.API_KEY
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:37:9-39:52
+	android:value
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:39:13-49
+	android:name
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:38:13-58
+activity#com.example.turismo.ForgotPasswordActivity
 ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:41:9-43:40
 	android:exported
 		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:43:13-37
 	android:name
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:42:13-40
-activity#com.example.turismo.RegisterActivity
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:42:13-51
+activity#com.example.turismo.MapActivity
 ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:44:9-46:40
 	android:exported
 		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:46:13-37
 	android:name
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:45:13-45
-activity#com.example.turismo.AuthentificationMenuActivity
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:45:13-40
+activity#com.example.turismo.RegisterActivity
 ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:47:9-49:40
 	android:exported
 		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:49:13-37
 	android:name
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:48:13-57
-activity#com.example.turismo.LoadingScreenActivity
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:50:9-58:20
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:48:13-45
+activity#com.example.turismo.AuthentificationMenuActivity
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:50:9-52:40
 	android:exported
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:52:13-36
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:52:13-37
 	android:name
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:51:13-50
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:51:13-57
+activity#com.example.turismo.LoadingScreenActivity
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:53:9-61:20
+	android:exported
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:55:13-36
+	android:name
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:54:13-50
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:53:13-57:29
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:56:13-60:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:54:17-69
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:57:17-69
 	android:name
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:54:25-66
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:57:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:56:17-77
+ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:59:17-77
 	android:name
-		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:56:27-74
+		ADDED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml:59:27-74
 uses-sdk
 INJECTED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\AndroidManifest.xml
@@ -369,6 +378,8 @@ MERGED from [androidx.activity:activity:1.8.0] C:\Users\rduto\.gradle\caches\tra
 MERGED from [androidx.activity:activity:1.8.0] C:\Users\rduto\.gradle\caches\transforms-4\0fdc6c3a343341511ba7dd9fc14d4a05\transformed\activity-1.8.0\AndroidManifest.xml:20:5-44
 MERGED from [com.github.clans:fab:1.6.4] C:\Users\rduto\.gradle\caches\transforms-4\d219e6979982d389b4482809582d08eb\transformed\fab-1.6.4\AndroidManifest.xml:8:5-10:41
 MERGED from [com.github.clans:fab:1.6.4] C:\Users\rduto\.gradle\caches\transforms-4\d219e6979982d389b4482809582d08eb\transformed\fab-1.6.4\AndroidManifest.xml:8:5-10:41
+MERGED from [com.google.maps.android:android-maps-utils:2.3.0] C:\Users\rduto\.gradle\caches\transforms-4\872f1e9681010315e0b454ba273df87c\transformed\android-maps-utils-2.3.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.maps.android:android-maps-utils:2.3.0] C:\Users\rduto\.gradle\caches\transforms-4\872f1e9681010315e0b454ba273df87c\transformed\android-maps-utils-2.3.0\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\rduto\.gradle\caches\transforms-4\303d8121ec140c7127625d344a76b182\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\rduto\.gradle\caches\transforms-4\303d8121ec140c7127625d344a76b182\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\rduto\.gradle\caches\transforms-4\e5b2cad850175a5913f940a10c907761\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
@@ -683,6 +694,8 @@ ADDED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\rduto\.gradle\c
 		ADDED from [androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\rduto\.gradle\caches\transforms-4\bfa406584333a0342ba269232b135110\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
 meta-data#com.google.android.gms.version
 ADDED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\rduto\.gradle\caches\transforms-4\d1706eaf0d7089b086532f780ce53307\transformed\play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
+MERGED from [com.google.maps.android:android-maps-utils:2.3.0] C:\Users\rduto\.gradle\caches\transforms-4\872f1e9681010315e0b454ba273df87c\transformed\android-maps-utils-2.3.0\AndroidManifest.xml:10:9-12:69
+MERGED from [com.google.maps.android:android-maps-utils:2.3.0] C:\Users\rduto\.gradle\caches\transforms-4\872f1e9681010315e0b454ba273df87c\transformed\android-maps-utils-2.3.0\AndroidManifest.xml:10:9-12:69
 	android:value
 		ADDED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\rduto\.gradle\caches\transforms-4\d1706eaf0d7089b086532f780ce53307\transformed\play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
 	android:name

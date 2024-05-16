@@ -9,6 +9,7 @@ color red
 color white
 drawable account
 drawable add
+drawable atm
 drawable bg_search_view
 drawable calendar
 drawable discover
@@ -19,14 +20,15 @@ drawable ic_launcher_foreground
 drawable img
 drawable map
 drawable people
+drawable restaurant
 drawable search
 id Logo
 id accountInfoTextView
 id accountItem
 id addressText
 id autocomplete_fragment
+id backToLogin
 id bottomNavigationView
-id button
 id calendarItem
 id change_profile_photo
 id codeField
@@ -35,6 +37,7 @@ id confrmPasswordText
 id deleteButton
 id disconnectButton
 id emailField
+id emailFieldForPassword
 id emailOrUsernameField
 id emailText
 id emptyGroupText
@@ -78,6 +81,7 @@ id saveButton
 id searchIcon
 id signup
 id spinning_globe
+id submitEmailButton
 id textView3
 id textView4
 id verifText
@@ -87,6 +91,7 @@ layout activity_loading_screen
 layout activity_login
 layout activity_map
 layout activity_register
+layout activity_send_email_forgot_password
 layout authentification_menu
 layout fragment_account
 layout fragment_autocomplete
