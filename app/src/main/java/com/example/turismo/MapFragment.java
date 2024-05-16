@@ -1,8 +1,10 @@
 package com.example.turismo;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
@@ -11,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -41,6 +44,9 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -87,8 +93,10 @@ public class MapFragment extends Fragment {
     private Location currentLocation;
     private PlacesClient placesClient;
     private FusedLocationProviderClient fusedLocationProviderClient;
+    private LocationCallback locationCallback;
     private Polyline currentPolyline;
     private Marker currentMarker;
+    private Marker locationMarker;
     private List<Marker> currentMarkers = new ArrayList<>();
     private String currentCategory = null;
 
@@ -114,6 +122,7 @@ public class MapFragment extends Fragment {
                     myMap = googleMap;
                     setupMap();
                     setupSearchView(view);
+                    /*startLocationUpdates(); NU APELEZI METODA ASTA!  DANGEROUS DO NOT TOUCH, STAI CUMINTE ITALIENE */
                 }
             });
         }
@@ -220,11 +229,25 @@ public class MapFragment extends Fragment {
     private void addMarkerToCurrentLocation() {
         if (currentLocation != null && myMap != null) {
             LatLng currentLatLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-            myMap.addMarker(new MarkerOptions().position(currentLatLng).title("Current Location"));
+            if (locationMarker != null) {
+                locationMarker.remove();
+            }
+            locationMarker = myMap.addMarker(new MarkerOptions().position(currentLatLng).title("Current Location"));
+            locationMarker.setIcon(BitmapDescriptorFactory.fromBitmap(getBitmapFromVectorDrawable(requireContext(), R.drawable.current_location)));
             myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15));
         } else {
             Toast.makeText(requireContext(), "Unable to fetch current location", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    public static Bitmap getBitmapFromVectorDrawable(Context context, @DrawableRes int drawableId) {
+        Drawable vectorDrawable = ContextCompat.getDrawable(context, drawableId);
+        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return bitmap;
     }
 
     private void setupSearchView(View view) {
@@ -431,5 +454,48 @@ public class MapFragment extends Fragment {
         }).addOnFailureListener(e -> {
             Log.e("Places", "Failed to fetch place details: " + e.getMessage());
         });
+    }
+    private void startLocationUpdates() {
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setInterval(100000); // 10 seconds
+        locationRequest.setFastestInterval(10000); // 5 seconds
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult == null) {
+                    return;
+                }
+                for (Location location : locationResult.getLocations()) {
+                    if (location != null) {
+                        currentLocation = location;
+                        LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+                        if (locationMarker != null) {
+                            locationMarker.setPosition(currentLatLng);
+                        } else {
+                            locationMarker = myMap.addMarker(new MarkerOptions().position(currentLatLng).title("Current Location"));
+                            locationMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.current_location));
+                        }
+                        myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15));
+                    }
+                }
+            }
+        };
+
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, FINE_PERMISSION_CODE);
+            return;
+        }
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (fusedLocationProviderClient != null && locationCallback != null) {
+            fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+        }
     }
 }

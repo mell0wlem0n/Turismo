@@ -12,6 +12,7 @@ drawable add
 drawable atm
 drawable bg_search_view
 drawable calendar
+drawable current_location
 drawable discover
 drawable email
 drawable globe
@@ -19,6 +20,7 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable img
 drawable map
+drawable map_start
 drawable people
 drawable restaurant
 drawable search
@@ -83,6 +85,7 @@ id setLocationButton
 id shareLocationButton
 id signup
 id spinning_globe
+id startNavigationButton
 id submitEmailButton
 id textView3
 id textView4

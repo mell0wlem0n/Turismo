@@ -1,13 +1,16 @@
 package com.example.turismo;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.model.OpeningHours;
 import com.google.android.libraries.places.api.model.PhotoMetadata;
 import com.google.android.libraries.places.api.net.PlacesClient;
@@ -25,14 +28,12 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
         Bundle args = new Bundle();
         args.putDouble(ARG_LAT, lat);
         args.putDouble(ARG_LNG, lng);
-       // Log.d(place.name, place.name);
-        LocationBottomSheetFragment fragment = new LocationBottomSheetFragment(place,client);
+        LocationBottomSheetFragment fragment = new LocationBottomSheetFragment(place, client);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public LocationBottomSheetFragment(PlaceResult place, PlacesClient client)
-    {
+    public LocationBottomSheetFragment(PlaceResult place, PlacesClient client) {
         this.place = place;
         this.placesClient = client;
     }
@@ -50,6 +51,9 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
             longitudeText.setText("Longitude: " + lng);
         }
         updateUI(v);
+
+        Button startNavigationButton = v.findViewById(R.id.startNavigationButton);
+        startNavigationButton.setOnClickListener(v1 -> startNavigation());
 
         return v;
     }
@@ -69,6 +73,7 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
         }
         return sb.toString().trim(); // Trim to remove the last newline character
     }
+
     private void updateUI(View view) {
         ((TextView) view.findViewById(R.id.nameText)).setText(place.name);
         ((TextView) view.findViewById(R.id.addressText)).setText(place.address);
@@ -81,5 +86,13 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
             ViewPager2 imageSlider = view.findViewById(R.id.imageSlider);
             setupImageSlider(imageSlider, place.photoMetadatas);
         }
+    }
+
+    private void startNavigation() {
+        LatLng destination = new LatLng(place.location.latitude, place.location.longitude);
+        String uri = "google.navigation:q=" + destination.latitude + "," + destination.longitude;
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        intent.setPackage("com.google.android.apps.maps");
+        startActivity(intent);
     }
 }
