@@ -11,8 +11,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.*;
 import com.example.turismo.databinding.ActivityMapBinding;
 
-public class MapActivity extends AppCompatActivity {
-
+public class MapActivity extends AppCompatActivity implements LocationBottomSheetFragment.OnLocationAddedListener {
     ActivityMapBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,5 +42,20 @@ public class MapActivity extends AppCompatActivity {
                 .replace(R.id.main_frame, f, null)
                 .addToBackStack("fragmentTransaction")
                 .commit();
+    }
+
+    @Override
+    public void onLocationAdded(String name, double lat, double lng) {
+        // Pass the data to CalendarFragment
+        CalendarFragment calendarFragment = (CalendarFragment) getSupportFragmentManager().findFragmentByTag("CALENDAR_FRAGMENT_TAG");
+        if (calendarFragment != null) {
+            calendarFragment.addLocation(name, lat, lng);
+        } else {
+            calendarFragment = CalendarFragment.newInstance(name, lat, lng);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.main_frame, calendarFragment, "CALENDAR_FRAGMENT_TAG")
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 }

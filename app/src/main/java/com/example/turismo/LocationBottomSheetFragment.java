@@ -1,4 +1,5 @@
 package com.example.turismo;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -23,6 +27,11 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
     private static final String ARG_LNG = "longitude";
     private PlacesClient placesClient;
     private PlaceResult place;
+    private OnLocationAddedListener listener;
+
+    public interface OnLocationAddedListener {
+        void onLocationAdded(String name, double lat, double lng);
+    }
 
     public static LocationBottomSheetFragment newInstance(double lat, double lng, PlaceResult place, PlacesClient client) {
         Bundle args = new Bundle();
@@ -38,8 +47,13 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
         this.placesClient = client;
     }
 
+    public void setOnLocationAddedListener(OnLocationAddedListener listener) {
+        this.listener = listener;
+    }
+
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bottom_sheet_dialog, container, false);
         TextView latitudeText = v.findViewById(R.id.latitudeText);
         TextView longitudeText = v.findViewById(R.id.longitudeText);
@@ -54,6 +68,14 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
 
         Button startNavigationButton = v.findViewById(R.id.startNavigationButton);
         startNavigationButton.setOnClickListener(v1 -> startNavigation());
+
+        Button addLocationToCalendarButton = v.findViewById(R.id.addLocationToCalendarButton);
+        addLocationToCalendarButton.setOnClickListener(v1 -> {
+            if (listener != null) {
+                listener.onLocationAdded(place.name, place.location.latitude, place.location.longitude);
+            }
+            dismiss();
+        });
 
         return v;
     }

@@ -1,64 +1,113 @@
 package com.example.turismo;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link GroupFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class GroupFragment extends Fragment {
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.util.ArrayList;
+import java.util.List;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class GroupFragment extends Fragment implements GroupCreationDialogFragment.GroupCreationListener {
+
+    private RecyclerView groupsRecyclerView;
+    private TextView emptyGroupText;
+    private FirebaseFirestore db;
+    private GroupAdapter adapter;
+    private List<String> groupList;
+    private FirebaseUser currentUser;
 
     public GroupFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment GroupFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static GroupFragment newInstance(String param1, String param2) {
-        GroupFragment fragment = new GroupFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static GroupFragment newInstance() {
+        return new GroupFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        db = FirebaseFirestore.getInstance();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_group, container, false);
+        View view = inflater.inflate(R.layout.fragment_group, container, false);
+
+        groupsRecyclerView = view.findViewById(R.id.groupsRecyclerView);
+        emptyGroupText = view.findViewById(R.id.emptyGroupText);
+        FloatingActionButton createGroupButton = view.findViewById(R.id.floatingActionButton);
+
+        groupList = new ArrayList<>();
+        adapter = new GroupAdapter(groupList, groupName -> {
+            Intent intent = new Intent(getActivity(), ChatActivity.class);
+            intent.putExtra("GROUP_NAME", groupName);
+            startActivity(intent);
+        });
+
+        groupsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        groupsRecyclerView.setAdapter(adapter);
+
+        createGroupButton.setOnClickListener(v -> {
+            GroupCreationDialogFragment dialog = new GroupCreationDialogFragment();
+            dialog.show(getChildFragmentManager(), "GroupCreationDialogFragment");
+        });
+
+        loadGroups();
+
+        return view;
+    }
+
+    private void loadGroups() {
+        db.collection("groups")
+                .whereArrayContains("members", currentUser.getUid())
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        groupList.clear();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Group group = document.toObject(Group.class);
+                            groupList.add(group.getGroupName());
+                        }
+                        adapter.notifyDataSetChanged();
+                        if (groupList.isEmpty()) {
+                            emptyGroupText.setVisibility(View.VISIBLE);
+                            groupsRecyclerView.setVisibility(View.GONE);
+                        } else {
+                            emptyGroupText.setVisibility(View.GONE);
+                            groupsRecyclerView.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onGroupCreated(String groupName) {
+        // Create a new group with the specified name
+        List<String> members = new ArrayList<>();
+        members.add(currentUser.getUid());
+        Group newGroup = new Group(groupName, members);
+
+        db.collection("groups")
+                .add(newGroup)
+                .addOnSuccessListener(documentReference -> {
+                    loadGroups();
+                });
     }
 }

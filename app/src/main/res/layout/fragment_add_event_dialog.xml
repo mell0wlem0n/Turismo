@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/summaryInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Event Summary" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/locationInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Event Location" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/startDateInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start Date" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/startTimeInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start Time" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/endDateInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="End Date" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/endTimeInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="End Time" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Event" />
+</LinearLayout>

@@ -14,34 +14,22 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.location.Address;
 import android.location.Criteria;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
-import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -52,43 +40,36 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.model.PlaceLikelihood;
 import com.google.android.libraries.places.api.model.RectangularBounds;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
-import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
-import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
-
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.function.Consumer;
 
 public class MapFragment extends Fragment {
 
-    private final int FINE_PERMISSION_CODE = 1;
+    private static final int FINE_PERMISSION_CODE = 1;
     private GoogleMap myMap;
     private Location currentLocation;
     private PlacesClient placesClient;
@@ -99,6 +80,8 @@ public class MapFragment extends Fragment {
     private Marker locationMarker;
     private List<Marker> currentMarkers = new ArrayList<>();
     private String currentCategory = null;
+    private FirebaseFirestore firestore;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -107,6 +90,8 @@ public class MapFragment extends Fragment {
         }
         placesClient = Places.createClient(requireContext());
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity());
+        firestore = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
@@ -122,7 +107,6 @@ public class MapFragment extends Fragment {
                     myMap = googleMap;
                     setupMap();
                     setupSearchView(view);
-                    /*startLocationUpdates(); NU APELEZI METODA ASTA!  DANGEROUS DO NOT TOUCH, STAI CUMINTE ITALIENE */
                 }
             });
         }
@@ -145,6 +129,8 @@ public class MapFragment extends Fragment {
         fabMenu.setOnMenuToggleListener(opened -> {
             if (!opened) fabMenu.close(true);
         });
+
+        startLocationUpdates(); // Start location updates when the view is created
     }
 
     private void setupMap() {
@@ -239,7 +225,6 @@ public class MapFragment extends Fragment {
             Toast.makeText(requireContext(), "Unable to fetch current location", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     public static Bitmap getBitmapFromVectorDrawable(Context context, @DrawableRes int drawableId) {
         Drawable vectorDrawable = ContextCompat.getDrawable(context, drawableId);
@@ -455,10 +440,11 @@ public class MapFragment extends Fragment {
             Log.e("Places", "Failed to fetch place details: " + e.getMessage());
         });
     }
+
     private void startLocationUpdates() {
         LocationRequest locationRequest = LocationRequest.create();
-        locationRequest.setInterval(100000); // 10 seconds
-        locationRequest.setFastestInterval(10000); // 5 seconds
+        locationRequest.setInterval(60000); // 1 minute
+        locationRequest.setFastestInterval(30000); // 30 seconds
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         locationCallback = new LocationCallback() {
@@ -470,14 +456,15 @@ public class MapFragment extends Fragment {
                 for (Location location : locationResult.getLocations()) {
                     if (location != null) {
                         currentLocation = location;
-                        LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+                        LatLng currentLatLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
                         if (locationMarker != null) {
                             locationMarker.setPosition(currentLatLng);
                         } else {
                             locationMarker = myMap.addMarker(new MarkerOptions().position(currentLatLng).title("Current Location"));
-                            locationMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.current_location));
+                            locationMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.atm));
                         }
                         myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15));
+                        updateLocationInFirestore(currentLocation);
                     }
                 }
             }
@@ -491,11 +478,45 @@ public class MapFragment extends Fragment {
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
     }
 
+    private void updateLocationInFirestore(Location location) {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            String userId = auth.getCurrentUser().getUid();
+            GeoPoint geoPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
+            firestore.collection("users").document(userId)
+                    .update("location", geoPoint)
+                    .addOnSuccessListener(aVoid -> Log.d("MapFragment", "Location updated successfully"))
+                    .addOnFailureListener(e -> Log.e("MapFragment", "Failed to update location", e));
+        }
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         if (fusedLocationProviderClient != null && locationCallback != null) {
             fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+        }
+    }
+
+    // Method to show member locations on the map
+    public void showMembersLocation(List<UserLocation> userLocations) {
+        if (myMap != null) {
+            // Clear current markers
+            clearCurrentMarkers();
+
+            // Add markers for each member
+            for (UserLocation userLocation : userLocations) {
+                LatLng latLng = new LatLng(userLocation.getLatitude(), userLocation.getLongitude());
+                Marker marker = myMap.addMarker(new MarkerOptions().position(latLng).title(userLocation.getUsername()));
+                currentMarkers.add(marker);
+            }
+
+            if (!userLocations.isEmpty()) {
+                LatLng firstLocation = new LatLng(userLocations.get(0).getLatitude(), userLocations.get(0).getLongitude());
+                myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 10));
+            }
+        } else {
+            Toast.makeText(requireContext(), "Google Map is not initialized", Toast.LENGTH_SHORT).show();
         }
     }
 }
