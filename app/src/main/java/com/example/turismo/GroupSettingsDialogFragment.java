@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -154,7 +155,7 @@ public class GroupSettingsDialogFragment extends DialogFragment {
             if (listener != null) {
                 listener.onShowMembersLocation(members);
             }
-
+            MapFragment.GROUP_ID = groupId;
             // Fetch user locations and set them in LocationDataStore
             Log.d("GroupSettingsDialog", "Fetching locations for members: " + members);
 
@@ -197,26 +198,9 @@ public class GroupSettingsDialogFragment extends DialogFragment {
             });
         });
 
-
         return view;
     }
 
-    private GeoPoint parseLocationString(String locationString) {
-        try {
-            // Remove square brackets
-            locationString = locationString.replace("[", "").replace("]", "");
-
-            // Split latitude and longitude
-            String[] parts = locationString.split(",");
-            double latitude = Double.parseDouble(parts[0].trim());
-            double longitude = Double.parseDouble(parts[1].trim());
-
-            return new GeoPoint(latitude, longitude);
-        } catch (Exception e) {
-            Log.e("GroupSettingsDialog", "Error parsing location string: " + locationString, e);
-            return null;
-        }
-    }
     private void addUserToGroupByEmail(String email) {
         if (groupId == null) {
             Toast.makeText(getContext(), "Group ID is null", Toast.LENGTH_SHORT).show();
@@ -232,7 +216,14 @@ public class GroupSettingsDialogFragment extends DialogFragment {
                             .update("members", members)
                             .addOnSuccessListener(aVoid -> {
                                 Toast.makeText(getContext(), "User added to group", Toast.LENGTH_SHORT).show();
-                                membersAdapter.notifyDataSetChanged();
+                                // Update memberNames and notify adapter
+                                db.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot -> {
+                                    if (documentSnapshot.exists()) {
+                                        String name = documentSnapshot.getString("username");
+                                        memberNames.add(name != null ? name : userId);
+                                        membersAdapter.notifyDataSetChanged();
+                                    }
+                                });
                             })
                             .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to add user", Toast.LENGTH_SHORT).show());
                 } else {
@@ -250,6 +241,41 @@ public class GroupSettingsDialogFragment extends DialogFragment {
         Dialog dialog = getDialog();
         if (dialog != null) {
             dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        }
+    }
+
+    private class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHolder> {
+        private final List<String> memberNames;
+
+        MembersAdapter(List<String> memberNames) {
+            this.memberNames = memberNames;
+        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+            String name = memberNames.get(position);
+            holder.nameTextView.setText(name);
+        }
+
+        @Override
+        public int getItemCount() {
+            return memberNames.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            TextView nameTextView;
+
+            ViewHolder(View itemView) {
+                super(itemView);
+                nameTextView = itemView.findViewById(android.R.id.text1);
+            }
         }
     }
 }

@@ -53,6 +53,12 @@
         android:testOnly="true"
         android:theme="@style/Theme.Turismo" >
         <activity
+            android:name="com.example.turismo.InvitationsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.turismo.ConfirmMembershipActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.turismo.ChatActivity"
             android:exported="false" />
         <activity

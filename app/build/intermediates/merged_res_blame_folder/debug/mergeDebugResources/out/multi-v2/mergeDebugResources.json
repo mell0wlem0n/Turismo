@@ -2877,6 +2877,25 @@
             "outputFile": "com.example.turismo.app-debug-42:/values-night-v8_values-night-v8.arsc.flat",
             "map": [
                 {
+                    "source": "C:\\Users\\rduto\\Desktop\\Proiect Colectiv backup\\Turismo 5 (beta)\\Turismo\\app\\src\\main\\res\\values-night\\themes.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "100",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "314"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "165"
+                    }
+                },
+                {
                     "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-4\\2f898c73c0cac945d93fc662d82253b7\\transformed\\appcompat-1.6.1\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
@@ -2908,25 +2927,6 @@
                         "startOffsets": "802,877,988,1077,1178,1285,1392,1491,1598,1701,1789,1913,2015,2117,2233,2335,2449,2577,2693,2815,2951,3071,3205,3325,3437,3652,3769,3893,4023,4145,4283,4417,4533",
                         "endColumns": "74,110,88,100,106,106,98,106,102,87,123,101,101,115,101,113,127,115,121,135,119,133,119,111,125,116,123,129,121,137,133,115,119",
                         "endOffsets": "872,983,1072,1173,1280,1387,1486,1593,1696,1784,1908,2010,2112,2228,2330,2444,2572,2688,2810,2946,3066,3200,3320,3432,3558,3764,3888,4018,4140,4278,4412,4528,4648"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\rduto\\Desktop\\proiect_colectiv\\Turismo\\app\\src\\main\\res\\values-night\\themes.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "100",
-                        "endLines": "5",
-                        "endColumns": "12",
-                        "endOffsets": "314"
-                    },
-                    "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "5",
-                        "endColumns": "12",
-                        "endOffsets": "165"
                     }
                 }
             ]
@@ -3026,23 +3026,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\rduto\\Desktop\\proiect_colectiv\\Turismo\\app\\src\\main\\res\\values\\colors.xml",
-                    "from": {
-                        "startLines": "2,6,5,7,4,3",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "57,231,182,278,143,100",
-                        "endColumns": "41,45,47,46,37,41",
-                        "endOffsets": "94,272,225,320,176,137"
-                    },
-                    "to": {
-                        "startLines": "640,665,666,667,1330,1343",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "32798,34650,34696,34744,76618,77474",
-                        "endColumns": "41,45,47,46,37,41",
-                        "endOffsets": "32835,34691,34739,34786,76651,77511"
-                    }
-                },
-                {
                     "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-4\\c58db58e3a3bfa3f453d3ce3f18409f2\\transformed\\browser-1.4.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11",
@@ -3076,6 +3059,23 @@
                         "endLines": "506,1492,1493,1494,1502,1503,1504,2208,13125",
                         "endColumns": "55,58,47,55,74,75,71,65,24",
                         "endOffsets": "25672,87357,87405,87461,88147,88223,88295,142632,796519"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\rduto\\Desktop\\Proiect Colectiv backup\\Turismo 5 (beta)\\Turismo\\app\\src\\main\\res\\values\\ids.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "57",
+                        "endColumns": "50",
+                        "endOffsets": "103"
+                    },
+                    "to": {
+                        "startLines": "2201",
+                        "startColumns": "4",
+                        "startOffsets": "142246",
+                        "endColumns": "49",
+                        "endOffsets": "142291"
                     }
                 },
                 {
@@ -3149,6 +3149,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\rduto\\Desktop\\Proiect Colectiv backup\\Turismo 5 (beta)\\Turismo\\app\\build\\generated\\res\\processDebugGoogleServices\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,137,241,350,470,565",
+                        "endColumns": "81,103,108,119,94,71",
+                        "endOffsets": "132,236,345,465,560,632"
+                    },
+                    "to": {
+                        "startLines": "2417,2418,2419,2420,2421,2546",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "157817,157899,158003,158112,158232,175759",
+                        "endColumns": "81,103,108,119,94,71",
+                        "endOffsets": "157894,157998,158107,158227,158322,175826"
+                    }
+                },
+                {
                     "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-4\\36e6d228d66f4861b89c5bb10a0c02b8\\transformed\\fragment-1.3.6\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,10",
@@ -3168,23 +3185,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\rduto\\Desktop\\proiect_colectiv\\Turismo\\app\\src\\main\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "1,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "17,122,193",
-                        "endColumns": "44,69,82",
-                        "endOffsets": "57,187,271"
-                    },
-                    "to": {
-                        "startLines": "2376,2422,2442",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "152912,158327,160680",
-                        "endColumns": "44,69,82",
-                        "endOffsets": "152952,158392,160758"
-                    }
-                },
-                {
                     "source": "C:\\Users\\rduto\\.gradle\\caches\\transforms-4\\6784f53e7425097586f7ac134d574137\\transformed\\lifecycle-viewmodel-2.6.1\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -3199,40 +3199,6 @@
                         "startOffsets": "145945",
                         "endColumns": "49",
                         "endOffsets": "145990"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\rduto\\Desktop\\proiect_colectiv\\Turismo\\app\\build\\generated\\res\\processDebugGoogleServices\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "55,137,241,350,470,565",
-                        "endColumns": "81,103,108,119,94,71",
-                        "endOffsets": "132,236,345,465,560,632"
-                    },
-                    "to": {
-                        "startLines": "2417,2418,2419,2420,2421,2546",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "157817,157899,158003,158112,158232,175759",
-                        "endColumns": "81,103,108,119,94,71",
-                        "endOffsets": "157894,157998,158107,158227,158322,175826"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\rduto\\Desktop\\proiect_colectiv\\Turismo\\app\\src\\main\\res\\values\\ids.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "57",
-                        "endColumns": "50",
-                        "endOffsets": "103"
-                    },
-                    "to": {
-                        "startLines": "2201",
-                        "startColumns": "4",
-                        "startOffsets": "142246",
-                        "endColumns": "49",
-                        "endOffsets": "142291"
                     }
                 },
                 {
@@ -3269,6 +3235,23 @@
                         "endLines": "14065",
                         "endColumns": "24",
                         "endOffsets": "831097"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\rduto\\Desktop\\Proiect Colectiv backup\\Turismo 5 (beta)\\Turismo\\app\\src\\main\\res\\values\\colors.xml",
+                    "from": {
+                        "startLines": "2,6,5,7,4,3",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "57,231,182,278,143,100",
+                        "endColumns": "41,45,47,46,37,41",
+                        "endOffsets": "94,272,225,320,176,137"
+                    },
+                    "to": {
+                        "startLines": "640,665,666,667,1330,1343",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "32798,34650,34696,34744,76618,77474",
+                        "endColumns": "41,45,47,46,37,41",
+                        "endOffsets": "32835,34691,34739,34786,76651,77511"
                     }
                 },
                 {
@@ -3346,7 +3329,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\rduto\\Desktop\\proiect_colectiv\\Turismo\\app\\src\\main\\res\\values\\themes.xml",
+                    "source": "C:\\Users\\rduto\\Desktop\\Proiect Colectiv backup\\Turismo 5 (beta)\\Turismo\\app\\src\\main\\res\\values\\themes.xml",
                     "from": {
                         "startLines": "2,7",
                         "startColumns": "4,4",
@@ -3436,6 +3419,23 @@
                         "endLines": "138,141,1439,11716",
                         "endColumns": "55,47,51,24",
                         "endOffsets": "7047,7203,83933,741340"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\rduto\\Desktop\\Proiect Colectiv backup\\Turismo 5 (beta)\\Turismo\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "1,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "16,119,189",
+                        "endColumns": "44,69,82",
+                        "endOffsets": "56,184,267"
+                    },
+                    "to": {
+                        "startLines": "2376,2422,2442",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "152912,158327,160680",
+                        "endColumns": "44,69,82",
+                        "endOffsets": "152952,158392,160758"
                     }
                 },
                 {

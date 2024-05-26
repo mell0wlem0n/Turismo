@@ -3510,6 +3510,7 @@ drawable fab_add
 drawable globe
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable group_icon
 drawable ic_arrow_back_black_24
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
@@ -3628,6 +3629,7 @@ id SYM
 id TOP_END
 id TOP_START
 id accelerate
+id acceptButton
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
 id accessibility_custom_action_1
@@ -3780,6 +3782,7 @@ id dark
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
+id declineButton
 id decor_content_parent
 id default_activity_button
 id deleteButton
@@ -3869,6 +3872,7 @@ id gone
 id graph
 id graph_wrap
 id groupItem
+id groupListTitle
 id groupNameEditText
 id groupNameTextView
 id group_divider
@@ -3898,6 +3902,7 @@ id included
 id indeterminate
 id info
 id invisible
+id invitationsRecyclerView
 id inward
 id italic
 id item_touch_helper_previous_elevation
@@ -4223,6 +4228,7 @@ id up
 id useLogo
 id verifText
 id vertical_only
+id viewInvitationsButton
 id view_offset_helper
 id view_transition
 id view_tree_lifecycle_owner
@@ -4360,7 +4366,9 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_chat
+layout activity_confirm_membership
 layout activity_forgot_password
+layout activity_invitations
 layout activity_loading_screen
 layout activity_login
 layout activity_map
@@ -4396,12 +4404,14 @@ layout fragment_calendar
 layout fragment_coordonates_bottom_sheet
 layout fragment_group
 layout fragment_group_creation_dialog
+layout fragment_group_list_dialog
 layout fragment_group_settings_dialog
 layout fragment_image
 layout fragment_map
 layout image_item
 layout item_event
 layout item_group
+layout item_invitation
 layout item_member
 layout item_message
 layout m3_alert_dialog

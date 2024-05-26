@@ -53,6 +53,7 @@ public class GroupFragment extends Fragment implements GroupCreationDialogFragme
         groupsRecyclerView = view.findViewById(R.id.groupsRecyclerView);
         emptyGroupText = view.findViewById(R.id.emptyGroupText);
         FloatingActionButton createGroupButton = view.findViewById(R.id.floatingActionButton);
+        FloatingActionButton viewInvitationsButton = view.findViewById(R.id.viewInvitationsButton);
 
         groupList = new ArrayList<>();
         adapter = new GroupAdapter(groupList, groupName -> {
@@ -67,6 +68,11 @@ public class GroupFragment extends Fragment implements GroupCreationDialogFragme
         createGroupButton.setOnClickListener(v -> {
             GroupCreationDialogFragment dialog = new GroupCreationDialogFragment();
             dialog.show(getChildFragmentManager(), "GroupCreationDialogFragment");
+        });
+
+        viewInvitationsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), InvitationsActivity.class);
+            startActivity(intent);
         });
 
         loadGroups();
@@ -99,10 +105,10 @@ public class GroupFragment extends Fragment implements GroupCreationDialogFragme
 
     @Override
     public void onGroupCreated(String groupName) {
-        // Create a new group with the specified name
+        // Create a new group with the specified name and set the current user as the leader
         List<String> members = new ArrayList<>();
         members.add(currentUser.getUid());
-        Group newGroup = new Group(groupName, members);
+        Group newGroup = new Group(groupName, members, currentUser.getUid());
 
         db.collection("groups")
                 .add(newGroup)

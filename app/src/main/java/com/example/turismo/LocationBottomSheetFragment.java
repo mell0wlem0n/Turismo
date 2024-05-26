@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +20,7 @@ import com.google.android.libraries.places.api.model.OpeningHours;
 import com.google.android.libraries.places.api.model.PhotoMetadata;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
@@ -77,6 +79,9 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
             dismiss();
         });
 
+        Button setLocationButton = v.findViewById(R.id.setLocationButton);
+        setLocationButton.setOnClickListener(v1 -> showGroupListDialog());
+
         return v;
     }
 
@@ -116,5 +121,32 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         intent.setPackage("com.google.android.apps.maps");
         startActivity(intent);
+    }
+
+    private void showGroupListDialog() {
+        GroupListDialogFragment dialog = new GroupListDialogFragment();
+        dialog.setOnGroupSelectedListener(groupName -> {
+            // Add the location to the selected group and update the map
+            addTargetLocationToGroup(groupName, place.location.latitude, place.location.longitude);
+        });
+        dialog.show(getParentFragmentManager(), "GroupListDialogFragment");
+    }
+
+    private void addTargetLocationToGroup(String groupName, double latitude, double longitude) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String locationString = latitude + "," + longitude;
+        db.collection("groups")
+                .whereEqualTo("groupName", groupName)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                        String groupId = task.getResult().getDocuments().get(0).getId();
+                        db.collection("groups").document(groupId)
+                                .update("targetLocation", locationString)
+                                .addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(getContext(), "Target location set for group: " + groupName, Toast.LENGTH_SHORT).show();
+                                });
+                    }
+                });
     }
 }

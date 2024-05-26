@@ -55,9 +55,11 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.GeoPoint;
-import com.google.firebase.firestore.auth.User;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -72,6 +74,7 @@ public class MapFragment extends Fragment {
 
     private static final int FINE_PERMISSION_CODE = 1;
     private GoogleMap myMap;
+    public static String GROUP_ID;
     private Location currentLocation;
     private PlacesClient placesClient;
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -79,6 +82,7 @@ public class MapFragment extends Fragment {
     private Polyline currentPolyline;
     private Marker currentMarker;
     private Marker locationMarker;
+    private Marker targetMarker;
     private List<Marker> currentMarkers = new ArrayList<>();
     private String currentCategory = null;
     private FirebaseFirestore firestore;
@@ -110,21 +114,15 @@ public class MapFragment extends Fragment {
                     setupSearchView(view);
 
                     // Check if there are any member locations to display
-
-
                     Bundle args = getArguments();
                     if (args != null) {
-                        Log.d("COKE", "COKE");
                         ArrayList<UserLocation> userLocations = args.getParcelableArrayList("userLocations");
                         if (userLocations != null && !userLocations.isEmpty()) {
-                            Log.d("HOPE", "HOPE");
                             showMembersLocation(userLocations);
                         }
-                        else
-                        {
-                            Log.d("COKE", "COKE");
-                        }
                     }
+
+                    listenForTargetLocationChanges();
                 }
             });
         }
@@ -157,10 +155,13 @@ public class MapFragment extends Fragment {
 
             // Set up click listener to show BottomSheet
             myMap.setOnMarkerClickListener(marker -> {
-                String s = (String) marker.getTag();
-                if (s != null && s.charAt(0) == '@') {
-                    Toast.makeText(requireContext(), "Username: " + s.substring(1), Toast.LENGTH_SHORT).show();
-                return true;
+                if (marker.getTag() instanceof String) {
+                    String s = (String) marker.getTag();
+
+                    if (s != null && s.charAt(0) == '@') {
+                        Toast.makeText(requireContext(), "Username: " + s.substring(1), Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
                 }
 
                 PlaceResult placeResult = (PlaceResult) marker.getTag();
@@ -514,7 +515,6 @@ public class MapFragment extends Fragment {
         }
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -544,5 +544,66 @@ public class MapFragment extends Fragment {
         } else {
             Toast.makeText(requireContext(), "Google Map is not initialized", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void listenForTargetLocationChanges() {
+        String groupId = GROUP_ID; // Implement this method to retrieve the current group ID
+        if (groupId == null) return;
+
+        DocumentReference groupRef = firestore.collection("groups").document(groupId);
+        groupRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w("MapFragment", "Listen failed.", e);
+                    return;
+                }
+
+                if (snapshot != null && snapshot.exists()) {
+                    String targetLocationString = snapshot.getString("targetLocation");
+                    if (targetLocationString != null) {
+                        String[] parts = targetLocationString.split(",");
+                        if (parts.length == 2) {
+                            double latitude = Double.parseDouble(parts[0]);
+                            double longitude = Double.parseDouble(parts[1]);
+                            updateTargetLocationMarker(latitude, longitude);
+                        }
+                    }
+                } else {
+                    Log.d("MapFragment", "Current data: null");
+                }
+            }
+        });
+    }
+
+    private void updateTargetLocationMarker(double latitude, double longitude) {
+        if (myMap != null) {
+            LatLng targetLatLng = new LatLng(latitude, longitude);
+            if (targetMarker != null) {
+                targetMarker.setPosition(targetLatLng);
+            } else {
+                targetMarker = myMap.addMarker(new MarkerOptions()
+                        .position(targetLatLng)
+                        .title("Group Target Location")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+            }
+            myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(targetLatLng, 15));
+        }
+    }
+
+    public void addTargetLocationMarker(double latitude, double longitude) {
+        if (myMap != null) {
+            LatLng targetLatLng = new LatLng(latitude, longitude);
+            myMap.addMarker(new MarkerOptions()
+                    .position(targetLatLng)
+                    .title("Group Target Location")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+            myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(targetLatLng, 15));
+        }
+    }
+
+    private String getGroupId() {
+        // Implement this method to retrieve the current group ID
+        return null; // Placeholder, implement as needed
     }
 }

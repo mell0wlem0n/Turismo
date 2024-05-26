@@ -35,11 +35,11 @@ com.example.turismo.app-glide-4.12.0-33 C:\Users\rduto\.gradle\caches\transforms
 com.example.turismo.app-cardview-1.0.0-34 C:\Users\rduto\.gradle\caches\transforms-4\e5b2cad850175a5913f940a10c907761\transformed\cardview-1.0.0\res
 com.example.turismo.app-recyclerview-1.2.1-35 C:\Users\rduto\.gradle\caches\transforms-4\f1936c4ff8a9c498c7c0ea2920d6b6ae\transformed\recyclerview-1.2.1\res
 com.example.turismo.app-play-services-maps-18.2.0-36 C:\Users\rduto\.gradle\caches\transforms-4\f46a94b8380b10534475f4d08fcdf9b1\transformed\play-services-maps-18.2.0\res
-com.example.turismo.app-pngs-37 C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\build\generated\res\pngs\debug
-com.example.turismo.app-res-38 C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\build\generated\res\processDebugGoogleServices
-com.example.turismo.app-resValues-39 C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\build\generated\res\resValues\debug
-com.example.turismo.app-packageDebugResources-40 C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.example.turismo.app-packageDebugResources-41 C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.example.turismo.app-debug-42 C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\build\intermediates\merged_res\debug\mergeDebugResources
-com.example.turismo.app-debug-43 C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\debug\res
-com.example.turismo.app-main-44 C:\Users\rduto\Desktop\proiect_colectiv\Turismo\app\src\main\res
+com.example.turismo.app-pngs-37 C:\Users\rduto\Desktop\Proiect Colectiv backup\Turismo 5 (beta)\Turismo\app\build\generated\res\pngs\debug
+com.example.turismo.app-res-38 C:\Users\rduto\Desktop\Proiect Colectiv backup\Turismo 5 (beta)\Turismo\app\build\generated\res\processDebugGoogleServices
+com.example.turismo.app-resValues-39 C:\Users\rduto\Desktop\Proiect Colectiv backup\Turismo 5 (beta)\Turismo\app\build\generated\res\resValues\debug
+com.example.turismo.app-packageDebugResources-40 C:\Users\rduto\Desktop\Proiect Colectiv backup\Turismo 5 (beta)\Turismo\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.turismo.app-packageDebugResources-41 C:\Users\rduto\Desktop\Proiect Colectiv backup\Turismo 5 (beta)\Turismo\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.turismo.app-debug-42 C:\Users\rduto\Desktop\Proiect Colectiv backup\Turismo 5 (beta)\Turismo\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.example.turismo.app-debug-43 C:\Users\rduto\Desktop\Proiect Colectiv backup\Turismo 5 (beta)\Turismo\app\src\debug\res
+com.example.turismo.app-main-44 C:\Users\rduto\Desktop\Proiect Colectiv backup\Turismo 5 (beta)\Turismo\app\src\main\res

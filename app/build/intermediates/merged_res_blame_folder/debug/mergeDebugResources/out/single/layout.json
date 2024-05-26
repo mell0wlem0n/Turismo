@@ -8,6 +8,10 @@
         "source": "com.example.turismo.app-main-44:/layout/fragment_group_settings_dialog.xml"
     },
     {
+        "merged": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-mergeDebugResources-41:\\layout\\fragment_group_list_dialog.xml",
+        "source": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-main-44:\\layout\\fragment_group_list_dialog.xml"
+    },
+    {
         "merged": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-mergeDebugResources-41:\\layout\\fragment_bottom_sheet_dialog.xml",
         "source": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-main-44:\\layout\\fragment_bottom_sheet_dialog.xml"
     },
@@ -36,6 +40,10 @@
         "source": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-main-44:\\layout\\item_event.xml"
     },
     {
+        "merged": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-mergeDebugResources-41:\\layout\\activity_invitations.xml",
+        "source": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-main-44:\\layout\\activity_invitations.xml"
+    },
+    {
         "merged": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-mergeDebugResources-41:\\layout\\fragment_group.xml",
         "source": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-main-44:\\layout\\fragment_group.xml"
     },
@@ -60,8 +68,16 @@
         "source": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-main-44:\\layout\\activity_loading_screen.xml"
     },
     {
+        "merged": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-mergeDebugResources-41:\\layout\\item_invitation.xml",
+        "source": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-main-44:\\layout\\item_invitation.xml"
+    },
+    {
         "merged": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-mergeDebugResources-41:\\layout\\activity_register.xml",
         "source": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-main-44:\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-mergeDebugResources-41:\\layout\\activity_confirm_membership.xml",
+        "source": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-main-44:\\layout\\activity_confirm_membership.xml"
     },
     {
         "merged": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-mergeDebugResources-41:\\layout\\item_message.xml",
@@ -70,6 +86,10 @@
     {
         "merged": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-mergeDebugResources-41:\\layout\\fragment_group_creation_dialog.xml",
         "source": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-main-44:\\layout\\fragment_group_creation_dialog.xml"
+    },
+    {
+        "merged": "com.example.turismo.app-mergeDebugResources-41:/layout/fragment_group.xml",
+        "source": "com.example.turismo.app-main-44:/layout/fragment_group.xml"
     },
     {
         "merged": "C:\\Users\\rduto\\.gradle\\daemon\\8.6\\com.example.turismo.app-mergeDebugResources-41:\\layout\\activity_forgot_password.xml",

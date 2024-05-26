@@ -33,14 +33,18 @@ public final class FragmentGroupBinding implements ViewBinding {
   @NonNull
   public final ConstraintLayout main;
 
+  @NonNull
+  public final FloatingActionButton viewInvitationsButton;
+
   private FragmentGroupBinding(@NonNull ConstraintLayout rootView, @NonNull TextView emptyGroupText,
       @NonNull FloatingActionButton floatingActionButton, @NonNull RecyclerView groupsRecyclerView,
-      @NonNull ConstraintLayout main) {
+      @NonNull ConstraintLayout main, @NonNull FloatingActionButton viewInvitationsButton) {
     this.rootView = rootView;
     this.emptyGroupText = emptyGroupText;
     this.floatingActionButton = floatingActionButton;
     this.groupsRecyclerView = groupsRecyclerView;
     this.main = main;
+    this.viewInvitationsButton = viewInvitationsButton;
   }
 
   @Override
@@ -90,8 +94,14 @@ public final class FragmentGroupBinding implements ViewBinding {
 
       ConstraintLayout main = (ConstraintLayout) rootView;
 
+      id = R.id.viewInvitationsButton;
+      FloatingActionButton viewInvitationsButton = ViewBindings.findChildViewById(rootView, id);
+      if (viewInvitationsButton == null) {
+        break missingId;
+      }
+
       return new FragmentGroupBinding((ConstraintLayout) rootView, emptyGroupText,
-          floatingActionButton, groupsRecyclerView, main);
+          floatingActionButton, groupsRecyclerView, main, viewInvitationsButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

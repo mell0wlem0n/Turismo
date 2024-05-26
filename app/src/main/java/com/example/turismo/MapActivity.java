@@ -65,4 +65,11 @@ public class MapActivity extends AppCompatActivity implements LocationBottomShee
                     .commit();
         }
     }
+
+    public void updateMapWithTargetLocation(double latitude, double longitude) {
+        Fragment mapFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentMap);
+        if (mapFragment instanceof MapFragment) {
+            ((MapFragment) mapFragment).addTargetLocationMarker(latitude, longitude);
+        }
+    }
 }

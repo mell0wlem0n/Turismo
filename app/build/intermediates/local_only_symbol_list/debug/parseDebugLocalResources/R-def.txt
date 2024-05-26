@@ -17,6 +17,7 @@ drawable discover
 drawable edit_text_background
 drawable email
 drawable globe
+drawable group_icon
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable img
@@ -27,6 +28,7 @@ drawable people
 drawable restaurant
 drawable search
 id Logo
+id acceptButton
 id accountInfoTextView
 id accountItem
 id addButton
@@ -45,6 +47,7 @@ id codeField
 id confirmPasswordField
 id confrmPasswordText
 id createGroupButton
+id declineButton
 id deleteButton
 id disconnectButton
 id editButton
@@ -68,6 +71,7 @@ id floatingActionButton
 id forgotPassword
 id fragmentMap
 id groupItem
+id groupListTitle
 id groupNameEditText
 id groupNameTextView
 id groupsRecyclerView
@@ -76,6 +80,7 @@ id imageSlider
 id imageView
 id imageView2
 id imageView4
+id invitationsRecyclerView
 id latitudeText
 id leaveButton
 id locationInput
@@ -126,9 +131,12 @@ id summaryInput
 id textView3
 id textView4
 id verifText
+id viewInvitationsButton
 id websiteText
 layout activity_chat
+layout activity_confirm_membership
 layout activity_forgot_password
+layout activity_invitations
 layout activity_loading_screen
 layout activity_login
 layout activity_map
@@ -143,12 +151,14 @@ layout fragment_calendar
 layout fragment_coordonates_bottom_sheet
 layout fragment_group
 layout fragment_group_creation_dialog
+layout fragment_group_list_dialog
 layout fragment_group_settings_dialog
 layout fragment_image
 layout fragment_map
 layout image_item
 layout item_event
 layout item_group
+layout item_invitation
 layout item_member
 layout item_message
 menu main_navbar

@@ -3,7 +3,6 @@ package com.example.turismo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -12,12 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
@@ -155,17 +154,26 @@ public class ChatActivity extends AppCompatActivity implements GroupSettingsDial
             } else {
                 message.setSenderName(message.getSenderId());
             }
-            messageList.add(message);
-            messageAdapter.notifyDataSetChanged();
-            messagesRecyclerView.scrollToPosition(messageList.size() - 1);  // Scroll to the most recent message
+            addMessageToListAndNotify(message);
         });
+    }
+
+    private void addMessageToListAndNotify(Message message) {
+        messageList.add(message);
+        // Sort messages by timestamp to ensure correct order
+        messageList.sort((m1, m2) -> Long.compare(m1.getTimestamp(), m2.getTimestamp()));
+        messageAdapter.notifyDataSetChanged();
+        messagesRecyclerView.scrollToPosition(messageList.size() - 1); // Scroll to the most recent message
     }
 
     private void sendMessage(String text) {
         String senderEmail = currentUser.getEmail();
         String senderName = userIdToNameMap.get(currentUser.getUid());
-        Message message = new Message(text, currentUser.getUid(), senderEmail, senderName, System.currentTimeMillis());
-        db.collection("groups").document(groupId).collection("messages").add(message);
+        long timestamp = System.currentTimeMillis(); // Get the current time in milliseconds
+        Message message = new Message(text, currentUser.getUid(), senderEmail, senderName, timestamp);
+        db.collection("groups").document(groupId).collection("messages").add(message)
+                .addOnSuccessListener(documentReference -> Log.d("ChatActivity", "Message sent"))
+                .addOnFailureListener(e -> Log.w("ChatActivity", "Failed to send message", e));
     }
 
     @Override
