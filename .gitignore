@@ -6,3 +6,4 @@ app/src/androidTest/
 app/src/test
 
 .idea/
+.gradle/
