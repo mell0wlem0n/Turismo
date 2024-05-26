@@ -101,4 +101,12 @@
         android:textColor="@color/white"
         android:text="Add to Calendar"/>
 
+    <Button
+        android:id="@+id/showWeatherButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/custom_orange"
+        android:textColor="@color/white"
+        android:text="Show Weather"/>
+
 </LinearLayout>

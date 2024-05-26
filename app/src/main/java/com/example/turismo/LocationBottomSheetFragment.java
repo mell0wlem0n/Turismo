@@ -82,6 +82,9 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
         Button setLocationButton = v.findViewById(R.id.setLocationButton);
         setLocationButton.setOnClickListener(v1 -> showGroupListDialog());
 
+        Button showWeatherButton = v.findViewById(R.id.showWeatherButton);
+        showWeatherButton.setOnClickListener(v1 -> showWeatherFragment());
+
         return v;
     }
 
@@ -148,5 +151,14 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
                                 });
                     }
                 });
+    }
+
+    private void showWeatherFragment() {
+        if (getArguments() != null) {
+            double lat = getArguments().getDouble(ARG_LAT);
+            double lng = getArguments().getDouble(ARG_LNG);
+            WeatherFragment weatherFragment = WeatherFragment.newInstance(lat, lng);
+            weatherFragment.show(getChildFragmentManager(), weatherFragment.getTag());
+        }
     }
 }
