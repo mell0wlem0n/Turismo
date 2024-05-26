@@ -2,10 +2,10 @@
 *
 
 # Don't ignore directories, so we can re-include specific files later
-!*/
 
-# Include Java source files
-!*.java
+
+
 
 # Include everything in the res directory
-!res/
+!main/
+
