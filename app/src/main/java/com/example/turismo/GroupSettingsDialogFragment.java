@@ -201,6 +201,18 @@ public class GroupSettingsDialogFragment extends DialogFragment {
         return view;
     }
 
+    private void sendInvitation(String userId, String groupName, String groupId) {
+        Invitation invitation = new Invitation(groupId, groupName, userId);
+        db.collection("invitations")
+                .add(invitation)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(getContext(), "Invitation sent", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Failed to send invitation", Toast.LENGTH_SHORT).show();
+                });
+    }
+
     private void addUserToGroupByEmail(String email) {
         if (groupId == null) {
             Toast.makeText(getContext(), "Group ID is null", Toast.LENGTH_SHORT).show();
@@ -211,21 +223,7 @@ public class GroupSettingsDialogFragment extends DialogFragment {
             if (task.isSuccessful() && !task.getResult().isEmpty()) {
                 String userId = task.getResult().getDocuments().get(0).getId();
                 if (!members.contains(userId)) {
-                    members.add(userId);
-                    db.collection("groups").document(groupId)
-                            .update("members", members)
-                            .addOnSuccessListener(aVoid -> {
-                                Toast.makeText(getContext(), "User added to group", Toast.LENGTH_SHORT).show();
-                                // Update memberNames and notify adapter
-                                db.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot -> {
-                                    if (documentSnapshot.exists()) {
-                                        String name = documentSnapshot.getString("username");
-                                        memberNames.add(name != null ? name : userId);
-                                        membersAdapter.notifyDataSetChanged();
-                                    }
-                                });
-                            })
-                            .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to add user", Toast.LENGTH_SHORT).show());
+                    sendInvitation(userId, groupName, groupId);
                 } else {
                     Toast.makeText(getContext(), "User already in group", Toast.LENGTH_SHORT).show();
                 }
@@ -233,6 +231,7 @@ public class GroupSettingsDialogFragment extends DialogFragment {
                 Toast.makeText(getContext(), "User not found", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     @Override
