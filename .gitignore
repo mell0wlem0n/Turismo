@@ -1,0 +1,8 @@
+local.properties
+
+gradle/
+app/build/
+app/src/androidTest/
+app/src/test
+
+.idea/
