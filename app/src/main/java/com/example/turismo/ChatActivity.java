@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -41,6 +42,8 @@ public class ChatActivity extends AppCompatActivity implements GroupSettingsDial
     private FirebaseFirestore db;
     private FirebaseUser currentUser;
     private Map<String, String> userIdToNameMap;
+    private String imageUrl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +99,30 @@ public class ChatActivity extends AppCompatActivity implements GroupSettingsDial
         });
 
         loadGroupDetails();
+
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        firestore.collection("users").document(currentUser.getUid())
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String profileImageUrl = documentSnapshot.getString("profileImageUrl");
+                        imageUrl = profileImageUrl;
+                    }
+                });
+    }
+
+    private void fetchSenderNameAndImage(Message message) {
+        db.collection("users").document(message.getSenderId()).get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                String name = documentSnapshot.getString("username");
+                String profileImageUrl = documentSnapshot.getString("profileImageUrl");
+                message.setSenderName(name != null ? name : message.getSenderId());
+                message.setProfileImageUrl(profileImageUrl); // Set the profile image URL
+            } else {
+                message.setSenderName(message.getSenderId());
+            }
+            addMessageToListAndNotify(message);
+        });
     }
 
     private void loadGroupDetails() {
@@ -126,7 +153,7 @@ public class ChatActivity extends AppCompatActivity implements GroupSettingsDial
                                     messageList.clear();
                                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots1) {
                                         Message message = doc.toObject(Message.class);
-                                        fetchSenderName(message);
+                                        fetchSenderNameAndImage(message); // Use the new method
                                     }
                                 });
                     }
@@ -169,8 +196,18 @@ public class ChatActivity extends AppCompatActivity implements GroupSettingsDial
     private void sendMessage(String text) {
         String senderEmail = currentUser.getEmail();
         String senderName = userIdToNameMap.get(currentUser.getUid());
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        firestore.collection("users").document(currentUser.getUid())
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String profileImageUrl = documentSnapshot.getString("profileImageUrl");
+                       imageUrl = profileImageUrl;
+                    }
+                });
+
         long timestamp = System.currentTimeMillis(); // Get the current time in milliseconds
-        Message message = new Message(text, currentUser.getUid(), senderEmail, senderName, timestamp);
+        Message message = new Message(text, currentUser.getUid(), senderEmail, senderName, imageUrl, timestamp);
         db.collection("groups").document(groupId).collection("messages").add(message)
                 .addOnSuccessListener(documentReference -> Log.d("ChatActivity", "Message sent"))
                 .addOnFailureListener(e -> Log.w("ChatActivity", "Failed to send message", e));
