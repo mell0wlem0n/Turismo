@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +31,7 @@ public class AccountFragment extends Fragment {
     private FirebaseFirestore firestore;
     private FirebaseUser currentUser;
     private SharedPreferences sharedPreferences;
-
+    private GoogleSignInClient mGoogleSignInClient;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +44,14 @@ public class AccountFragment extends Fragment {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference dbref = db.getReference();
         DatabaseReference imgref = dbref.child("image");
+
+        // Initialize Google SignIn Client
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
+
         // Find views by ID
         usernameEditText = view.findViewById(R.id.nameField);
         emailEditText = view.findViewById(R.id.emailField);
@@ -49,37 +60,7 @@ public class AccountFragment extends Fragment {
         disconnectButton = view.findViewById(R.id.disconnectButton);
         deleteAccountButton = view.findViewById(R.id.deleteButton);
         confirmPassword = view.findViewById(R.id.confirmPasswordField);
-        /*
-            TO DO profile picture thing
 
-        ImageView profilepic = view.findViewById(R.id.profilePhotoImageView);
-        imgref.addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(
-                            @NonNull DataSnapshot dataSnapshot) {
-                        // getting a DataSnapshot for the
-                        // location at the specified relative
-                        // path and getting in the link variable
-                        String link = dataSnapshot.getValue(
-                                String.class);
-
-                        // loading that data into rImage
-                        // variable which is ImageView
-                        Glide.with(AccountFragment.this).load(link).into(profilepic);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-
-                    // this will called when any problem
-                    // occurs in getting data
-
-                });
- Fetch and populate user data in EditText fields
-*/
         if (currentUser != null) {
             firestore.collection("users").document(currentUser.getUid())
                     .get()
@@ -116,7 +97,7 @@ public class AccountFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 passwordEditText.setText("");
                                 confirmPassword.setText("");
-                                Toast.makeText(getContext(), "Passwords changed succesfully: ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Passwords changed successfully: ", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(getContext(), "Password change failed.", Toast.LENGTH_SHORT).show();
                             }
@@ -128,7 +109,7 @@ public class AccountFragment extends Fragment {
                 firestore.collection("users").document(currentUser.getUid())
                         .update("username", newUsername)
                         .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(getContext(), "Username changed succesfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Username changed successfully", Toast.LENGTH_SHORT).show();
 
                         })
                         .addOnFailureListener(e -> {
@@ -139,7 +120,7 @@ public class AccountFragment extends Fragment {
                     firestore.collection("users").document(currentUser.getUid())
                             .update("email", newEmail)
                             .addOnSuccessListener(aVoid -> {
-                                Toast.makeText(getContext(), "Email changed succesfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Email changed successfully", Toast.LENGTH_SHORT).show();
                             })
                             .addOnFailureListener(e -> {
                                 Toast.makeText(getContext(), "Error changing email: " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -147,26 +128,25 @@ public class AccountFragment extends Fragment {
                 }
             }
         });
-
-
     }
-
 
     private void disconnect() {
-
-        firebaseAuth.signOut();
-        Intent intent = new Intent(getContext(), AuthentificationMenuActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        getContext().getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
-                .edit()
-                .putString("email", "1")
-                .putString("password", "0")
-                .apply();
-        ;
-
-        startActivity(intent);
+        if (currentUser != null) {
+            firebaseAuth.signOut();
+            mGoogleSignInClient.signOut().addOnCompleteListener(getActivity(), task -> {
+                mGoogleSignInClient.revokeAccess().addOnCompleteListener(getActivity(), revokeTask -> {
+                    Intent intent = new Intent(getContext(), AuthentificationMenuActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getContext().getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
+                            .edit()
+                            .putString("email", "1")
+                            .putString("password", "0")
+                            .apply();
+                    startActivity(intent);
+                });
+            });
+        }
     }
-
 
     private void deleteAccount() {
         if (currentUser != null) {

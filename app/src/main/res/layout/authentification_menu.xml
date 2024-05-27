@@ -9,6 +9,20 @@
     tools:context=".AuthentificationMenuActivity">
 
     <Button
+        android:id="@+id/googleSignInButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in with Google"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/custom_orange"
+        android:textColor="@color/white" />
+
+    <!-- Existing views -->
+    <Button
         android:id="@+id/loginButton"
         android:layout_width="143dp"
         android:layout_height="47dp"

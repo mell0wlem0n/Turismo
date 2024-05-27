@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "438785627949",
+    "firebase_url": "https://turismo-404-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "turismo-404",
     "storage_bucket": "turismo-404.appspot.com"
   },
@@ -12,7 +13,28 @@
           "package_name": "com.example.turismo"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "438785627949-52hht03c3jp9la95ngrcrr3312b63la7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.turismo",
+            "certificate_hash": "4c2091c324793fd715b50c0dfcb620ca6984d66e"
+          }
+        },
+        {
+          "client_id": "438785627949-gcj0dl46qsgfh791nr6qsjk3u9rivbf5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.turismo",
+            "certificate_hash": "7eba46197d5ffcdbe97ce3abfc4ff8eb7bd542db"
+          }
+        },
+        {
+          "client_id": "438785627949-gp444kh7pr5nchq9o320j1mu2ejp6ffh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAcyGJKexSvvzZaP-sV_eIfcXTFJ-I9dds"
@@ -20,7 +42,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438785627949-gp444kh7pr5nchq9o320j1mu2ejp6ffh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

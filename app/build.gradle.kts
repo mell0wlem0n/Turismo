@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application") version "8.3.1"
-    id("com.google.gms.google-services") version "4.4.1"
+    id("com.google.gms.google-services") version "4.3.15"
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1"
 }
 
@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.activity)
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.android.gms:play-services-location:20.0.0")
+    implementation("com.google.android.gms:play-services-auth:20.0.0")
     implementation("com.google.android.libraries.places:places:3.3.0")
     implementation("com.github.clans:fab:1.6.4")
     implementation("com.google.maps.android:android-maps-utils:2.3.0")
@@ -60,10 +61,13 @@ dependencies {
     implementation("com.google.http-client:google-http-client-jackson2:1.41.5") {
         exclude(group = "org.apache.httpcomponents", module = "httpclient")
     }
+    implementation("com.android.volley:volley:1.2.1")
+    implementation("com.google.code.gson:gson:2.8.8")
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
     implementation("com.google.http-client:google-http-client-android:1.41.5")
     implementation("com.google.apis:google-api-services-calendar:v3-rev411-1.25.0")
     implementation("com.google.oauth-client:google-oauth-client-jetty:1.34.1")
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.android.gms:play-services-auth:20.3.0") // Added dependency for Google Auth
     implementation(libs.firebase.auth)
     implementation(libs.firebase.storage)
