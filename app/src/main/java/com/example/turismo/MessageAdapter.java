@@ -1,4 +1,5 @@
 package com.example.turismo;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.turismo.Message;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
         TextView messageTextView;
         TextView senderTextView;
-        ImageView profileImageView;
+        ShapeableImageView profileImageView;
 
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
