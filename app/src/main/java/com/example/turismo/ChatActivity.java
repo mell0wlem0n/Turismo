@@ -1,12 +1,18 @@
 package com.example.turismo;
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
@@ -23,6 +29,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,9 +39,10 @@ import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity implements GroupSettingsDialogFragment.GroupSettingsListener {
 
+    private static final int PICK_IMAGE_REQUEST = 1;
     private RecyclerView messagesRecyclerView;
     private EditText messageEditText;
-    private ImageButton sendButton;
+    private ImageButton sendButton, imageButton;
     private MessageAdapter messageAdapter;
     private List<Message> messageList;
     private String groupName;
@@ -43,7 +52,7 @@ public class ChatActivity extends AppCompatActivity implements GroupSettingsDial
     private FirebaseUser currentUser;
     private Map<String, String> userIdToNameMap;
     private String imageUrl;
-
+    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +87,11 @@ public class ChatActivity extends AppCompatActivity implements GroupSettingsDial
         messagesRecyclerView = findViewById(R.id.messagesRecyclerView);
         messageEditText = findViewById(R.id.messageEditText);
         sendButton = findViewById(R.id.sendButton);
+        imageButton = findViewById(R.id.imageButton);
 
         // Initialize message list and adapter
         messageList = new ArrayList<>();
-        messageAdapter = new MessageAdapter(messageList);
+        messageAdapter = new MessageAdapter(messageList, this);
 
         // Set up RecyclerView
         messagesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -91,12 +101,18 @@ public class ChatActivity extends AppCompatActivity implements GroupSettingsDial
         sendButton.setOnClickListener(v -> {
             String messageText = messageEditText.getText().toString().trim();
             if (!messageText.isEmpty()) {
-                sendMessage(messageText);
+                sendMessage(messageText, null);
                 messageEditText.setText("");
             } else {
                 Toast.makeText(ChatActivity.this, "Cannot send an empty message", Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Handle image button click
+        imageButton.setOnClickListener(v -> openFileChooser());
+
+        // Initialize Firebase Storage reference
+        storageReference = FirebaseStorage.getInstance().getReference("uploads");
 
         loadGroupDetails();
 
@@ -109,6 +125,54 @@ public class ChatActivity extends AppCompatActivity implements GroupSettingsDial
                         imageUrl = profileImageUrl;
                     }
                 });
+    }
+
+    private void openFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri imageUri = data.getData();
+            uploadImage(imageUri);
+        }
+    }
+
+    private void uploadImage(Uri imageUri) {
+        if (imageUri != null) {
+            StorageReference fileReference = storageReference.child(System.currentTimeMillis()
+                    + "." + getFileExtension(imageUri));
+
+            fileReference.putFile(imageUri)
+                    .addOnSuccessListener(taskSnapshot -> fileReference.getDownloadUrl().addOnSuccessListener(uri -> {
+                        String imageUrl = uri.toString();
+                        sendMessage(null, imageUrl); // Sending message with image
+                    }))
+                    .addOnFailureListener(e -> Toast.makeText(ChatActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show());
+        }
+    }
+
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
+    private void sendMessage(String text, String imageUrl) {
+        String senderEmail = currentUser.getEmail();
+        String senderName = userIdToNameMap.get(currentUser.getUid());
+        long timestamp = System.currentTimeMillis(); // Get the current time in milliseconds
+
+        Message message = new Message(text, currentUser.getUid(), senderEmail, senderName, this.imageUrl, imageUrl, timestamp);
+
+        db.collection("groups").document(groupId).collection("messages").add(message)
+                .addOnSuccessListener(documentReference -> Log.d("ChatActivity", "Message sent"))
+                .addOnFailureListener(e -> Log.w("ChatActivity", "Failed to send message", e));
     }
 
     private void fetchSenderNameAndImage(Message message) {
@@ -173,44 +237,12 @@ public class ChatActivity extends AppCompatActivity implements GroupSettingsDial
         }
     }
 
-    private void fetchSenderName(Message message) {
-        db.collection("users").document(message.getSenderId()).get().addOnSuccessListener(documentSnapshot -> {
-            if (documentSnapshot.exists()) {
-                String name = documentSnapshot.getString("username");
-                message.setSenderName(name != null ? name : message.getSenderId());
-            } else {
-                message.setSenderName(message.getSenderId());
-            }
-            addMessageToListAndNotify(message);
-        });
-    }
-
     private void addMessageToListAndNotify(Message message) {
         messageList.add(message);
         // Sort messages by timestamp to ensure correct order
         messageList.sort((m1, m2) -> Long.compare(m1.getTimestamp(), m2.getTimestamp()));
         messageAdapter.notifyDataSetChanged();
         messagesRecyclerView.scrollToPosition(messageList.size() - 1); // Scroll to the most recent message
-    }
-
-    private void sendMessage(String text) {
-        String senderEmail = currentUser.getEmail();
-        String senderName = userIdToNameMap.get(currentUser.getUid());
-        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        firestore.collection("users").document(currentUser.getUid())
-                .get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        String profileImageUrl = documentSnapshot.getString("profileImageUrl");
-                       imageUrl = profileImageUrl;
-                    }
-                });
-
-        long timestamp = System.currentTimeMillis(); // Get the current time in milliseconds
-        Message message = new Message(text, currentUser.getUid(), senderEmail, senderName, imageUrl, timestamp);
-        db.collection("groups").document(groupId).collection("messages").add(message)
-                .addOnSuccessListener(documentReference -> Log.d("ChatActivity", "Message sent"))
-                .addOnFailureListener(e -> Log.w("ChatActivity", "Failed to send message", e));
     }
 
     @Override

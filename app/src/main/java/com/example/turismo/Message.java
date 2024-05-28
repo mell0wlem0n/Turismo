@@ -6,21 +6,24 @@ public class Message {
     private String senderEmail;
     private String senderName;
     private long timestamp;
-    private String profileImageUrl; // Add this field
+    private String profileImageUrl;
+    private String imageUrl;
 
     public Message() {
         // Firestore requires a public no-arg constructor
     }
 
-    public Message(String text, String senderId, String senderEmail, String senderName, String profileImageUrl, long timestamp) {
+    public Message(String text, String senderId, String senderEmail, String senderName, String profileImageUrl, String imageUrl, long timestamp) {
         this.text = text;
         this.senderId = senderId;
         this.senderEmail = senderEmail;
         this.senderName = senderName;
-        this.profileImageUrl = profileImageUrl; // Initialize this field
+        this.profileImageUrl = profileImageUrl;
+        this.imageUrl = imageUrl;
         this.timestamp = timestamp;
     }
 
+    // Getters and setters
     public String getText() {
         return text;
     }
@@ -67,5 +70,13 @@ public class Message {
 
     public void setProfileImageUrl(String profileImageUrl) {
         this.profileImageUrl = profileImageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
