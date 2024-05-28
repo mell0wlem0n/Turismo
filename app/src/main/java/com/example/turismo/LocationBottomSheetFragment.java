@@ -3,6 +3,7 @@ package com.example.turismo;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -20,6 +21,8 @@ import com.google.android.libraries.places.api.model.OpeningHours;
 import com.google.android.libraries.places.api.model.PhotoMetadata;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -73,9 +76,8 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
 
         Button addLocationToCalendarButton = v.findViewById(R.id.addLocationToCalendarButton);
         addLocationToCalendarButton.setOnClickListener(v1 -> {
-            if (listener != null) {
-                listener.onLocationAdded(place.name, place.location.latitude, place.location.longitude);
-            }
+            Log.d("LocationBottomSheet", "addLocationToCalendarButton clicked");
+            showAddEventDialog(place.name, place.location.latitude, place.location.longitude);
             dismiss();
         });
 
@@ -160,5 +162,24 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
             WeatherFragment weatherFragment = WeatherFragment.newInstance(lat, lng);
             weatherFragment.show(getChildFragmentManager(), weatherFragment.getTag());
         }
+    }
+
+    private void showAddEventDialog(String name, double lat, double lng) {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        AddEventDialogFragment dialog = new AddEventDialogFragment((summary, location, startDateTime, endDateTime, reason) -> {
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (currentUser != null) {
+
+                Event event = new Event(summary, location, startDateTime.getValue(), endDateTime.getValue(), reason, currentUser.getUid());
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("users").document(currentUser.getUid()).collection("events")
+                        .add(event)
+                        .addOnSuccessListener(documentReference -> {
+                            //Toast.makeText(getContext(), "Event added successfully", Toast.LENGTH_SHORT).show();
+                        })
+                        .addOnFailureListener(e -> Toast.makeText(getContext(), "Error adding event: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+            }
+        }, name, lat + "," + lng);
+        dialog.show(fragmentManager, "AddEventDialogFragment");
     }
 }

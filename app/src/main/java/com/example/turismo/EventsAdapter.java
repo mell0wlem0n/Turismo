@@ -1,5 +1,6 @@
 package com.example.turismo;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,22 +9,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.api.services.calendar.model.Event;
+import com.google.firebase.firestore.DocumentSnapshot;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewHolder> {
 
-    private final List<Event> events;
-    private final EventDeleteCallback deleteCallback;
+    private List<DocumentSnapshot> eventList;
+    private OnDeleteEventListener onDeleteEventListener;
 
-    public interface EventDeleteCallback {
-        void onDeleteEvent(Event event);
+    public interface OnDeleteEventListener {
+        void onDeleteEvent(DocumentSnapshot event);
     }
 
-    public EventsAdapter(List<Event> events, EventDeleteCallback deleteCallback) {
-        this.events = events;
-        this.deleteCallback = deleteCallback;
+    public EventsAdapter(List<DocumentSnapshot> eventList, OnDeleteEventListener onDeleteEventListener) {
+        this.eventList = eventList;
+        this.onDeleteEventListener = onDeleteEventListener;
     }
 
     @NonNull
@@ -35,40 +39,48 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewH
 
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
-        Event event = events.get(position);
-        holder.bind(event);
+        DocumentSnapshot documentSnapshot = eventList.get(position);
+        Event event = documentSnapshot.toObject(Event.class);
+
+        if (event != null) {
+            Log.d("TRYING TO LOAD", "TRYING TO LOAD");
+            holder.summaryTextView.setText(event.getSummary());
+            holder.locationTextView.setText(event.getLocation());
+            holder.reasonTextView.setText(event.getReason());
+            holder.startDateTimeTextView.setText(formatDateTime(event.getStartDateTime()));
+            holder.endDateTimeTextView.setText(formatDateTime(event.getEndDateTime()));
+
+            holder.itemView.setOnLongClickListener(v -> {
+                onDeleteEventListener.onDeleteEvent(documentSnapshot);
+                return true;
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return events.size();
+        return eventList.size();
     }
 
-    class EventViewHolder extends RecyclerView.ViewHolder {
+    private String formatDateTime(long timestamp) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        return sdf.format(new Date(timestamp));
+    }
 
-        private final TextView eventSummary;
-        private final TextView eventLocation;
-        private final TextView eventStartDate;
-        private final TextView eventEndDate;
+    static class EventViewHolder extends RecyclerView.ViewHolder {
+        TextView summaryTextView;
+        TextView locationTextView;
+        TextView reasonTextView;
+        TextView startDateTimeTextView;
+        TextView endDateTimeTextView;
 
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
-            eventSummary = itemView.findViewById(R.id.eventSummary);
-            eventLocation = itemView.findViewById(R.id.eventLocation);
-            eventStartDate = itemView.findViewById(R.id.eventStartDate);
-            eventEndDate = itemView.findViewById(R.id.eventEndDate);
-
-            itemView.findViewById(R.id.deleteButton).setOnClickListener(v -> {
-                Event event = events.get(getAdapterPosition());
-                deleteCallback.onDeleteEvent(event);
-            });
-        }
-
-        public void bind(Event event) {
-            eventSummary.setText(event.getSummary());
-            eventLocation.setText(event.getLocation());
-            eventStartDate.setText(event.getStart().getDateTime().toString());
-            eventEndDate.setText(event.getEnd().getDateTime().toString());
+            summaryTextView = itemView.findViewById(R.id.summaryTextView);
+            locationTextView = itemView.findViewById(R.id.locationTextView);
+            reasonTextView = itemView.findViewById(R.id.reasonTextView);
+            startDateTimeTextView = itemView.findViewById(R.id.startDateTimeTextView);
+            endDateTimeTextView = itemView.findViewById(R.id.endDateTimeTextView);
         }
     }
 }

@@ -18,28 +18,22 @@
         android:hint="Event Location" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/startDateInput"
+        android:id="@+id/startDateTimeInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Start Date" />
+        android:hint="Start Date and Time" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/startTimeInput"
+        android:id="@+id/endDateTimeInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Start Time" />
+        android:hint="End Date and Time" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/endDateInput"
+        android:id="@+id/reasonInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="End Date" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/endTimeInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="End Time" />
+        android:hint="Reason" />
 
     <Button
         android:id="@+id/addButton"

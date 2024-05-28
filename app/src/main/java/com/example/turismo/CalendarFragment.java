@@ -1,12 +1,11 @@
 package com.example.turismo;
 
-import android.accounts.AccountManager;
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,218 +14,146 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
-import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.client.util.DateTime;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.services.calendar.Calendar;
-import com.google.api.services.calendar.CalendarScopes;
-import com.google.api.services.calendar.model.Event;
-import com.google.api.services.calendar.model.EventDateTime;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.api.client.util.DateTime;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Calendar;
 import java.util.List;
 
 public class CalendarFragment extends Fragment {
 
-    private static final String ARG_NAME = "name";
-    private static final String ARG_LAT = "latitude";
-    private static final String ARG_LNG = "longitude";
-    private static final int REQUEST_ACCOUNT_PICKER = 1000;
-    private static final int REQUEST_AUTHORIZATION = 1001;
-
-    private String name;
-    private double latitude;
-    private double longitude;
-
-    private GoogleAccountCredential credential;
-    private Calendar calendarService;
+    private CalendarView calendarView;
     private RecyclerView eventsRecyclerView;
     private EventsAdapter eventsAdapter;
-    private List<Event> eventList;
+    private List<DocumentSnapshot> eventList;
 
-    private String pendingSummary;
-    private String pendingLocation;
-    private DateTime pendingStartDateTime;
-    private DateTime pendingEndDateTime;
+    private FirebaseFirestore db;
+    private FirebaseUser currentUser;
 
-    public CalendarFragment() {
-        // Required empty public constructor
-    }
-
-    public static CalendarFragment newInstance(String name, double lat, double lng) {
-        CalendarFragment fragment = new CalendarFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_NAME, name);
-        args.putDouble(ARG_LAT, lat);
-        args.putDouble(ARG_LNG, lng);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private long selectedDate;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            name = getArguments().getString(ARG_NAME);
-            latitude = getArguments().getDouble(ARG_LAT);
-            longitude = getArguments().getDouble(ARG_LNG);
-        }
-
-        credential = GoogleAccountCredential.usingOAuth2(
-                getContext(), Collections.singleton(CalendarScopes.CALENDAR));
-        startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
+        db = FirebaseFirestore.getInstance();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        selectedDate = getDateOnlyInMillis(Calendar.getInstance());
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+
+        calendarView = view.findViewById(R.id.calendarView);
         eventsRecyclerView = view.findViewById(R.id.eventsRecyclerView);
         eventsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         eventList = new ArrayList<>();
         eventsAdapter = new EventsAdapter(eventList, this::deleteEvent);
         eventsRecyclerView.setAdapter(eventsAdapter);
 
+        calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(year, month, dayOfMonth);
+            selectedDate = getDateOnlyInMillis(calendar);
+            fetchEventsFromFirestore();
+        });
+
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(v -> openAddEventDialog());
 
-        // Check if there are any pre-filled location details
-        if (name != null && latitude != 0 && longitude != 0) {
-            openAddEventDialogWithLocation(name, latitude + "," + longitude);
-        }
+        fetchEventsFromFirestore();
 
         return view;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case REQUEST_ACCOUNT_PICKER:
-                if (resultCode == Activity.RESULT_OK && data != null && data.getExtras() != null) {
-                    String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-                    if (accountName != null) {
-                        credential.setSelectedAccountName(accountName);
-                        calendarService = new Calendar.Builder(
-                                new NetHttpTransport(),
-                                JacksonFactory.getDefaultInstance(),
-                                credential)
-                                .setApplicationName("Turismo")
-                                .build();
-                        fetchEventsFromCalendar();
-                    }
-                }
-                break;
-            case REQUEST_AUTHORIZATION:
-                if (resultCode == Activity.RESULT_OK) {
-                    if (pendingSummary != null && pendingLocation != null && pendingStartDateTime != null && pendingEndDateTime != null) {
-                        addEventToCalendar(pendingSummary, pendingLocation, pendingStartDateTime, pendingEndDateTime);
-                    }
-                }
-                break;
+    private void openAddEventDialog() {
+        AddEventDialogFragment dialog = new AddEventDialogFragment(this::addEventToFirestore);
+        dialog.show(getParentFragmentManager(), "AddEventDialogFragment");
+    }
+
+    private void fetchEventsFromFirestore() {
+        if (currentUser != null) {
+            db.collection("users").document(currentUser.getUid()).collection("events")
+                    .addSnapshotListener((queryDocumentSnapshots, e) -> {
+                        if (e != null) {
+                            Toast.makeText(getContext(), "Error fetching events: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        eventList.clear();
+                        if (queryDocumentSnapshots != null) {
+                            for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+                                Event event = document.toObject(Event.class);
+                                if (event != null && isSameDay(event.getDate(), selectedDate)) {
+                                    eventList.add(document);
+                                }
+                            }
+                        }
+                        eventsAdapter.notifyDataSetChanged();
+                    });
         }
     }
 
-    private void openAddEventDialog() {
-        AddEventDialogFragment dialog = new AddEventDialogFragment(this::prepareToAddEvent);
-        dialog.show(getParentFragmentManager(), "AddEventDialogFragment");
+    private boolean isSameDay(long eventDateInMillis, long selectedDateInMillis) {
+        Calendar eventCalendar = Calendar.getInstance();
+        eventCalendar.setTimeInMillis(eventDateInMillis);
+
+        Calendar selectedCalendar = Calendar.getInstance();
+        selectedCalendar.setTimeInMillis(selectedDateInMillis);
+
+        return eventCalendar.get(Calendar.YEAR) == selectedCalendar.get(Calendar.YEAR) &&
+                eventCalendar.get(Calendar.MONTH) == selectedCalendar.get(Calendar.MONTH) &&
+                eventCalendar.get(Calendar.DAY_OF_MONTH) == selectedCalendar.get(Calendar.DAY_OF_MONTH);
     }
 
-    private void openAddEventDialogWithLocation(String name, String location) {
-        AddEventDialogFragment dialog = new AddEventDialogFragment(this::prepareToAddEvent, name, location);
-        dialog.show(getParentFragmentManager(), "AddEventDialogFragment");
-    }
+    public void addEventToFirestore(String summary, String location, DateTime startDateTime, DateTime endDateTime, String reason) {
+        Log.d("ADD EVENT", "ADD EVENT");
 
-    private void fetchEventsFromCalendar() {
-        new Thread(() -> {
-            try {
-                List<Event> items = calendarService.events().list("primary")
-                        .setMaxResults(10)
-                        .setTimeMin(new DateTime(System.currentTimeMillis()))
-                        .setOrderBy("startTime")
-                        .setSingleEvents(true)
-                        .execute()
-                        .getItems();
-
-                getActivity().runOnUiThread(() -> {
-                    eventList.clear();
-                    eventList.addAll(items);
-                    eventsAdapter.notifyDataSetChanged();
-                });
-            } catch (IOException e) {
-                getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "Error fetching events: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-            }
-        }).start();
-    }
-
-    private void prepareToAddEvent(String summary, String location, DateTime startDateTime, DateTime endDateTime) {
-        this.pendingSummary = summary;
-        this.pendingLocation = location;
-        this.pendingStartDateTime = startDateTime;
-        this.pendingEndDateTime = endDateTime;
-        addEventToCalendar(summary, location, startDateTime, endDateTime);
-    }
-
-    public void addLocation(String name, double lat, double lng) {
-        String location = lat + "," + lng;
-        openAddEventDialogWithLocation(name, location);
-    }
-
-    private void addEventToCalendar(String summary, String location, DateTime startDateTime, DateTime endDateTime) {
-        if (calendarService == null) {
-            Toast.makeText(getContext(), "Google Calendar API not initialized", Toast.LENGTH_SHORT).show();
+        if (currentUser == null) {
+            Toast.makeText(getContext(), "User not logged in", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Event event = new Event()
-                .setSummary(summary)
-                .setLocation(location)
-                .setDescription("Event at " + location);
-
-        EventDateTime start = new EventDateTime()
-                .setDateTime(startDateTime)
-                .setTimeZone("America/Los_Angeles");
-        event.setStart(start);
-
-        EventDateTime end = new EventDateTime()
-                .setDateTime(endDateTime)
-                .setTimeZone("America/Los_Angeles");
-        event.setEnd(end);
-
-        new Thread(() -> {
-            try {
-                Event createdEvent = calendarService.events().insert("primary", event).execute();
-                getActivity().runOnUiThread(() -> {
-                    Toast.makeText(getContext(), "Event created: " + createdEvent.getHtmlLink(), Toast.LENGTH_SHORT).show();
-                    fetchEventsFromCalendar();  // Refresh the events list
-                });
-            } catch (UserRecoverableAuthIOException e) {
-                startActivityForResult(e.getIntent(), REQUEST_AUTHORIZATION);
-            } catch (GoogleJsonResponseException e) {
-                getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "Error: " + e.getDetails().getMessage(), Toast.LENGTH_SHORT).show());
-            } catch (IOException e) {
-                getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "IO Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-            }
-        }).start();
+        long eventDate = getDateOnlyInMillis(startDateTime.getValue());
+        Event event = new Event(summary, location, eventDate, startDateTime.getValue(), endDateTime.getValue(), reason, currentUser.getUid());
+        db.collection("users").document(currentUser.getUid()).collection("events")
+                .add(event)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(getContext(), "Event added successfully", Toast.LENGTH_SHORT).show();
+                    fetchEventsFromFirestore();
+                })
+                .addOnFailureListener(e -> Toast.makeText(getContext(), "Error adding event: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
-    private void deleteEvent(Event event) {
-        new Thread(() -> {
-            try {
-                calendarService.events().delete("primary", event.getId()).execute();
-                getActivity().runOnUiThread(() -> {
-                    Toast.makeText(getContext(), "Event deleted", Toast.LENGTH_SHORT).show();
-                    fetchEventsFromCalendar();  // Refresh the events list
-                });
-            } catch (IOException e) {
-                getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "Error deleting event: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-            }
-        }).start();
+    private void deleteEvent(DocumentSnapshot event) {
+        if (currentUser != null) {
+            db.collection("users").document(currentUser.getUid()).collection("events").document(event.getId())
+                    .delete()
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(getContext(), "Event deleted", Toast.LENGTH_SHORT).show();
+                        fetchEventsFromFirestore();
+                    })
+                    .addOnFailureListener(e -> Toast.makeText(getContext(), "Error deleting event: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+        }
+    }
+
+    private long getDateOnlyInMillis(Calendar calendar) {
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTimeInMillis();
+    }
+
+    private long getDateOnlyInMillis(long timestamp) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timestamp);
+        return getDateOnlyInMillis(calendar);
     }
 }

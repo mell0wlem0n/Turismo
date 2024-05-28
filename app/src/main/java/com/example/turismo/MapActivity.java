@@ -39,7 +39,7 @@ public class MapActivity extends AppCompatActivity implements LocationBottomShee
             } else if (item.getItemId() == R.id.groupItem) {
                 replaceFragment(new GroupFragment());
             } else if (item.getItemId() == R.id.calendarItem) {
-                replaceFragment(new CalendarFragment());
+                replaceFragment(new CalendarFragment(), "CALENDAR_FRAGMENT");
             }
             return true;
         });
@@ -52,18 +52,26 @@ public class MapActivity extends AppCompatActivity implements LocationBottomShee
                 .commit();
     }
 
+    private void replaceFragment(Fragment fragment, String tag) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_frame, fragment, tag)
+                .addToBackStack("fragmentTransaction")
+                .commit();
+    }
+
     @Override
     public void onLocationAdded(String name, double lat, double lng) {
-        CalendarFragment calendarFragment = (CalendarFragment) getSupportFragmentManager().findFragmentByTag("CALENDAR_FRAGMENT_TAG");
-        if (calendarFragment != null) {
-            calendarFragment.addLocation(name, lat, lng);
-        } else {
-            calendarFragment = CalendarFragment.newInstance(name, lat, lng);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_frame, calendarFragment, "CALENDAR_FRAGMENT_TAG")
-                    .addToBackStack(null)
-                    .commit();
-        }
+        Log.d("MapActivity", "onLocationAdded called");
+        AddEventDialogFragment dialog = new AddEventDialogFragment((summary, location, startDateTime, endDateTime, reason) -> {
+            CalendarFragment calendarFragment = (CalendarFragment) getSupportFragmentManager().findFragmentByTag("CALENDAR_FRAGMENT");
+            if (calendarFragment != null) {
+                Log.d("MapActivity", "Adding event to Firestore");
+                calendarFragment.addEventToFirestore(summary, location, startDateTime, endDateTime, reason);
+            } else {
+                Log.d("MapActivity", "CalendarFragment is null");
+            }
+        }, name, lat + "," + lng);
+        dialog.show(getSupportFragmentManager(), "AddEventDialogFragment");
     }
 
     public void updateMapWithTargetLocation(double latitude, double longitude) {
