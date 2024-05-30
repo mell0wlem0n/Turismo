@@ -26,9 +26,10 @@
         android:layout_marginEnd="28dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="48dp"
-        android:backgroundTint="@color/custom_orange"
+        android:backgroundTint="@color/primaryDarkColor"
         android:text="Select Place Types"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        />
 
     <fragment
         android:id="@+id/autocomplete_fragment"

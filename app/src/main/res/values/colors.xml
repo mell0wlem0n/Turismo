@@ -6,4 +6,34 @@
     <color name="custom_orange">#D2563B</color>
     <color name="custom_blue">#7BD8FF</color>
     <color name="custom_white">#c0bfbc</color>
+    <color name="golden_yellow">#FFD700</color>
+    <color name="deep_orange">#FF8C00</color>
+    <color name="sunset_pink">#FF69B4</color>
+    <color name="sky_blue">#87CEEB</color>
+    <color name="purple_twilight">#8A2BE2</color>
+    <color name="soft_sand">#FAF0E6</color>
+        <!-- Primary Palette -->
+        <color name="primaryColor">#71B280</color> <!-- Light Green -->
+        <color name="primaryDarkColor">#134E5E</color> <!-- Dark Teal -->
+        <color name="primaryLightColor">#A8E6CF</color> <!-- Very Light Green Background -->
+
+        <!-- Secondary Palette -->
+        <color name="secondaryColor">#6A82FB</color> <!-- Light Blue -->
+        <color name="secondaryDarkColor">#4E54C8</color> <!-- Dark Indigo -->
+        <color name="secondaryLightColor">#8F94FB</color> <!-- Light Blue Background -->
+
+        <!-- Accent Colors -->
+        <color name="accentColor">#FFEB3B</color> <!-- Amber -->
+        <color name="accentDarkColor">#FBC02D</color> <!-- Dark Amber -->
+        <color name="accentLightColor">#FFF9C4</color> <!-- Light Amber -->
+
+        <!-- Text Colors -->
+        <color name="primaryTextColor">#212121</color> <!-- Dark Grey -->
+        <color name="secondaryTextColor">#757575</color> <!-- Medium Grey -->
+        <color name="whiteTextColor">#FFFFFF</color> <!-- White -->
+
+        <!-- Background Colors -->
+        <color name="backgroundColor">#F5F5F5</color> <!-- Light Grey -->
+        <color name="surfaceColor">#FFFFFF</color> <!-- White -->
+
 </resources>

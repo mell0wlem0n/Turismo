@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/golden_yellow">
 
     <item
         android:id="@+id/mapItem"
         android:icon="@drawable/map"
         android:title="Map"
+        android:iconTint="@color/white"
         app:showAsAction="always"/>
     <item android:title="Account"
         android:icon="@drawable/account"

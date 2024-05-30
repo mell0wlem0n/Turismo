@@ -1,7 +1,6 @@
 package com.example.turismo;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,11 +20,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CalendarFragment extends Fragment {
 
@@ -37,6 +38,7 @@ public class CalendarFragment extends Fragment {
     private FirebaseUser currentUser;
 
     private long selectedDate;
+    private Set<Long> eventDates;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class CalendarFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         selectedDate = getDateOnlyInMillis(Calendar.getInstance());
+        eventDates = new HashSet<>();
+        fetchAllEventDates();
     }
 
     @Nullable
@@ -113,8 +117,6 @@ public class CalendarFragment extends Fragment {
     }
 
     public void addEventToFirestore(String summary, String location, DateTime startDateTime, DateTime endDateTime, String reason) {
-        Log.d("ADD EVENT", "ADD EVENT");
-
         if (currentUser == null) {
             Toast.makeText(getContext(), "User not logged in", Toast.LENGTH_SHORT).show();
             return;
@@ -127,6 +129,8 @@ public class CalendarFragment extends Fragment {
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(getContext(), "Event added successfully", Toast.LENGTH_SHORT).show();
                     fetchEventsFromFirestore();
+                    fetchAllEventDates();
+                    highlightEventDays();
                 })
                 .addOnFailureListener(e -> Toast.makeText(getContext(), "Error adding event: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
@@ -138,8 +142,50 @@ public class CalendarFragment extends Fragment {
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(getContext(), "Event deleted", Toast.LENGTH_SHORT).show();
                         fetchEventsFromFirestore();
+                        fetchAllEventDates();
+                        highlightEventDays();
                     })
                     .addOnFailureListener(e -> Toast.makeText(getContext(), "Error deleting event: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+        }
+    }
+
+    private void fetchAllEventDates() {
+        if (currentUser != null) {
+            db.collection("users").document(currentUser.getUid()).collection("events")
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            eventDates.clear();
+                            for (DocumentSnapshot document : task.getResult()) {
+                                Event event = document.toObject(Event.class);
+                                if (event != null) {
+                                    eventDates.add(getDateOnlyInMillis(event.getDate()));
+                                }
+                            }
+                            highlightEventDays();
+                        }
+                    });
+        }
+    }
+
+    private void highlightEventDays() {
+        calendarView.setDate(calendarView.getDate()); // refresh the calendar view
+        // Here we will loop through the dates and highlight them.
+        long currentDate = getDateOnlyInMillis(Calendar.getInstance());
+        for (long date : eventDates) {
+            if (date != currentDate) {
+                // Custom logic to highlight the date
+                highlightDate(calendarView, date);
+            }
+        }
+    }
+
+    private void highlightDate(CalendarView calendarView, long date) {
+        // Custom logic to highlight the date
+        // You can use background color or drawable resources to highlight the date
+        View dateView = calendarView.getChildAt((int) date);
+        if (dateView != null) {
+            dateView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.red)); // Example color
         }
     }
 

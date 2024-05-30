@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="maps_api_key"> AIzaSyCHQwQftJgDAhMehcWLAiXSXc3b_Jb0AXE </string>
     <string name="default_web_client_id">438785627949-gcj0dl46qsgfh791nr6qsjk3u9rivbf5.apps.googleusercontent.com</string>
+
+
 </resources>

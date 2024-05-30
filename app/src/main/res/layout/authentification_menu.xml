@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#211821"
+    android:background="@drawable/test_bck"
     tools:context=".AuthentificationMenuActivity">
 
     <Button
@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/custom_orange"
+        android:backgroundTint="@color/primaryDarkColor"
         android:textColor="@color/white" />
 
     <!-- Existing views -->
@@ -26,7 +26,7 @@
         android:id="@+id/loginButton"
         android:layout_width="143dp"
         android:layout_height="47dp"
-        android:backgroundTint="@color/custom_orange"
+        android:backgroundTint="@color/primaryDarkColor"
         android:text="Logare"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,9 +41,12 @@
         android:layout_width="321dp"
         android:layout_height="45dp"
         android:ems="10"
+        android:paddingLeft="16dp"
+
         android:hint="Email or Username"
-        android:textColorHint="@color/custom_white"
-        android:inputType="textEmailAddress"
+        android:textColorHint="@color/secondaryTextColor"
+        android:textColorHighlight="@color/black"        android:inputType="textEmailAddress"
+        android:background="@drawable/bordered_input"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
@@ -53,26 +56,30 @@
 
     <EditText
         android:id="@+id/passwordField"
-        android:layout_width="307dp"
+        android:layout_width="321dp"
         android:layout_height="50dp"
+        android:background="@drawable/bordered_input"
         android:ems="10"
+        android:paddingLeft="16dp"
+
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColorHint="@color/custom_white"
+        android:textColorHint="@color/secondaryTextColor"
+        android:textColorHighlight="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348" />
+        app:layout_constraintVertical_bias="0.352" />
 
     <TextView
         android:id="@+id/loginText"
-        android:layout_width="369dp"
+        android:layout_width="321dp"
         android:layout_height="63dp"
         android:drawableTint="#D35536"
         android:text="Welcome back!"
-        android:textColor="@color/white"
+        android:textColor="@color/primaryTextColor"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +93,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Remember Me"
+        android:buttonTint="@color/primaryDarkColor"
         android:textColor="@color/white"
+        android:backgroundTint="@color/primaryDarkColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.187"
@@ -105,10 +114,10 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.713" />
+        app:layout_constraintVertical_bias="0.789" />
 
     <TextView
         android:id="@+id/forgotPassword"
@@ -121,9 +130,9 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.791"
+        app:layout_constraintHorizontal_bias="0.822"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.713" />
+        app:layout_constraintVertical_bias="0.789" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
