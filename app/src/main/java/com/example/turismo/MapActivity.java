@@ -80,4 +80,12 @@ public class MapActivity extends AppCompatActivity implements LocationBottomShee
             ((MapFragment) mapFragment).addTargetLocationMarker(latitude, longitude);
         }
     }
+
+    public void showGroupEventsFragment(String groupId) {
+        GroupEventsFragment groupEventsFragment = GroupEventsFragment.newInstance(groupId);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_frame, groupEventsFragment)
+                .addToBackStack(null)
+                .commit();
+    }
 }

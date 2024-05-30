@@ -300,4 +300,11 @@ public class ChatActivity extends AppCompatActivity implements GroupSettingsDial
             Log.e("ChatActivity", "MapFragment not found or not an instance of MapFragment");
         }
     }
+    public void showGroupEventsFragment(String groupId) {
+        GroupEventsFragment groupEventsFragment = GroupEventsFragment.newInstance(groupId);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_frame, groupEventsFragment)
+                .addToBackStack(null)
+                .commit();
+    }
 }

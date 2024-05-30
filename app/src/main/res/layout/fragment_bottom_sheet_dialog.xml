@@ -109,4 +109,13 @@
         android:textColor="@color/white"
         android:text="Show Weather"/>
 
+    <Button
+        android:id="@+id/addEventToGroupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/custom_orange"
+        android:textColor="@color/white"
+        android:text="Add Event to Group"/>
+
+
 </LinearLayout>

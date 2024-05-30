@@ -81,6 +81,12 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
             dismiss();
         });
 
+        Button addEventToGroupButton = v.findViewById(R.id.addEventToGroupButton);
+        addEventToGroupButton.setOnClickListener(v1 -> {
+            Log.d("LocationBottomSheet", "addEventToGroupButton clicked");
+            showGroupLeaderListDialog();
+        });
+
         Button setLocationButton = v.findViewById(R.id.setLocationButton);
         setLocationButton.setOnClickListener(v1 -> showGroupListDialog());
 
@@ -169,7 +175,6 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
         AddEventDialogFragment dialog = new AddEventDialogFragment((summary, location, startDateTime, endDateTime, reason) -> {
             FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
             if (currentUser != null) {
-
                 Event event = new Event(summary, location, startDateTime.getValue(), endDateTime.getValue(), reason, currentUser.getUid());
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 db.collection("users").document(currentUser.getUid()).collection("events")
@@ -179,6 +184,27 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
                         })
                         .addOnFailureListener(e -> Toast.makeText(getContext(), "Error adding event: " + e.getMessage(), Toast.LENGTH_SHORT).show());
             }
+        }, name, lat + "," + lng);
+        dialog.show(fragmentManager, "AddEventDialogFragment");
+    }
+
+    private void showGroupLeaderListDialog() {
+        GroupLeaderListDialogFragment dialog = new GroupLeaderListDialogFragment();
+        dialog.setOnGroupSelectedListener((groupId, groupName) -> showAddGroupEventDialog(groupId, groupName, place.name, place.location.latitude, place.location.longitude));
+        dialog.show(getParentFragmentManager(), "GroupLeaderListDialogFragment");
+    }
+
+    private void showAddGroupEventDialog(String groupId, String groupName, String name, double lat, double lng) {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        AddEventDialogFragment dialog = new AddEventDialogFragment((summary, location, startDateTime, endDateTime, reason) -> {
+            Event event = new Event(summary, location, startDateTime.getValue(), endDateTime.getValue(), reason, groupId);
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("groups").document(groupId).collection("events")
+                    .add(event)
+                    .addOnSuccessListener(documentReference -> {
+                        Toast.makeText(getContext(), "Event added to group: " + groupName, Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> Toast.makeText(getContext(), "Error adding event: " + e.getMessage(), Toast.LENGTH_SHORT).show());
         }, name, lat + "," + lng);
         dialog.show(fragmentManager, "AddEventDialogFragment");
     }

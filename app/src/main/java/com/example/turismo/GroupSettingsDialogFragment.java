@@ -19,13 +19,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
@@ -45,6 +43,7 @@ public class GroupSettingsDialogFragment extends DialogFragment {
     private ImageButton editButton;
     private Button leaveButton;
     private Button showMembersLocationButton;
+    private Button showGroupEventsButton;
     private RecyclerView membersRecyclerView;
     private MembersAdapter membersAdapter;
     private GroupSettingsListener listener;
@@ -98,6 +97,7 @@ public class GroupSettingsDialogFragment extends DialogFragment {
         editButton = view.findViewById(R.id.editButton);
         leaveButton = view.findViewById(R.id.leaveButton);
         showMembersLocationButton = view.findViewById(R.id.showLocationsButton);
+        showGroupEventsButton = view.findViewById(R.id.showGroupEventsButton);
         membersRecyclerView = view.findViewById(R.id.membersRecyclerView);
         addMemberEmailEditText = view.findViewById(R.id.addMemberEmailEditText);
         addMemberButton = view.findViewById(R.id.addMemberButton);
@@ -196,6 +196,12 @@ public class GroupSettingsDialogFragment extends DialogFragment {
             }).addOnFailureListener(e -> {
                 Log.e("GroupSettingsDialog", "Error fetching user locations", e);
             });
+        });
+
+        showGroupEventsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), GroupEventsActivity.class);
+            intent.putExtra("group_id", groupId);
+            startActivity(intent);
         });
 
         return view;
