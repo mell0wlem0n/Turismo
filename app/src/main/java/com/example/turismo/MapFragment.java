@@ -12,12 +12,14 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,6 +68,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -138,7 +144,6 @@ public class MapFragment extends Fragment {
                 selectedPlaceTypes = selectedTypes;
 
                     fetchNearbyPlaces(myMap, selectedTypes);
-                
             });
             FragmentManager fragmentManager = getChildFragmentManager();
             selectPlaceTypesFragment.show(fragmentManager, "SelectPlaceTypesFragment");
@@ -405,10 +410,14 @@ public class MapFragment extends Fragment {
                                             .title(placeResult.name)
                                             .snippet(placeResult.address));
                                     marker.setTag(placeResult);
-                                    if (placeType.equals("restaurant"))
-                                        marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.restaurant));
-                                    else if (placeType.equals("atm"))
-                                        marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.atm));
+                                    if (placeResult.iconUrl != null) {
+                                        new DownloadImageTask(marker, googleMap).execute(placeResult.iconUrl);
+                                    } else {
+                                        if (placeType.equals("restaurant"))
+                                            marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.restaurant));
+                                        else if (placeType.equals("atm"))
+                                            marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.atm));
+                                    }
 
                                     // Add marker to the current markers list
                                     currentMarkers.add(marker);
@@ -422,6 +431,7 @@ public class MapFragment extends Fragment {
             queue.add(stringRequest);
         }
     }
+
 
     private void clearMarkersByCategory(String category) {
         List<Marker> markersToRemove = new ArrayList<>();
@@ -441,7 +451,7 @@ public class MapFragment extends Fragment {
         List<Place.Field> fields = Arrays.asList(
                 Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.LAT_LNG,
                 Place.Field.TYPES, Place.Field.RATING, Place.Field.PHONE_NUMBER, Place.Field.WEBSITE_URI,
-                Place.Field.OPENING_HOURS, Place.Field.PRICE_LEVEL, Place.Field.PHOTO_METADATAS
+                Place.Field.OPENING_HOURS, Place.Field.PRICE_LEVEL, Place.Field.PHOTO_METADATAS, Place.Field.ICON_URL
         );
 
         FetchPlaceRequest request = FetchPlaceRequest.newInstance(placeId, fields);
@@ -452,12 +462,13 @@ public class MapFragment extends Fragment {
                     place.getAddress(),
                     place.getLatLng(),
                     place.getTypes(),
-                    place.getRating(),
+                    place.getRating() != null ? place.getRating() : -1,
                     place.getPhoneNumber(),
                     place.getWebsiteUri() != null ? place.getWebsiteUri().toString() : null,
                     place.getOpeningHours(),
                     String.valueOf(place.getPriceLevel()),
-                    place.getPhotoMetadatas()
+                    place.getPhotoMetadatas(),
+                    place.getIconUrl() // Added icon URL field
             );
             callback.accept(result);
         }).addOnFailureListener(e -> {
@@ -619,4 +630,48 @@ public class MapFragment extends Fragment {
         }
     }
 
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        private Marker marker;
+        private GoogleMap googleMap;
+
+        public DownloadImageTask(Marker marker, GoogleMap googleMap) {
+            this.marker = marker;
+            this.googleMap = googleMap;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11 != null ? Bitmap.createScaledBitmap(mIcon11, 64, 64, false) : null; // Resize the bitmap to 64x64 pixels
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            if (result != null) {
+                marker.setIcon(BitmapDescriptorFactory.fromBitmap(result));
+            }
+        }
+    }
+
+
+
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            return BitmapFactory.decodeStream(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

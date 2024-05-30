@@ -116,7 +116,7 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
         ((TextView) view.findViewById(R.id.nameText)).setText(place.name);
         ((TextView) view.findViewById(R.id.addressText)).setText(place.address);
         ((TextView) view.findViewById(R.id.phoneText)).setText(place.phoneNumber);
-        ((TextView) view.findViewById(R.id.websiteText)).setText(place.websiteUri != null ? place.websiteUri.toString() : "N/A");
+        ((TextView) view.findViewById(R.id.websiteText)).setText(place.website != null ? place.website.toString() : "N/A");
         ((TextView) view.findViewById(R.id.openingHoursText)).setText(formatOpeningHours(place.openingHours));
         ((TextView) view.findViewById(R.id.latitudeText)).setText(String.valueOf(place.location.latitude));
         ((TextView) view.findViewById(R.id.longitudeText)).setText(String.valueOf(place.location.longitude));

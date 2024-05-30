@@ -40,7 +40,17 @@ public class AddEventDialogFragment extends DialogFragment {
     public interface AddEventListener {
         void onEventAdded(String summary, String location, DateTime startDateTime, DateTime endDateTime, String reason);
     }
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            // Set the size of the dialog
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            dialog.getWindow().setLayout(width, height);
+        }
+    }
     public AddEventDialogFragment(AddEventListener listener) {
         this.listener = listener;
         this.startCalendar = Calendar.getInstance();
@@ -53,6 +63,7 @@ public class AddEventDialogFragment extends DialogFragment {
         this.endCalendar = Calendar.getInstance();
         this.startCalendar.setTimeInMillis(System.currentTimeMillis());
         this.endCalendar.setTimeInMillis(System.currentTimeMillis());
+
     }
 
     @Nullable
