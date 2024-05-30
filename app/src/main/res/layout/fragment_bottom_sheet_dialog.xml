@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="#211821"
     android:padding="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,98 +15,107 @@
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginBottom="16dp"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/nameText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:layout_marginBottom="8dp"
             android:text="Location Name: "
-            app:layout_constraintTop_toBottomOf="@id/imageSlider"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/imageSlider" />
 
         <TextView
             android:id="@+id/addressText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:layout_marginBottom="8dp"
             android:text="Address: "
-            app:layout_constraintTop_toBottomOf="@id/nameText"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/nameText" />
 
         <TextView
             android:id="@+id/emailText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:layout_marginBottom="8dp"
             android:text="Email: "
-            app:layout_constraintTop_toBottomOf="@id/addressText"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/addressText" />
 
         <TextView
             android:id="@+id/phoneText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:layout_marginBottom="8dp"
             android:text="Phone: "
-            app:layout_constraintTop_toBottomOf="@id/emailText"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/emailText" />
 
         <TextView
             android:id="@+id/websiteText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:layout_marginBottom="8dp"
             android:text="Website: "
-            app:layout_constraintTop_toBottomOf="@id/phoneText"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/phoneText" />
 
         <TextView
             android:id="@+id/openingHoursText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:layout_marginBottom="8dp"
             android:text="Opening Hours: "
-            app:layout_constraintTop_toBottomOf="@id/websiteText"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/websiteText" />
 
         <TextView
             android:id="@+id/latitudeText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:layout_marginBottom="8dp"
             android:text="Latitude: "
-            app:layout_constraintTop_toBottomOf="@id/openingHoursText"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/openingHoursText" />
 
         <TextView
             android:id="@+id/longitudeText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:layout_marginBottom="16dp"
             android:text="Longitude: "
-            app:layout_constraintTop_toBottomOf="@id/latitudeText"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/latitudeText" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/shareLocationButton"
@@ -114,11 +123,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/custom_orange"
-            android:textColor="@color/white"
             android:text="Share"
-            app:layout_constraintTop_toBottomOf="@id/longitudeText"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/longitudeText" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/setLocationButton"
@@ -126,11 +135,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/custom_orange"
-            android:textColor="@color/white"
             android:text="Set as group target location"
-            app:layout_constraintTop_toBottomOf="@id/shareLocationButton"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/shareLocationButton" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/startNavigationButton"
@@ -138,11 +147,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/custom_orange"
-            android:textColor="@color/white"
             android:text="Start Navigation"
-            app:layout_constraintTop_toBottomOf="@id/setLocationButton"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/setLocationButton" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addLocationToCalendarButton"
@@ -150,11 +159,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/custom_orange"
-            android:textColor="@color/white"
             android:text="Add to Calendar"
-            app:layout_constraintTop_toBottomOf="@id/startNavigationButton"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/startNavigationButton" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/showWeatherButton"
@@ -162,11 +171,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/custom_orange"
-            android:textColor="@color/white"
             android:text="Show Weather"
-            app:layout_constraintTop_toBottomOf="@id/addLocationToCalendarButton"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/addLocationToCalendarButton" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addEventToGroupButton"
@@ -174,12 +183,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/custom_orange"
-            android:textColor="@color/white"
             android:text="Add Event to Group"
-            app:layout_constraintTop_toBottomOf="@id/showWeatherButton"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/showWeatherButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
