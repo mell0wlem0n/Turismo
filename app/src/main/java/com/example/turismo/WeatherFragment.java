@@ -5,19 +5,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +30,7 @@ public class WeatherFragment extends DialogFragment {
 
     private static final String ARG_LAT = "latitude";
     private static final String ARG_LNG = "longitude";
-    private static final String API_KEY = "b84aafb0b73f854e0148980a6275cee7\n";
+    private static final String API_KEY = "b84aafb0b73f854e0148980a6275cee7";
 
     private RecyclerView recyclerView;
     private WeatherAdapter weatherAdapter;
@@ -114,6 +119,10 @@ public class WeatherFragment extends DialogFragment {
             holder.dateText.setText(weatherData.date);
             holder.tempText.setText(String.valueOf(weatherData.temp) + "°C");
             holder.descriptionText.setText(weatherData.description);
+
+            // Set weather icon based on description
+            int weatherIconResId = getWeatherIconResId(weatherData.description);
+            holder.weatherIcon.setImageResource(weatherIconResId);
         }
 
         @Override
@@ -125,13 +134,46 @@ public class WeatherFragment extends DialogFragment {
             TextView dateText;
             TextView tempText;
             TextView descriptionText;
+            ImageView weatherIcon;
 
             WeatherViewHolder(@NonNull View itemView) {
                 super(itemView);
                 dateText = itemView.findViewById(R.id.dateText);
                 tempText = itemView.findViewById(R.id.tempText);
                 descriptionText = itemView.findViewById(R.id.descriptionText);
+                weatherIcon = itemView.findViewById(R.id.weatherIcon);
             }
+        }
+
+        private int getWeatherIconResId(String description) {
+            switch (description.toLowerCase()) {
+                case "clear sky":
+                    return R.drawable.sunny;
+                case "few clouds":
+                    return R.drawable.few_clouds;
+                case "scattered clouds":
+                    return R.drawable.few_clouds;
+                case "broken clouds":
+                    return R.drawable.cloudy;
+                case "shower rain":
+                    return R.drawable.rainy;
+                case "light rain":
+                    return R.drawable.rainy;
+                case "overcast clouds":
+                    return R.drawable.cloudy;
+                case "rain":
+                    return R.drawable.rainy;
+                case "thunderstorm":
+                    return R.drawable.stormy;
+                case "snow":
+                    return R.drawable.snowy;
+                case "mist":
+                    return R.drawable.foggy;
+
+                default:
+                    return R.drawable.discover;
+            }
+
         }
     }
 }
