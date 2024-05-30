@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
 import android.content.Context;
@@ -22,14 +23,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.github.clans.fab.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -54,6 +54,7 @@ import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -84,9 +85,12 @@ public class MapFragment extends Fragment {
     private Marker locationMarker;
     private Marker targetMarker;
     private List<Marker> currentMarkers = new ArrayList<>();
-    private String currentCategory = null;
+    private List<String> currentCategories = new ArrayList<>();
     private FirebaseFirestore firestore;
     private FirebaseAuth firebaseAuth;
+
+    private List<String> selectedPlaceTypes = new ArrayList<>();
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -127,23 +131,17 @@ public class MapFragment extends Fragment {
             });
         }
 
-        FloatingActionMenu fabMenu = view.findViewById(R.id.fab_menu);
-        FloatingActionButton fabRestaurant = view.findViewById(R.id.fab_restaurant);
-        FloatingActionButton fabATM = view.findViewById(R.id.fab_atm);
+        MaterialButton selectPlaceTypesButton = view.findViewById(R.id.select_place_types_button);
+        selectPlaceTypesButton.setOnClickListener(v -> {
+            SelectPlaceTypesFragment selectPlaceTypesFragment = SelectPlaceTypesFragment.newInstance(new ArrayList<>(selectedPlaceTypes));
+            selectPlaceTypesFragment.setPlaceTypesSelectedListener(selectedTypes -> {
+                selectedPlaceTypes = selectedTypes;
 
-        fabRestaurant.setOnClickListener(v -> {
-            fetchNearbyPlaces(myMap, "restaurant");
-            fabMenu.close(true);
-        });
-
-        fabATM.setOnClickListener(v -> {
-            fetchNearbyPlaces(myMap, "atm");
-            fabMenu.close(true);
-        });
-
-        // Close the menu when an item is clicked
-        fabMenu.setOnMenuToggleListener(opened -> {
-            if (!opened) fabMenu.close(true);
+                    fetchNearbyPlaces(myMap, selectedTypes);
+                
+            });
+            FragmentManager fragmentManager = getChildFragmentManager();
+            selectPlaceTypesFragment.show(fragmentManager, "SelectPlaceTypesFragment");
         });
 
         startLocationUpdates(); // Start location updates when the view is created
@@ -379,63 +377,64 @@ public class MapFragment extends Fragment {
         return poly;
     }
 
-    public void fetchNearbyPlaces(final GoogleMap googleMap, String placeType) {
-        // Check if the selected category is the same as the current category
-        if (placeType.equals(currentCategory)) {
-            // Clear current markers and reset the current category
-            clearCurrentMarkers();
-            currentCategory = null;
-            return;
-        }
-
+    public void fetchNearbyPlaces(final GoogleMap googleMap, List<String> placeTypes) {
         // Clear current markers before fetching new places
         clearCurrentMarkers();
-        currentCategory = placeType;
 
         RequestQueue queue = Volley.newRequestQueue(requireContext());
         String apiKey = getString(R.string.maps_api_key);
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
-                "?location=" + currentLocation.getLatitude() + "," + currentLocation.getLongitude() +
-                "&radius=" + 1000 +
-                "&type=" + placeType +
-                "&key=" + apiKey;
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                response -> {
-                    try {
-                        JSONObject jsonObject = new JSONObject(response);
-                        JSONArray results = jsonObject.getJSONArray("results");
-                        for (int i = 0; i < results.length(); i++) {
-                            JSONObject result = results.getJSONObject(i);
-                            String placeId = result.getString("place_id");
-                            getPlaceDetails(placeId, placeResult -> {
-                                Marker marker = googleMap.addMarker(new MarkerOptions()
-                                        .position(new LatLng(placeResult.location.latitude, placeResult.location.longitude))
-                                        .title(placeResult.name)
-                                        .snippet(placeResult.address));
-                                marker.setTag(placeResult);
-                                if (placeType.equals("restaurant"))
-                                    marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.restaurant));
-                                else if (placeType.equals("atm"))
-                                    marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.atm));
+        for (String placeType : placeTypes) {
+            String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
+                    "?location=" + currentLocation.getLatitude() + "," + currentLocation.getLongitude() +
+                    "&radius=" + 1000 +
+                    "&type=" + placeType +
+                    "&key=" + apiKey;
 
-                                // Add marker to the current markers list
-                                currentMarkers.add(marker);
-                            });
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    response -> {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray results = jsonObject.getJSONArray("results");
+                            for (int i = 0; i < results.length(); i++) {
+                                JSONObject result = results.getJSONObject(i);
+                                String placeId = result.getString("place_id");
+                                getPlaceDetails(placeId, placeResult -> {
+                                    Marker marker = googleMap.addMarker(new MarkerOptions()
+                                            .position(new LatLng(placeResult.location.latitude, placeResult.location.longitude))
+                                            .title(placeResult.name)
+                                            .snippet(placeResult.address));
+                                    marker.setTag(placeResult);
+                                    if (placeType.equals("restaurant"))
+                                        marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.restaurant));
+                                    else if (placeType.equals("atm"))
+                                        marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.atm));
+
+                                    // Add marker to the current markers list
+                                    currentMarkers.add(marker);
+                                });
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }, error -> Toast.makeText(requireContext(), "Error fetching places: " + error.getMessage(), Toast.LENGTH_LONG).show());
+                    }, error -> Toast.makeText(requireContext(), "Error fetching places: " + error.getMessage(), Toast.LENGTH_LONG).show());
 
-        queue.add(stringRequest);
+            queue.add(stringRequest);
+        }
     }
 
-    private void clearCurrentMarkers() {
+    private void clearMarkersByCategory(String category) {
+        List<Marker> markersToRemove = new ArrayList<>();
         for (Marker marker : currentMarkers) {
-            marker.remove();
+            PlaceResult placeResult = (PlaceResult) marker.getTag();
+            if (placeResult != null && placeResult.getTypes() != null && placeResult.getTypes().contains(category)) {
+                markersToRemove.add(marker);
+            }
         }
-        currentMarkers.clear();
+        for (Marker marker : markersToRemove) {
+            marker.remove();
+            currentMarkers.remove(marker);
+        }
     }
 
     public void getPlaceDetails(String placeId, Consumer<PlaceResult> callback) {
@@ -606,4 +605,18 @@ public class MapFragment extends Fragment {
         // Implement this method to retrieve the current group ID
         return null; // Placeholder, implement as needed
     }
+
+    private void clearCurrentMarkers() {
+        // Check if currentMarkers list is not empty
+        if (currentMarkers != null && !currentMarkers.isEmpty()) {
+            // Iterate through the list of markers
+            for (Marker marker : currentMarkers) {
+                // Remove each marker from the map
+                marker.remove();
+            }
+            // Clear the list of markers
+            currentMarkers.clear();
+        }
+    }
+
 }

@@ -37,4 +37,8 @@ public class PlaceResult {
     {
         this.location = latLng;
     }
+
+    public List<Place.Type> getTypes() {
+        return types;
+    }
 }
