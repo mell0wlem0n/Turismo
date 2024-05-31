@@ -17,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,7 +41,7 @@ public class AuthentificationMenuActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private SharedPreferences sharedPreferences;
     private Button loginButton;
-    private Button googleSignInButton;
+    private SignInButton googleSignInButton;
     private TextView register;
     private TextView forgotPassword;
     private EditText emailOrUsernameField;
