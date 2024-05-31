@@ -14,22 +14,21 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/select_place_types_button"
-        android:layout_width="254dp"
-        android:layout_height="72dp"
+        android:layout_width="246dp"
+        android:layout_height="76dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="129dp"
+        android:layout_marginStart="81dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="611dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginTop="597dp"
+        android:layout_marginEnd="84dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="57dp"
         android:backgroundTint="@color/primaryDarkColor"
         android:text="Select Place Types"
-        android:textColor="@color/white"
-        />
+        android:textColor="@color/white" />
 
     <fragment
         android:id="@+id/autocomplete_fragment"

@@ -146,6 +146,14 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
     private void addTargetLocationToGroup(String groupName, double latitude, double longitude) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String locationString = latitude + "," + longitude;
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String currentUserId = currentUser != null ? currentUser.getUid() : null;
+
+        if (currentUserId == null) {
+            Toast.makeText(getContext(), "User not authenticated", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         db.collection("groups")
                 .whereEqualTo("groupName", groupName)
                 .get()
@@ -156,10 +164,34 @@ public class LocationBottomSheetFragment extends BottomSheetDialogFragment {
                                 .update("targetLocation", locationString)
                                 .addOnSuccessListener(aVoid -> {
                                     Toast.makeText(getContext(), "Target location set for group: " + groupName, Toast.LENGTH_SHORT).show();
+
+                                    // Send a descriptive message to the group's chat
+                                    sendTargetLocationMessage(groupId, latitude, longitude, currentUserId);
                                 });
                     }
                 });
     }
+
+    private void sendTargetLocationMessage(String groupId, double latitude, double longitude, String senderId) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        long timestamp = System.currentTimeMillis(); // Get the current time in milliseconds
+        String messageText = "The group target location has been changed! Please check your map! Latitude: " + latitude + ", Longitude: " + longitude;
+
+        db.collection("users").document(senderId).get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                String senderName = documentSnapshot.getString("username");
+                String senderEmail = documentSnapshot.getString("email");
+                String profileImageUrl = documentSnapshot.getString("profileImageUrl");
+
+                Message message = new Message(messageText, senderId, senderEmail, senderName, profileImageUrl, null, timestamp);
+
+                db.collection("groups").document(groupId).collection("messages").add(message)
+                        .addOnSuccessListener(documentReference -> Log.d("LocationBottomSheet", "Target location message sent"))
+                        .addOnFailureListener(e -> Log.e("LocationBottomSheet", "Failed to send target location message", e));
+            }
+        });
+    }
+
 
     private void showWeatherFragment() {
         if (getArguments() != null) {

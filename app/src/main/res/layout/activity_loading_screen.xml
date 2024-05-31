@@ -5,13 +5,21 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#211821"
+    android:background="@drawable/test_bck"
     tools:context=".LoadingScreenActivity">
+
 
     <TextView
         android:id="@+id/Logo"
-        android:layout_width="211dp"
-        android:layout_height="78dp"
+        android:layout_width="277dp"
+        android:layout_height="108dp"
+        android:elevation="4dp"
+        android:fontFamily="sans-serif-light"
+        android:padding="16dp"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"
         android:text="Turismo"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -20,17 +28,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.313" />
+        app:layout_constraintVertical_bias="0.186" />
 
     <ImageView
         android:id="@+id/spinning_globe"
-        android:layout_width="201dp"
-        android:layout_height="334dp"
-        android:src="@drawable/globe"
+        android:layout_width="364dp"
+        android:layout_height="429dp"
+        android:src="@drawable/where"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

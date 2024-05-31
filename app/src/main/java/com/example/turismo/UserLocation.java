@@ -7,12 +7,24 @@ public class UserLocation implements Parcelable {
     private String username;
     private double latitude;
     private double longitude;
+    private String profileImageUrl;
 
+    public UserLocation(String username, double latitude, double longitude, String profileImageUrl) {
+        this.username = username;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.profileImageUrl = profileImageUrl;
+    }
     // Constructor
     public UserLocation(String username, double latitude, double longitude) {
         this.username = username;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public String getProfileImageUrl()
+    {
+        return profileImageUrl;
     }
 
     protected UserLocation(Parcel in) {

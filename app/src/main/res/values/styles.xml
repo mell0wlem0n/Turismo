@@ -1,8 +1,28 @@
 <resources>
-    <!-- Other styles -->
 
     <style name="CircleImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/accentColor</item>
+    </style>
+
+    <style name="CalendarViewCustom">
+        <item name="android:weekNumberColor">@color/primaryDarkColor</item>
+        <item name="android:focusedMonthDateColor">@color/primaryTextColor</item>
+        <item name="android:unfocusedMonthDateColor">@color/secondaryTextColor</item>
+        <item name="android:selectedWeekBackgroundColor">@color/secondaryLightColor</item>
+        <item name="android:weekSeparatorLineColor">@color/secondaryTextColor</item>
+        <item name="android:showWeekNumber">false</item>
+        <item name="android:selectedDateVerticalBar">@drawable/calendar_selected_date_vertical_bar</item>
+        <item name="android:background">@color/primaryLightColor</item>
+        <item name="android:textColorPrimary">@color/primaryTextColor</item> <!-- Primary text color -->
+        <item name="android:textColorSecondary">@color/secondaryTextColor</item> <!-- Secondary text color -->
+    </style>
+
 </resources>

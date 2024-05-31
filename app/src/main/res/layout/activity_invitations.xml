@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryLightColor"
     tools:context=".InvitationsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/invitationsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#211821"
+        android:background="@color/primaryLightColor"
         android:padding="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

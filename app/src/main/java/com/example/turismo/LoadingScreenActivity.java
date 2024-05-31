@@ -21,7 +21,7 @@ public class LoadingScreenActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 3000);
+        }, 2500);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class LoadingScreenActivity extends AppCompatActivity {
         ImageView gifProgressBar = findViewById(R.id.spinning_globe);
         Glide.with(this)
                 .asGif()
-                .load(R.drawable.globe)
+                .load(R.drawable.where)
                 .into(gifProgressBar);
 
         startApplication();

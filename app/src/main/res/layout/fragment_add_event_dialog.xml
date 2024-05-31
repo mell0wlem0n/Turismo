@@ -1,43 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/primaryLightColor">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/summaryInput"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Event Summary" />
+        app:boxBackgroundColor="@color/primaryColor"
+        app:boxStrokeColor="@color/accentColor"
+        android:layout_marginBottom="8dp">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/locationInput"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/summaryInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Event Summary"
+            android:textColor="@color/primaryTextColor"
+            android:textColorHint="@color/secondaryTextColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Event Location" />
+        app:boxBackgroundColor="@color/primaryColor"
+        app:boxStrokeColor="@color/accentColor"
+        android:layout_marginBottom="8dp">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/startDateTimeInput"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/locationInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Event Location"
+            android:textColor="@color/primaryTextColor"
+            android:textColorHint="@color/secondaryTextColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Start Date and Time" />
+        app:boxBackgroundColor="@color/primaryColor"
+        app:boxStrokeColor="@color/accentColor"
+        android:layout_marginBottom="8dp">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/endDateTimeInput"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/startDateTimeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Start Date and Time"
+            android:textColor="@color/primaryTextColor"
+            android:textColorHint="@color/secondaryTextColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="End Date and Time" />
+        app:boxBackgroundColor="@color/primaryColor"
+        app:boxStrokeColor="@color/accentColor"
+        android:layout_marginBottom="8dp">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/reasonInput"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/endDateTimeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="End Date and Time"
+            android:textColor="@color/primaryTextColor"
+            android:textColorHint="@color/secondaryTextColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Reason" />
+        app:boxBackgroundColor="@color/primaryColor"
+        app:boxStrokeColor="@color/accentColor"
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/reasonInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Reason"
+            android:textColor="@color/primaryTextColor"
+            android:textColorHint="@color/secondaryTextColor" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/addButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Event" />
+        android:backgroundTint="@color/accentColor"
+        android:textColor="@android:color/white"
+        android:text="Add Event"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:layout_marginTop="8dp" />
 </LinearLayout>

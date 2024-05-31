@@ -156,7 +156,6 @@ public class GroupSettingsDialogFragment extends DialogFragment {
                 listener.onShowMembersLocation(members);
             }
             MapFragment.GROUP_ID = groupId;
-            // Fetch user locations and set them in LocationDataStore
             Log.d("GroupSettingsDialog", "Fetching locations for members: " + members);
 
             db.collection("users").get().addOnSuccessListener(queryDocumentSnapshots -> {
@@ -166,6 +165,7 @@ public class GroupSettingsDialogFragment extends DialogFragment {
                     if (members.contains(userId)) {
                         String username = document.getString("username");
                         String locationString = document.getString("location");
+                        String profileImageUrl = document.getString("profileImageUrl"); // Get the profile image URL
 
                         Log.d("GroupSettingsDialog", "User: " + username + ", Location String: " + locationString);
                         if (locationString != null && !locationString.isEmpty()) {
@@ -173,7 +173,7 @@ public class GroupSettingsDialogFragment extends DialogFragment {
                                 String[] locationParts = locationString.split(",");
                                 double latitude = Double.parseDouble(locationParts[0].trim());
                                 double longitude = Double.parseDouble(locationParts[1].trim());
-                                userLocations.add(new UserLocation(username, latitude, longitude));
+                                userLocations.add(new UserLocation(username, latitude, longitude, profileImageUrl));
                             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                                 Log.d("GroupSettingsDialog", "Failed to parse location for user: " + username);
                             }
@@ -190,7 +190,6 @@ public class GroupSettingsDialogFragment extends DialogFragment {
                     Log.d("GroupSettingsDialog", "User locations found: " + userLocations);
                 }
 
-                // Transition to MapActivity
                 Intent intent = new Intent(getActivity(), MapActivity.class);
                 startActivity(intent);
             }).addOnFailureListener(e -> {

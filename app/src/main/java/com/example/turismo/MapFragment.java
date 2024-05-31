@@ -13,8 +13,11 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
@@ -63,6 +66,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.auth.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -158,13 +162,13 @@ public class MapFragment extends Fragment {
 
             // Set up click listener to show BottomSheet
             myMap.setOnMarkerClickListener(marker -> {
-                if (marker.getTag() instanceof String) {
-                    String s = (String) marker.getTag();
+                if (marker.getTag() instanceof UserLocation) {
+                    String s = (String) ((UserLocation) marker.getTag()).getUsername();
 
-                    if (s != null && s.charAt(0) == '@') {
-                        Toast.makeText(requireContext(), "Username: " + s.substring(1), Toast.LENGTH_SHORT).show();
-                        return true;
+                    if (s != null) {
+                        Toast.makeText(requireContext(), "Username: " , Toast.LENGTH_SHORT).show();
                     }
+                    return true;
                 }
 
                 PlaceResult placeResult = (PlaceResult) marker.getTag();
@@ -188,9 +192,17 @@ public class MapFragment extends Fragment {
                     }
                 }
                 if (closestMarker != null) {
-                    PlaceResult placeResult = (PlaceResult) closestMarker.getTag();
-                    if (placeResult != null) {
-                        LatLng destination = new LatLng(placeResult.location.latitude, placeResult.location.longitude);
+                    Object tag = closestMarker.getTag();
+                    LatLng destination = null;
+                    if (tag instanceof PlaceResult) {
+                        PlaceResult placeResult = (PlaceResult) tag;
+                        destination = new LatLng(placeResult.location.latitude, placeResult.location.longitude);
+                    } else if (tag instanceof UserLocation) {
+                        UserLocation userLocation = (UserLocation) tag;
+                        destination = new LatLng(userLocation.getLatitude(), userLocation.getLongitude());
+                    }
+
+                    if (destination != null) {
                         if (currentMarker != null && currentMarker.equals(closestMarker)) {
                             if (currentPolyline != null) {
                                 currentPolyline.remove();
@@ -210,10 +222,11 @@ public class MapFragment extends Fragment {
                 }
             });
 
+
             myMap.setOnMapClickListener(latLng -> {
                 PlaceResult placeResult = new PlaceResult(latLng);
-                CoordonatesBottomSheetFragment bottomSheet = CoordonatesBottomSheetFragment.newInstance(placeResult.location.latitude, placeResult.location.longitude, placeResult, placesClient);
-                bottomSheet.show(getChildFragmentManager(), bottomSheet.getTag());
+                //CoordonatesBottomSheetFragment bottomSheet = CoordonatesBottomSheetFragment.newInstance(placeResult.location.latitude, placeResult.location.longitude, placeResult, placesClient);
+                //bottomSheet.show(getChildFragmentManager(), bottomSheet.getTag());
             });
         } else {
             Log.e("SetupMap", "Google Map is not initialized");
@@ -542,9 +555,19 @@ public class MapFragment extends Fragment {
             // Add markers for each member
             for (UserLocation userLocation : userLocations) {
                 LatLng latLng = new LatLng(userLocation.getLatitude(), userLocation.getLongitude());
-                Marker marker = myMap.addMarker(new MarkerOptions().position(latLng).title(userLocation.getUsername()));
-                marker.setTag("@" + userLocation.getUsername());
+                MarkerOptions markerOptions = new MarkerOptions()
+                        .position(latLng)
+                        .title(userLocation.getUsername());
+
+                Marker marker = myMap.addMarker(markerOptions);
+                marker.setTag(userLocation);
                 currentMarkers.add(marker);
+
+                // Fetch profile picture and set as marker icon
+                String profileImageUrl = userLocation.getProfileImageUrl();
+                if (profileImageUrl != null && !profileImageUrl.isEmpty()) {
+                    new DownloadAndSetImageTask(marker).execute(profileImageUrl);
+                }
             }
 
             if (!userLocations.isEmpty()) {
@@ -555,6 +578,7 @@ public class MapFragment extends Fragment {
             Toast.makeText(requireContext(), "Google Map is not initialized", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void listenForTargetLocationChanges() {
         String groupId = GROUP_ID; // Implement this method to retrieve the current group ID
@@ -674,4 +698,66 @@ public class MapFragment extends Fragment {
             return null;
         }
     }
+
+
+    private class DownloadAndSetImageTask extends AsyncTask<String, Void, Bitmap> {
+        private Marker marker;
+        private static final int MARKER_IMAGE_SIZE = 100; // Adjust the size as needed
+
+        public DownloadAndSetImageTask(Marker marker) {
+            this.marker = marker;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            String url = urls[0];
+            try {
+                InputStream in = new java.net.URL(url).openStream();
+                Bitmap bitmap = BitmapFactory.decodeStream(in);
+                if (bitmap != null) {
+                    Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, MARKER_IMAGE_SIZE, MARKER_IMAGE_SIZE, false);
+                    return getCircularBitmap(resizedBitmap);
+                } else {
+                    return null;
+                }
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            if (result != null) {
+                marker.setIcon(BitmapDescriptorFactory.fromBitmap(result));
+            }
+        }
+    }
+
+    private Bitmap getCircularBitmap(Bitmap bitmap) {
+        int size = Math.min(bitmap.getWidth(), bitmap.getHeight());
+        int x = (bitmap.getWidth() - size) / 2;
+        int y = (bitmap.getHeight() - size) / 2;
+
+        Bitmap squaredBitmap = Bitmap.createBitmap(bitmap, x, y, size, size);
+        if (squaredBitmap != bitmap) {
+            bitmap.recycle();
+        }
+
+        Bitmap circularBitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(circularBitmap);
+        Paint paint = new Paint();
+        BitmapShader shader = new BitmapShader(squaredBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        paint.setShader(shader);
+        paint.setAntiAlias(true);
+
+        float r = size / 2f;
+        canvas.drawCircle(r, r, r, paint);
+
+        squaredBitmap.recycle();
+        return circularBitmap;
+    }
+
 }

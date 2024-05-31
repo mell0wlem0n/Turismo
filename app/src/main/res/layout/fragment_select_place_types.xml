@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryColor"
     android:padding="16dp">
 
     <LinearLayout
@@ -13,6 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Services"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp"
@@ -22,30 +24,42 @@
             android:id="@+id/checkbox_atm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
             android:text="ATM" />
         <CheckBox
             android:id="@+id/checkbox_bank"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Bank" />
         <CheckBox
             android:id="@+id/checkbox_hospital"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Hospital" />
         <CheckBox
             android:id="@+id/checkbox_pharmacy"
+            android:textColor="@color/white"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pharmacy" />
         <CheckBox
             android:id="@+id/checkbox_police"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Police" />
 
         <TextView
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Food and Drinks"
             android:textSize="18sp"
@@ -56,27 +70,37 @@
         <CheckBox
             android:id="@+id/checkbox_restaurant"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Restaurant" />
         <CheckBox
             android:id="@+id/checkbox_cafe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
             android:text="Cafe" />
         <CheckBox
             android:id="@+id/checkbox_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
             android:text="Bar" />
         <CheckBox
             android:id="@+id/checkbox_bakery"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Bakery" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
             android:text="Entertainment"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -86,21 +110,29 @@
         <CheckBox
             android:id="@+id/checkbox_movie_theater"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Movie Theater" />
         <CheckBox
             android:id="@+id/checkbox_amusement_park"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
             android:text="Amusement Park" />
         <CheckBox
             android:id="@+id/checkbox_night_club"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Night Club" />
         <CheckBox
             android:id="@+id/checkbox_zoo"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Zoo" />
 
@@ -110,27 +142,37 @@
             android:text="Shopping"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/white"
+
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"/>
 
         <CheckBox
             android:id="@+id/checkbox_clothing_store"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Clothing Store" />
         <CheckBox
             android:id="@+id/checkbox_shopping_mall"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Shopping Mall" />
         <CheckBox
             android:id="@+id/checkbox_book_store"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Book Store" />
         <CheckBox
             android:id="@+id/checkbox_grocery_or_supermarket"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Grocery or Supermarket" />
 
@@ -138,6 +180,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Transport"
+            android:textColor="@color/white"
+
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp"
@@ -146,21 +190,29 @@
         <CheckBox
             android:id="@+id/checkbox_train_station"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Train Station" />
         <CheckBox
             android:id="@+id/checkbox_bus_station"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Bus Station" />
         <CheckBox
             android:id="@+id/checkbox_airport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
             android:text="Airport" />
         <CheckBox
             android:id="@+id/checkbox_subway_station"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Subway Station" />
 
@@ -170,6 +222,7 @@
             android:id="@+id/apply_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/primaryDarkColor"
             android:text="Apply"
             android:layout_marginTop="16dp" />
 
