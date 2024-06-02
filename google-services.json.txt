@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "438785627949",
+    "firebase_url": "https://turismo-404-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "turismo-404",
+    "storage_bucket": "turismo-404.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438785627949:android:994adc2314fa337b09e5a4",
+        "android_client_info": {
+          "package_name": "com.example.turismo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438785627949-gp444kh7pr5nchq9o320j1mu2ejp6ffh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcyGJKexSvvzZaP-sV_eIfcXTFJ-I9dds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438785627949-gp444kh7pr5nchq9o320j1mu2ejp6ffh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

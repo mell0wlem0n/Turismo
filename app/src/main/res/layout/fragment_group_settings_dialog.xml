@@ -120,7 +120,7 @@
                 android:id="@+id/showLocationsButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Show Member Locations"
+                android:text="Show Group Locations"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/primaryColor"
