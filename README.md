@@ -1,1 +1,2 @@
-# Ilie
+# Welcome to Turismo
+This is a mobile app for tourist. It is using google api's for geolocation feautures. It is build in android studio. The app is intended to help tourist visit a city. You can create chats and make schedules for groups of people to visit . You can explore and get recomandations with places depending in which city you are going. And you can see the live location of other people which are in a group with you. 
